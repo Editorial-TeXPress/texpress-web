@@ -9,6 +9,9 @@
     
     <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fuente original de LaTeX (Computer Modern / Latin Modern) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
     
     <!-- Google Fonts for an academic, typographic look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,6 +50,11 @@
             padding: 0.2rem 0.4rem;
             border-radius: 0.25rem;
             font-size: 0.9em;
+        }
+
+        /* Clase para usar Latin Modern en cualquier texto */
+        .latin-modern {
+            font-family: "Computer Modern Serif", serif;
         }
 
         /* Estilos para logos tipográficos */
@@ -205,8 +213,8 @@
                     Diseñamos plantillas institucionales desde cero. Autores de soluciones como <em>Disquisitio Elementalis</em> y configuraciones avanzadas como <span class="latex-code">deexam</span> para evaluación académica.
                 </p>
                 
-                <!-- CTA Button -->
-                <div class="flex flex-col sm:flex-row gap-4 mt-8">
+                <!-- CTA Button con efecto \hfill -->
+                <div class="flex flex-col sm:flex-row justify-between w-full mt-8">
                     <a href="#contacto" class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-200">
                         Contáctanos
                         <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -238,7 +246,7 @@
                     </a>
                 </div>
                 
-                <p class="mt-12 text-xs text-slate-600">© 2026 Editorial <span class="logo-tex">T<span class="e">e</span>X</span><span class="text">Press</span>. Documentos creados con precisión.</p>
+                <p class="mt-12 text-xs text-slate-400">© 2026 <span class="latin-modern text-[14px]">Editorial <span class="logo-tex">T<span class="e">e</span>X</span>Press</span>. Documentos creados con precisión.</p>
             </footer>
         </div>
     </main>
