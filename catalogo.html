@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo | Editorial TexPress</title>
+
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+        h1, h2, h3, .serif-font { font-family: 'Lora', serif; }
+        .latex-code { font-family: monospace; background: #1e293b; color: #38bdf8; padding: 0.2rem 0.4rem; border-radius: 0.25rem; font-size: 0.9em; }
+        
+        /* Tipografía TeX */
+        .logo-tex, .logo-latex { font-family: 'Lora', serif; display: inline-block; }
+        .logo-latex .a { text-transform: uppercase; font-size: 0.75em; vertical-align: 0.28em; margin-left: -0.32em; margin-right: -0.15em; }
+        .logo-tex .e, .logo-latex .e { text-transform: uppercase; vertical-align: -0.25em; margin-left: -0.15em; margin-right: -0.1em; }
+        .logo-tikz { font-family: 'Lora', serif; }
+        .logo-tikz .k { font-style: italic; }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-200 selection:text-blue-900">
+
+    <!-- Navbar con botón de regreso -->
+    <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center text-slate-600 hover:text-blue-600 transition-colors font-medium">
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Volver al inicio
+            </a>
+            <div class="text-xl font-semibold serif-font text-slate-900 tracking-tight hidden sm:block">
+                Catálogo de <span class="text-blue-600">Proyectos</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-28 pb-20 max-w-7xl mx-auto px-6">
+        
+        <!-- Encabezado del Catálogo -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 serif-font mb-6" style="line-height: 1.2;">Nuestro Trabajo</h1>
+            <p class="text-lg text-slate-600">Explora nuestra colección de maquetaciones, clases institucionales, y gráficos vectoriales creados con precisión tipográfica.</p>
+        </div>
+
+        <!-- Grid de Proyectos -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+
+            <!-- Proyecto 1: Libros y Apuntes -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div class="h-64 bg-slate-100 flex items-center justify-center border-b border-slate-200 p-4">
+                    <!-- Sustituye el src con una imagen de tu libro -->
+                    <p class="text-slate-400 text-sm">imagen-libro.png</p>
+                </div>
+                <div class="p-8">
+                    <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Edición de Libros</div>
+                    <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Fundamentos de la Física</h3>
+                    <p class="text-slate-600 mb-4">Maquetación completa de libro de texto enfocado en física y sistemas dinámicos (Del Orden al Caos). Incluye diseño de portadas, integración de diagramas complejos y estructuración de capítulos.</p>
+                </div>
+            </div>
+
+            <!-- Proyecto 2: Plantillas y Clases -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div class="h-64 bg-slate-100 flex items-center justify-center border-b border-slate-200 p-4">
+                    <img src="muestra-disquisitio.png" alt="Disquisitio Elementalis" class="h-full w-auto object-contain drop-shadow-md">
+                </div>
+                <div class="p-8">
+                    <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Ingeniería Documental</div>
+                    <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Disquisitio Elementalis & Evaluación</h3>
+                    <p class="text-slate-600 mb-4">Desarrollo de plantillas institucionales <span class="latex-code">.cls</span> para tesis. Incluye también clases especializadas como <span class="latex-code">deexam</span> y <span class="latex-code">EstructuraExamen.cls</span> para la automatización de evaluaciones académicas.</p>
+                </div>
+            </div>
+
+            <!-- Proyecto 3: Paquetes Personalizados -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div class="h-64 bg-slate-100 flex items-center justify-center border-b border-slate-200 p-4">
+                    <p class="text-slate-400 text-sm">imagen-codigo.png</p>
+                </div>
+                <div class="p-8">
+                    <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Desarrollo de Paquetes</div>
+                    <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Paquete <span class="latex-code">disqmath.sty</span></h3>
+                    <p class="text-slate-600 mb-4">Creación de paquetes <span class="latex-code">.sty</span> orientados a simplificar la tipografía matemática avanzada, optimizando entornos de demostración y comandos repetitivos.</p>
+                </div>
+            </div>
+
+            <!-- Proyecto 4: Galería TikZ -->
+            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300">
+                <div class="h-64 bg-slate-100 flex items-center justify-center border-b border-slate-200 p-4">
+                    <img src="muestra-tikz.png" alt="Gráfica TikZ" class="h-full w-auto object-contain drop-shadow-md">
+                </div>
+                <div class="p-8">
+                    <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Arte Vectorial</div>
+                    <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Galería en <span class="logo-tikz">Ti<span class="k">k</span>Z</span></h3>
+                    <p class="text-slate-600 mb-4">Renderizado nativo de circuitos, diagramas de cuerpo libre y superficies 3D paramétricas, asegurando que los gráficos no pierdan calidad en la impresión.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-300 py-12 px-8 text-center border-t border-slate-800">
+        <h3 class="serif-font text-2xl text-white mb-4">¿Listo para compilar tu proyecto?</h3>
+        <a href="mailto:editorialtexpress@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors font-medium text-lg">editorialtexpress@gmail.com</a>
+        
+        <div class="flex justify-center gap-6 mt-8">
+            <a href="https://github.com/VincentGamez33" target="_blank" class="text-slate-400 hover:text-white transition-colors" aria-label="GitHub">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
+            </a>
+            <a href="https://linkedin.com/in/vicente-chavarria-gamez-303980252" target="_blank" class="text-slate-400 hover:text-white transition-colors" aria-label="LinkedIn">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+        </div>
+        <p class="mt-12 text-xs text-slate-600">© 2026 Editorial <span class="logo-tex">T<span class="e">e</span>X</span><span class="text">Press</span>. Documentos creados con precisión.</p>
+    </footer>
+</body>
+</html>
