@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editorial TexPress | Soluciones en LaTeX</title>
+
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts for an academic, typographic look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom typography setup */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Slate 50 */
+            color: #1e293b; /* Slate 800 */
+        }
+        h1, h2, h3, .serif-font {
+            font-family: 'Lora', serif;
+        }
+
+        /* Image transition classes */
+        .img-layer {
+            transition: opacity 0.8s ease-in-out, transform 1.2s ease-out;
+        }
+        .img-active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .img-inactive {
+            opacity: 0;
+            transform: scale(1.05); /* Slight zoom effect when hiding */
+        }
+
+        /* Styling for the LaTeX code blocks */
+        .latex-code {
+            font-family: monospace;
+            background: #1e293b;
+            color: #38bdf8;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-size: 0.9em;
+        }
+
+        /* Estilos para logos tipográficos */
+        .logo-tex, .logo-latex {
+            font-family: 'Lora', serif; /* Usa la fuente serif que ya cargaste */
+            display: inline-block;
+        }
+
+        .logo-latex .a {
+            text-transform: uppercase;
+            font-size: 0.75em;
+            vertical-align: 0.28em;
+            margin-left: -0.32em;
+            margin-right: -0.15em;
+        }
+
+        .logo-tex .e, .logo-latex .e {
+            text-transform: uppercase;
+            vertical-align: -0.25em;
+            margin-left: -0.15em;
+            margin-right: -0.1em;
+        }
+
+        .logo-tikz {
+            font-family: 'Lora', serif;
+        }
+        .logo-tikz .k {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-blue-200 selection:text-blue-900">
+
+    <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-semibold serif-font text-slate-900 tracking-tight">
+                <span class="logo-tex">T<span class="e">e</span>X</span><span class="text-blue-600">Press</span>
+            </div>
+            <a href="#contacto" class="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors">
+                Solicitar Presupuesto
+            </a>
+        </div>
+    </nav>
+
+    <main class="relative flex flex-col md:flex-row w-full pt-16">
+        
+        <!-- LEFT SIDE: Sticky Image Container -->
+        <!-- On mobile it takes the top 40% of the screen, on desktop 50% width and full height -->
+        <div class="w-full md:w-1/2 h-[40vh] md:h-screen sticky top-16 md:top-0 overflow-hidden bg-slate-900 z-10 border-b md:border-r border-slate-200">
+            
+            <!-- Image 1: Maquetación -->
+            <img id="media-1" 
+                src="muestra-tesis.png" 
+                alt="Plantilla Disquisitio Elementalis"
+                class="absolute inset-0 w-full h-full object-cover img-layer img-inactive shadow-2xl">
+            
+            <!-- Image 2: TikZ (Contenedor para 2 imágenes) -->
+            <div id="media-2" class="absolute inset-0 w-full h-full img-layer img-inactive shadow-2xl flex flex-col xl:flex-row bg-slate-900 overflow-hidden">
+                
+                <img src="muestra-tikz.png" 
+                    alt="Gráfico TikZ 1" 
+                    class="w-full xl:w-1/2 h-1/2 xl:h-full object-cover border-b xl:border-b-0 xl:border-r border-slate-700">
+                    
+                <img src="muestra-tikz-2.png" 
+                    alt="Gráfico TikZ 2" 
+                    class="w-full xl:w-1/2 h-1/2 xl:h-full object-cover">
+                    
+            </div>
+            
+            <!-- Image 3: Clases -->
+            <img id="media-3" 
+                src="muestra-disquisitio.png" 
+                alt="Plantilla Disquisitio Elementalis" 
+                class="absolute inset-0 w-full h-full object-cover img-layer img-inactive shadow-2xl">
+
+                 
+            <!-- Gradient Overlay for aesthetics -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent pointer-events-none"></div>
+        </div>
+
+        <!-- RIGHT SIDE: Scrolling Content -->
+        <div class="w-full md:w-1/2 bg-white z-0">
+            
+            <!-- Section 1 -->
+            <section data-index="1" class="step min-h-screen flex flex-col justify-center px-8 py-20 md:px-16 lg:px-24">
+                <div class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-blue-700 uppercase bg-blue-100 rounded-full w-max">
+                    01. Estructura y Rigor
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-slate-900 leading-tight serif-font">
+                    Maquetación Profesional
+                </h2>
+                <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                    Transformamos tus manuscritos en obras editoriales impecables. Especializados en documentos de alta complejidad técnica: tesis doctorales, artículos científicos (papers) y libros técnicos.
+                </p>
+                <ul class="space-y-4 text-slate-600">
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Manejo impecable de bibliografías complejas (<span class="latex-code ml-1">BibTeX</span> / <span class="latex-code ml-1">Biber</span>).
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Composición matemática avanzada y tipografía precisa.
+                    </li>
+                    <li class="flex items-start">
+                        <svg class="w-6 h-6 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Cumplimiento estricto de las normativas de formato de universidades y revistas (APA, IEEE, Nature, etc.).
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Section 2 -->
+            <section data-index="2" class="step min-h-screen flex flex-col justify-center px-8 py-20 md:px-16 lg:px-24 bg-slate-50 border-y border-slate-100">
+                <div class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-blue-700 uppercase bg-blue-100 rounded-full w-max">
+                    02. Arte Vectorial
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-slate-900 leading-tight serif-font">
+                    Gráficos en <span class="logo-tikz">Ti<span class="k">k</span>Z</span>
+                </h2>
+                <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                    Las imágenes pixeladas restan credibilidad a un buen documento científico. Desarrollamos gráficos 100% vectoriales integrados nativamente en tu código fuente mediante <span class="latex-code">TikZ</span> y <span class="latex-code">pgfplots</span>.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
+                        <h4 class="font-bold text-slate-800 mb-2">Diagramas Complejos</h4>
+                        <p class="text-sm text-slate-500">Flujogramas, árboles de decisión, circuitos eléctricos y diagramas de bloques renderizados a la perfección.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
+                        <h4 class="font-bold text-slate-800 mb-2">Gráficas Numéricas</h4>
+                        <p class="text-sm text-slate-500">Importación de datos directos (CSV) para generar gráficas matemáticas 2D y 3D con tipografía coincidente.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3 -->
+            <section data-index="3" class="step min-h-screen flex flex-col justify-center px-8 py-20 md:px-16 lg:px-24">
+                <div class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-blue-700 uppercase bg-blue-100 rounded-full w-max">
+                    03. Ingeniería Documental
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-slate-900 leading-tight serif-font">
+                    Clases Personalizadas
+                </h2>
+                <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                    Si te encuentras copiando y pegando el mismo preámbulo masivo en cada documento, necesitas una clase <span class="latex-code">.cls</span> o paquete <span class="latex-code">.sty</span> propio.
+                </p>
+                <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                    Diseñamos plantillas institucionales desde cero. Autores de soluciones como <em>Disquisitio Elementalis</em> y configuraciones avanzadas como <span class="latex-code">deexam</span> para evaluación académica.
+                </p>
+                
+                <!-- CTA Button -->
+                <a href="#contacto" class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 w-max shadow-lg shadow-blue-200">
+                    Trabajemos juntos
+                    <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </section>
+            
+            <footer id="contacto" class="bg-slate-900 text-slate-300 py-12 px-8 md:px-16 text-center border-t border-slate-800">
+                <h3 class="serif-font text-2xl text-white mb-4">¿Listo para compilar tu proyecto?</h3>
+                <p class="mb-6 max-w-md mx-auto text-sm">Envíanos un correo o utiliza la plataforma de gestión para adjuntar tu código fuente actual y los requerimientos.</p>
+                <a href="mailto:hola@editorialtexpress.com" class="text-blue-400 hover:text-blue-300 transition-colors font-medium">hola@editorialtexpress.com</a>
+                <p class="mt-12 text-xs text-slate-600">© 2026 Editorial TexPress. Documentos creados con precisión.</p>
+            </footer>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get all scrolling text sections
+            const steps = document.querySelectorAll('.step');
+            // Get all images
+            const images = document.querySelectorAll('.img-layer');
+
+            // Options for the observer
+            // rootMargin: controls how early/late the trigger happens. 
+            // -10% top and -40% bottom means the section must be near the middle of the screen to trigger.
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -40% 0px', 
+                threshold: 0
+            };
+
+            // Callback function when a section enters or leaves the view
+            const observerCallback = (entries) => {
+                entries.forEach(entry => {
+                    // If the section is intersecting (visible in the target area)
+                    if (entry.isIntersecting) {
+                        // Get the index from the data attribute (1, 2, or 3)
+                        const index = entry.target.getAttribute('data-index');
+                        
+                        // Loop through all images and update their classes
+                        images.forEach(img => {
+                            if (img.id === `media-${index}`) {
+                                img.classList.remove('img-inactive');
+                                img.classList.add('img-active');
+                            } else {
+                                img.classList.remove('img-active');
+                                img.classList.add('img-inactive');
+                            }
+                        });
+                    }
+                });
+            };
+
+            // Create the observer
+            const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+            // Tell the observer to watch each section
+            steps.forEach(step => observer.observe(step));
+        });
+    </script>
+</body>
+</html>
