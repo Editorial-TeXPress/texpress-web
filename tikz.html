@@ -176,20 +176,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-latex.min.js"></script>
 
-    <!-- Nuestro Script Mágico (Corregido con la ruta correcta) -->
+    <!-- ========================================== -->
+    <!-- SCRIPTS MÁGICOS (Carga de código y Copiado) -->
+    <!-- ========================================== -->
     <script>
+        // 1. FUNCIÓN PARA CARGAR EL CÓDIGO AL ABRIR LA PÁGINA
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('TeX/hooke-law.tex')
+                .then(response => {
+                    if (!response.ok) throw new Error("No se pudo encontrar el archivo en GitHub (Error 404)");
+                    return response.text();
+                })
+                .then(codigoLaTeX => {
+                    const bloqueCodigo = document.getElementById('hooke-law');
+                    bloqueCodigo.textContent = codigoLaTeX;
+                    Prism.highlightElement(bloqueCodigo);
+                })
+                .catch(error => {
+                    document.getElementById('hooke-law').textContent = "% Error: " + error.message + "\n% Verifica que subiste la carpeta 'TeX' y el archivo 'hooke-law.tex' a GitHub.";
+                });
+        });
+
+        // 2. FUNCIÓN TODOTERRENO PARA COPIAR EL CÓDIGO
+        // Nota: Asegúrate de que tu botón tenga esto: onclick="copiarCodigo('hooke-law', 'btn-copiar', 'texto-copiar')"
         function copiarCodigo(idCodigo, idBoton, idTexto) {
-            // 1. Extraemos el texto del bloque correspondiente
             const codigo = document.getElementById(idCodigo).textContent;
             
-            // 2. Función interna que cambia el botón a verde cuando hay éxito
             const mostrarExito = () => {
                 const btnTexto = document.getElementById(idTexto);
                 const btn = document.getElementById(idBoton);
                 
                 btnTexto.textContent = '¡Copiado!';
                 btn.classList.remove('text-slate-300');
-                btn.classList.add('text-green-400'); // Verde neón elegante
+                btn.classList.add('text-green-400');
                 
                 setTimeout(() => {
                     btnTexto.textContent = 'Copiar código';
@@ -198,35 +217,30 @@
                 }, 2000);
             };
 
-            // PLAN A: Intento con la API Moderna (Segura)
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(codigo).then(mostrarExito).catch(err => {
-                    console.error('Error con API moderna: ', err);
                     ejecutarPlanB(codigo, mostrarExito);
                 });
             } else {
-                // PLAN B: Ejecutar método clásico si la moderna está bloqueada
                 ejecutarPlanB(codigo, mostrarExito);
             }
         }
 
-        // PLAN B: Método clásico creando un área de texto temporal (nunca falla)
+        // Método de respaldo para copiar
         function ejecutarPlanB(texto, callbackExito) {
             const textArea = document.createElement("textarea");
             textArea.value = texto;
-            textArea.style.position = "fixed"; // Para que la pantalla no brinque hacia abajo
+            textArea.style.position = "fixed";
             textArea.style.opacity = "0";
             document.body.appendChild(textArea);
             textArea.focus();
             textArea.select();
-            
             try {
                 document.execCommand('copy');
                 callbackExito();
             } catch (err) {
                 alert('Tu navegador bloqueó la acción de copiar.');
             }
-            
             document.body.removeChild(textArea);
         }
     </script>
