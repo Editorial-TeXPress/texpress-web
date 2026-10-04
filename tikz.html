@@ -144,9 +144,9 @@
                     </div>
                     
                     <!-- Botón de Copiar -->
-                    <button onclick="copiarCodigo()" id="btn-copiar" class="flex items-center text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-3 py-1.5 rounded-md hover:bg-slate-600 shadow-sm">
+                    <button onclick="copiarCodigo('hooke-law', 'btn-copiar-1', 'texto-copiar-1')" id="btn-copiar-1" class="flex items-center text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-3 py-1.5 rounded-md shadow-sm">
                         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                        <span id="texto-copiar">Copiar código</span>
+                        <span id="texto-copiar-1">Copiar código</span>
                     </button>
                 </div>
                 <!-- Contenedor donde se inyectará el código -->
@@ -178,24 +178,57 @@
 
     <!-- Nuestro Script Mágico (Corregido con la ruta correcta) -->
     <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            // Llamamos al archivo EXACTO desde la carpeta TeX
-            fetch('TeX/hooke-law.tex')
-                .then(response => {
-                    if (!response.ok) throw new Error("No se pudo cargar el archivo");
-                    return response.text();
-                })
-                .then(codigoLaTeX => {
-                    // Inyectamos el texto en la etiqueta code
-                    const bloqueCodigo = document.getElementById('hooke-law');
-                    bloqueCodigo.textContent = codigoLaTeX;
-                    // Le decimos a Prism que pinte la sintaxis
-                    Prism.highlightElement(bloqueCodigo);
-                })
-                .catch(error => {
-                    document.getElementById('hooke-law').textContent = "% Error: " + error.message + "\n% Asegúrate de estar usando Live Server o haber subido los cambios a GitHub.";
+        function copiarCodigo(idCodigo, idBoton, idTexto) {
+            // 1. Extraemos el texto del bloque correspondiente
+            const codigo = document.getElementById(idCodigo).textContent;
+            
+            // 2. Función interna que cambia el botón a verde cuando hay éxito
+            const mostrarExito = () => {
+                const btnTexto = document.getElementById(idTexto);
+                const btn = document.getElementById(idBoton);
+                
+                btnTexto.textContent = '¡Copiado!';
+                btn.classList.remove('text-slate-300');
+                btn.classList.add('text-green-400'); // Verde neón elegante
+                
+                setTimeout(() => {
+                    btnTexto.textContent = 'Copiar código';
+                    btn.classList.remove('text-green-400');
+                    btn.classList.add('text-slate-300');
+                }, 2000);
+            };
+
+            // PLAN A: Intento con la API Moderna (Segura)
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(codigo).then(mostrarExito).catch(err => {
+                    console.error('Error con API moderna: ', err);
+                    ejecutarPlanB(codigo, mostrarExito);
                 });
-        });
+            } else {
+                // PLAN B: Ejecutar método clásico si la moderna está bloqueada
+                ejecutarPlanB(codigo, mostrarExito);
+            }
+        }
+
+        // PLAN B: Método clásico creando un área de texto temporal (nunca falla)
+        function ejecutarPlanB(texto, callbackExito) {
+            const textArea = document.createElement("textarea");
+            textArea.value = texto;
+            textArea.style.position = "fixed"; // Para que la pantalla no brinque hacia abajo
+            textArea.style.opacity = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            
+            try {
+                document.execCommand('copy');
+                callbackExito();
+            } catch (err) {
+                alert('Tu navegador bloqueó la acción de copiar.');
+            }
+            
+            document.body.removeChild(textArea);
+        }
     </script>
 </body>
 </html>
