@@ -1,0 +1,53 @@
+\begin{tikzpicture}% [scale=1.2]
+    % === Parámetros ===
+    \def\yTop{1.5}          % Altura del resorte en equilibrio
+    \def\yBot{-1.5}         % Altura del resorte estirado
+    \def\springTopLen{3.02} % Longitud efectiva del resorte arriba
+    \def\springBotLen{5.02} % Longitud efectiva del resorte abajo
+    \def\coilAmp{4mm}       % Amplitud de los resortes
+    \def\coilSegTop{3mm}    % Segment length arriba
+    \def\coilSegBot{5mm}    % Segment length abajo
+    \def\massRadius{3.5mm}  % Radio de las masas
+
+    % === Líneas de referencia ===
+    \draw[dash pattern=on 1.5mm off 2mm,gray,line width=0.2mm] (4.2,2.5) -- ++(0,-4);
+    \draw[dash pattern=on 1.5mm off 2mm,gray,line width=0.2mm] (6.2,-0.3) -- ++(0,-1.2);
+    
+    % === Pared y resorte en equilibrio (arriba) ===
+    \fill[pattern=north west lines, pattern color=gray!80] (-0.3,0.5) rectangle (0,2.5);
+    \begin{scope}[line width=0.35mm]
+        \draw (0,0.5) -- (0,2.5);
+        \draw (0,\yTop) -- ++(0.6,0);
+        \draw[decorate,decoration={coil,amplitude=\coilAmp,segment length=\coilSegTop}] 
+            (0.58,\yTop) -- ++(\springTopLen,0);
+        \draw (\springTopLen+0.58,\yTop) -- ++(0.6,0);
+    \end{scope}
+
+    % === Pared y resorte estirado (abajo) ===
+    \fill[pattern=north west lines, pattern color=gray!80] (-0.3,-2.5) rectangle (0,-0.5);
+    \begin{scope}[line width=0.35mm]
+        \draw (0,-2.5) -- (0,-0.5);
+        \draw (0,\yBot) -- ++(0.6,0);
+        \draw[decorate,decoration={coil,amplitude=\coilAmp,segment length=\coilSegBot}] 
+            (0.58,\yBot) -- ++(\springBotLen,0);
+        \draw (\springBotLen+0.58,\yBot) -- ++(0.6,0);
+    \end{scope}
+
+    % === Vectores de fuerza ===
+    \begin{scope}[vector,line width=0.6mm,azul]
+        \draw[rojo] (6.2,\yBot) -- ++(-2,0) node[midway,below] {$F_{\res}$};
+        \draw (6.2,\yBot) -- ++(2,0) node[midway,below] {$F_{\ext}$};
+        \draw (0,\yBot) -- ++(-2,0) node[midway,below] {$-F_{\ext}$};
+    \end{scope}
+
+    % === Etiquetas ===
+    \begin{scope}[line width=0.1mm]
+        \node[above] at (4.2,2.5) {$x=0$};
+        \draw[stealth-stealth] (4.2,-0.5) -- ++(2,0) 
+            node[midway,fill=white,inner sep=0.3mm] {$x$};
+    \end{scope}
+    
+    % === Masas ===
+    \shade[ball color=mainc] (4.2,\yTop) circle (\massRadius);
+    \shade[ball color=mainc] (6.2,\yBot) circle (\massRadius);
+\end{tikzpicture}
