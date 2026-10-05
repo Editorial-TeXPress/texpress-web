@@ -57,15 +57,22 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
             <!-- Proyecto 1: Libros y Apuntes -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                <div class="h-64 bg-slate-100 flex items-center justify-center border-b border-slate-200 p-4">
-                    <p class="text-slate-400 text-sm">Images/imagen-libro.png</p>
+                <!-- Contenedor de portadas (Ahora muestra 2 libros juntos) -->
+                <div class="h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
+                    <!-- Portada 1 -->
+                    <img src="Images/portada-fisica.png" alt="Fundamentos de la Física" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
+                    <!-- Portada 2 -->
+                    <img src="Images/portada-variacionales.png" alt="Métodos Variacionales" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
                 </div>
+                
                 <div class="p-8 flex flex-col flex-grow">
-                    <div class="text-xs font-semibold tracking-wider text-blue-600 mb-2">Edición de Libros</div>
-                    <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Fundamentos de la Física</h3>
-                    <p class="text-slate-600 mb-6 flex-grow">Maquetación completa de libro de texto enfocado en física y sistemas dinámicos (Del Orden al Caos). Incluye diseño de portadas, integración de diagramas complejos y estructuración de capítulos.</p>
+                    <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Edición de Libros</div>
+                    <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Libros y Apuntes</h3>
                     
-                    <!-- BOTÓN AÑADIDO -->
+                    <!-- Descripción actualizada y globalizada -->
+                    <p class="text-slate-600 mb-6 flex-grow">Maquetación profesional para obras de gran extensión: desde libros de texto y apuntes de curso rigurosos, hasta estudios de viabilidad financiera. Abarca diseño de portadas, estructuración jerárquica de capítulos y composición tipográfica avanzada.</p>
+                    
+                    <!-- BOTÓN -->
                     <a href="books.html" class="inline-flex items-center font-semibold text-blue-600 hover:text-blue-800 transition-colors w-max">
                         Ver proyectos editoriales
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -75,13 +82,16 @@
 
             <!-- Proyecto 2: Plantillas y Clases -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                <div class="h-64 bg-slate-100 flex items-center justify-center border-b border-slate-200 p-4">
-                    <img src="Images/muestra-disquisitio.png" alt="Disquisitio Elementalis" class="h-full w-auto object-contain drop-shadow-md">
+                <div class="h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
+                    <!-- Portada 1 -->
+                    <img src="Images/muestra-disquisitio.png" alt="Fundamentos de la Física" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
+                    <!-- Portada 2 -->
+                    <img src="Images/muestra-deexam.png" alt="Métodos Variacionales" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
                 </div>
                 <div class="p-8 flex flex-col flex-grow">
-                    <div class="text-xs font-semibold tracking-wider text-blue-600 mb-2">Ingeniería Documental</div>
-                    <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Disquisitio Elementalis & Evaluación</h3>
-                    <p class="text-slate-600 mb-6 flex-grow">Desarrollo de plantillas institucionales <span class="latex-code">.cls</span> para tesis. Incluye también clases especializadas como <span class="latex-code">deexam</span> para la automatización de evaluaciones académicas.</p>
+                    <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Desarrollo de Clases</div>
+                    <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Clases y Estructuras <code class="bg-slate-900 text-blue-400 px-2 py-0.5 rounded text-lg font-mono">.cls</code></h3>
+                    <p class="text-slate-600 mb-6 flex-grow">Desarrollo de clases maestras y plantillas institucionales. Incluye formatos especializados como <code class="bg-slate-900 text-white px-1.5 py-0.5 rounded text-sm font-mono">deexam</code> para evaluación, <span class="italic">Disquisitio Elementalis</span> para artículos científicos, formatos para tesis y presentaciones en Beamer.</p>
                     
                     <!-- BOTÓN AÑADIDO -->
                     <a href="templates.html" class="inline-flex items-center font-semibold text-blue-600 hover:text-blue-800 transition-colors w-max">
@@ -94,12 +104,12 @@
             <!-- Proyecto 3: Paquetes Personalizados -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
                 <div class="h-64 bg-slate-100 flex items-center justify-center border-b border-slate-200 p-4">
-                    <p class="text-slate-400 text-sm">Images/imagen-codigo.png</p>
+                    <img src="Images/portada-disqmath.png" alt="Paquete disqmath" class="h-full w-auto object-contain drop-shadow-md">
                 </div>
                 <div class="p-8 flex flex-col flex-grow">
-                    <div class="text-xs font-semibold tracking-wider text-blue-600 mb-2">Desarrollo de Paquetes</div>
-                    <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Paquete <span class="latex-code">disqmath.sty</span></h3>
-                    <p class="text-slate-600 mb-6 flex-grow">Creación de paquetes <span class="latex-code">.sty</span> orientados a simplificar la tipografía matemática avanzada, optimizando entornos de demostración y comandos repetitivos.</p>
+                    <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Desarrollo de Paquetes</div>
+                    <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Macros y Funciones <code class="bg-slate-900 text-blue-400 px-2 py-0.5 rounded text-lg font-mono">.sty</code></h3>
+                    <p class="text-slate-600 mb-6 flex-grow">Ingeniería de software para documentos mediante la creación de paquetes personalizados. Diseño de soluciones orientadas a simplificar la tipografía matemática, optimizar entornos de demostración y automatizar comandos repetitivos a medida del proyecto.</p>
                     
                     <!-- BOTÓN AÑADIDO -->
                     <a href="packages.html" class="inline-flex items-center font-semibold text-blue-600 hover:text-blue-800 transition-colors w-max">
@@ -115,7 +125,7 @@
                     <img src="Images/muestra-tikz.png" alt="Gráfica TikZ" class="h-full w-auto object-contain drop-shadow-md">
                 </div>
                 <div class="p-8 flex flex-col flex-grow">
-                    <div class="text-xs font-semibold tracking-wider text-blue-600 mb-2">Arte Vectorial</div>
+                    <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Arte Vectorial</div>
                     <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Galería en <span class="logo-tikz">Ti<span class="k">k</span>Z</span></h3>
                     <p class="text-slate-600 mb-6 flex-grow">Renderizado nativo de circuitos, diagramas de cuerpo libre y superficies 3D paramétricas, asegurando que los gráficos no pierdan calidad en la impresión.</p>
                     
