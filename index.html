@@ -87,21 +87,17 @@
     </style>
 </head>
 <body class="antialiased selection:bg-blue-200 selection:text-blue-900">
-
     <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Contenedor del Logo + Texto -->
             <div class="flex items-center gap-3">
-                <!-- Imagen del logo -->
                 <img src="Images/logo-texpress.png" alt="Logo Editorial TexPress" class="h-8 w-auto object-contain">
-                
-                <!-- Texto de TexPress -->
-                <div class="text-2xl font-semibold serif-font text-slate-900 tracking-tight">
+                <div class="text-xl md:text-2xl font-semibold serif-font text-slate-900 tracking-tight">
                     <span>Editorial</span> <span class="logo-tex">T<span class="e">e</span>X</span><span class="text-blue-600">Press</span>
                 </div>
             </div>
 
-            <a href="#contacto" class="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors">
+            <!-- Botón oculto en celular -->
+            <a href="#contacto" class="hidden sm:block bg-slate-900 hover:bg-slate-800 text-white px-5 py-2 rounded-full text-sm font-medium transition-colors">
                 Solicitar Presupuesto
             </a>
         </div>
@@ -109,117 +105,115 @@
 
     <main class="relative flex flex-col md:flex-row w-full pt-16">
         <!-- LEFT SIDE: Sticky Image Container -->
-        <!-- On mobile it takes the top 40% of the screen, on desktop 50% width and full height -->
-        <!-- Cambiamos bg-slate-900 por bg-white para que se funda con tus PDFs -->
-        <div class="w-full md:w-1/2 h-[40vh] md:h-screen sticky top-16 md:top-0 overflow-hidden bg-white z-10 border-b md:border-r border-slate-200 flex items-center justify-center">
-            <!-- Image 1: Maquetación (Portada Tesis) -->
-            <img id="media-1" 
-                src="Images/muestra-tesis.png" 
-                alt="Maquetación Profesional"
-                class="absolute w-full h-auto object-contain img-layer img-inactive px-4 md:px-12 drop-shadow-2xl">
+        <!-- COLUMNA IZQUIERDA: Oculta en celulares -->
+        <div class="hidden md:flex w-1/2 h-screen sticky top-0 overflow-hidden bg-white z-10 border-r border-slate-200 items-center justify-center">
+            <img id="media-1" src="Images/muestra-tesis.png" alt="Maquetación Profesional" class="absolute w-full h-auto object-contain img-layer img-inactive px-12 drop-shadow-2xl">
             
-            <!-- Image 2: TikZ (Contenedor para 2 imágenes) -->
-            <div id="media-2" class="absolute inset-0 w-full h-full img-layer img-inactive flex flex-col justify-center items-center bg-white p-4 md:p-12 gap-6">
-                
-                <img src="Images/muestra-tikz.png" 
-                    alt="Gráfico TikZ 1" 
-                    class="max-w-full max-h-[45%] object-contain drop-shadow-xl border border-slate-100 rounded-lg p-2 bg-white">
-                    
-                <img src="Images/muestra-tikz-2.png" 
-                    alt="Gráfico TikZ 2" 
-                    class="max-w-full max-h-[45%] object-contain drop-shadow-xl border border-slate-100 rounded-lg p-2 bg-white">
-                    
+            <div id="media-2" class="absolute inset-0 w-full h-full img-layer img-inactive flex flex-col justify-center items-center bg-white p-12 gap-6">
+                <img src="Images/muestra-tikz.png" alt="Gráfico TikZ 1" class="max-w-full max-h-[45%] object-contain drop-shadow-xl border border-slate-100 rounded-lg p-2 bg-white">
+                <img src="Images/muestra-tikz-2.png" alt="Gráfico TikZ 2" class="max-w-full max-h-[45%] object-contain drop-shadow-xl border border-slate-100 rounded-lg p-2 bg-white">
             </div>
             
-            <!-- Image 3: Clases (Disquisitio) -->
-            <img id="media-3" 
-                src="Images/muestra-disquisitio.png" 
-                alt="Plantilla Disquisitio Elementalis" 
-                class="absolute w-full h-auto object-contain img-layer img-inactive px-4 md:px-12 drop-shadow-2xl">
+            <img id="media-3" src="Images/muestra-disquisitio.png" alt="Plantilla Disquisitio Elementalis" class="absolute w-full h-auto object-contain img-layer img-inactive px-12 drop-shadow-2xl">
                  
-            <!-- Gradient Overlay for aesthetics (Opcional, lo suavicé para que no oscurezca tus portadas blancas) -->
             <div class="absolute inset-0 bg-gradient-to-t from-slate-200/20 to-transparent pointer-events-none"></div>
         </div>
 
         <!-- RIGHT SIDE: Scrolling Content -->
         <div class="w-full md:w-1/2 bg-white z-0">
-            
             <!-- Section 1 -->
-            <section data-index="1" class="step min-h-screen flex flex-col justify-center px-8 py-20 md:px-16 lg:px-24">
+            <section data-index="1" class="step flex flex-col justify-center px-6 py-12 md:px-16 lg:px-24 md:min-h-screen">
+                <!-- IMAGEN MÓVIL -->
+                <div class="block md:hidden w-full mb-8 bg-slate-50 rounded-2xl p-6 border border-slate-100 flex justify-center">
+                    <img src="Images/muestra-tesis.png" alt="Maquetación Profesional" class="max-h-64 object-contain drop-shadow-xl">
+                </div>
+
                 <div class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-blue-700 uppercase bg-blue-100 rounded-full w-max">
                     1. Estructura y Rigor
                 </div>
-                
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-slate-900 serif-font" style="line-height: 1.25;">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 text-slate-900 serif-font" style="line-height: 1.25;">
                     Maquetación Profesional
                 </h2>
-                <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                <p class="text-base md:text-lg text-slate-600 mb-6 leading-relaxed">
                     Transformamos tus manuscritos en obras editoriales impecables. Especializados en documentos de alta complejidad técnica: tesis doctorales, artículos científicos (papers) y libros técnicos.
                 </p>
-                <ul class="space-y-4 text-slate-600">
+                <ul class="space-y-4 text-slate-600 text-sm md:text-base">
                     <li class="flex items-start">
-                        <svg class="w-6 h-6 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                         Manejo impecable de bibliografías complejas (<span class="latex-code ml-1">BibTeX</span> / <span class="latex-code ml-1">Biber</span>).
                     </li>
                     <li class="flex items-start">
-                        <svg class="w-6 h-6 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                         Composición matemática avanzada y tipografía precisa.
                     </li>
                     <li class="flex items-start">
-                        <svg class="w-6 h-6 text-blue-500 mr-2 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Cumplimiento de las normativas de formato de universidades y revistas (APA, IEEE, Nature, etc.).
+                        <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                        Cumplimiento de las normativas de formato de universidades y revistas.
                     </li>
                 </ul>
             </section>
 
             <!-- Section 2 -->
-            <section data-index="2" class="step min-h-screen flex flex-col justify-center px-8 py-20 md:px-16 lg:px-24 bg-slate-50 border-y border-slate-100">
-                <div class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-blue-700 uppercase bg-blue-100 rounded-full w-max"> <!-- upper case -->
+            <section data-index="2" class="step flex flex-col justify-center px-6 py-12 md:px-16 lg:px-24 bg-slate-50 border-y border-slate-100 md:min-h-screen">
+                <!-- IMÁGENES MÓVIL -->
+                <div class="block md:hidden w-full mb-8 flex flex-col gap-4">
+                    <div class="bg-white rounded-2xl p-4 border border-slate-100 flex justify-center shadow-sm">
+                        <img src="Images/muestra-tikz.png" alt="Gráfico TikZ 1" class="max-h-48 object-contain drop-shadow-md">
+                    </div>
+                    <div class="bg-white rounded-2xl p-4 border border-slate-100 flex justify-center shadow-sm">
+                        <img src="Images/muestra-tikz-2.png" alt="Gráfico TikZ 2" class="max-h-48 object-contain drop-shadow-md">
+                    </div>
+                </div>
+
+                <div class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-blue-700 uppercase bg-blue-100 rounded-full w-max">
                     2. Arte Vectorial
                 </div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-slate-900 leading-tight serif-font">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 text-slate-900 leading-tight serif-font">
                     Gráficos en <span class="logo-tikz">Ti<span class="k">k</span>Z</span>
                 </h2>
-                <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                <p class="text-base md:text-lg text-slate-600 mb-6 leading-relaxed">
                     Las imágenes pixeladas restan credibilidad a un buen documento científico. Desarrollamos gráficos 100% vectoriales integrados nativamente en tu código fuente mediante <span class="latex-code">TikZ</span> y <span class="latex-code">pgfplots</span>.
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mt-4">
                     <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
                         <h4 class="font-bold text-slate-800 mb-2">Diagramas Complejos</h4>
-                        <p class="text-sm text-slate-500">Flujogramas, árboles de decisión, circuitos eléctricos y diagramas de bloques renderizados a la perfección.</p>
+                        <p class="text-sm text-slate-500">Flujogramas, árboles de decisión, circuitos eléctricos y diagramas de bloques.</p>
                     </div>
                     <div class="bg-white p-5 rounded-xl shadow-sm border border-slate-100">
                         <h4 class="font-bold text-slate-800 mb-2">Gráficas Numéricas</h4>
-                        <p class="text-sm text-slate-500">Importación de datos directos (CSV) para generar gráficas matemáticas 2D y 3D con tipografía coincidente.</p>
+                        <p class="text-sm text-slate-500">Importación de datos directos (CSV) para generar gráficas matemáticas 2D y 3D.</p>
                     </div>
                 </div>
             </section>
 
             <!-- Section 3 -->
-            <section data-index="3" class="step min-h-screen flex flex-col justify-center px-8 py-20 md:px-16 lg:px-24">
+            <section data-index="3" class="step flex flex-col justify-center px-6 py-12 md:px-16 lg:px-24 md:min-h-screen">
+                <!-- IMAGEN MÓVIL -->
+                <div class="block md:hidden w-full mb-8 bg-slate-50 rounded-2xl p-6 border border-slate-100 flex justify-center">
+                    <img src="Images/muestra-disquisitio.png" alt="Plantilla Disquisitio Elementalis" class="max-h-64 object-contain drop-shadow-xl">
+                </div>
+
                 <div class="inline-block px-3 py-1 mb-6 text-xs font-semibold tracking-wider text-blue-700 uppercase bg-blue-100 rounded-full w-max">
                     3. Ingeniería Documental
                 </div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-slate-900 leading-tight serif-font">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 text-slate-900 leading-tight serif-font">
                     Clases Personalizadas
                 </h2>
-                <p class="text-lg text-slate-600 mb-6 leading-relaxed">
+                <p class="text-base md:text-lg text-slate-600 mb-4 leading-relaxed">
                     Si te encuentras copiando y pegando el mismo preámbulo masivo en cada documento, necesitas una clase <span class="latex-code">.cls</span> o paquete <span class="latex-code">.sty</span> propio.
                 </p>
-                <p class="text-lg text-slate-600 mb-8 leading-relaxed">
-                    Diseñamos plantillas institucionales desde cero. Autores de soluciones como <em>Disquisitio Elementalis</em> y configuraciones avanzadas como <span class="latex-code">deexam</span> para evaluación académica.
+                <p class="text-base md:text-lg text-slate-600 mb-8 leading-relaxed">
+                    Diseñamos plantillas institucionales desde cero. Autores de soluciones como <em>Disquisitio Elementalis</em> y configuraciones avanzadas como <span class="latex-code">deexam</span> para evaluación.
                 </p>
                 
-                <!-- CTA Button con efecto \hfill -->
-                <div class="flex flex-col sm:flex-row justify-between w-full mt-8">
-                    <!-- Botón Contáctanos (Ahora apunta al Linktree) -->
-                    <a href="links.html" class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-200">
+                <!-- BOTONES ADAPTABLES -->
+                <div class="flex flex-col sm:flex-row gap-4 w-full mt-4">
+                    <a href="links.html" class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-200 w-full sm:w-auto">
                         Contáctanos
                         <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
                     
-                    <!-- Botón de Catálogo Web -->
-                    <a href="catalogo.html" class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-700 transition-all duration-200 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 hover:border-slate-400">
+                    <a href="catalogo.html" class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-slate-700 transition-all duration-200 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 hover:border-slate-400 w-full sm:w-auto">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
                         Ver Catálogo
                     </a>
@@ -239,7 +233,7 @@
                 </p>
                 
                 <p class="latin-modern text-lg font-semibold text-slate-300 tracking-widest mb-3">¿Listo para compilar tu proyecto?</p>
-                <a href="mailto:editorialtexpress@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors font-medium text-lg inline-block mb-6">editorialtexpress@gmail.com</a>
+                <a href="mailto:editorialtexpress@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors font-medium text-lg inline-block mb-6 break-all">editorialtexpress@gmail.com</a>
                 
                 <!-- Íconos de Redes Sociales -->
                 <div class="flex justify-center gap-6">

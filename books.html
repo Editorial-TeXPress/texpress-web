@@ -62,40 +62,36 @@
     </nav>
 
     <main class="pt-28 pb-20 max-w-5xl mx-auto px-6">
-        
         <!-- Encabezado de la página -->
-        <div class="mb-16 text-center">
-            <h1 class="text-4xl font-bold text-slate-900 serif-font mb-4">Edición de Libros y Apuntes</h1>
-            <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+        <div class="mb-10 md:mb-16 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 serif-font mb-4">Edición de Libros y Apuntes</h1>
+            <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto">
                 Diseño editorial riguroso, estructuración de capítulos y tipografía matemática avanzada para libros de texto, tesis y manuales técnicos.
             </p>
         </div>
 
-        <div class="space-y-16">
-
+        <div class="space-y-12 md:space-y-16">
             <!-- LIBRO 1: Fundamentos de la Física -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col md:flex-row">
-                <!-- Columna Izquierda: Portada -->
-                <div class="md:w-2/5 bg-slate-50 border-r border-slate-100 p-8 flex items-center justify-center">
-                    <img src="Images/portada-fisica.png" alt="Portada Fundamentos de la Física" class="w-full max-w-[275px] h-auto object-cover shadow-lg border border-slate-200">
+                <div class="md:w-2/5 bg-slate-50 border-b md:border-b-0 md:border-r border-slate-100 p-6 md:p-8 flex items-center justify-center">
+                    <img src="Images/portada-fisica.png" alt="Portada Fundamentos de la Física" class="w-full max-w-[200px] md:max-w-[275px] h-auto object-cover shadow-lg border border-slate-200">
                 </div>
-                <!-- Columna Derecha: Información -->
-                <div class="md:w-3/5 p-10 flex flex-col justify-center">
+                <div class="md:w-3/5 p-6 md:p-10 flex flex-col justify-center">
                     <div class="text-xs font-bold tracking-widest text-blue-600 uppercase mb-2">Libro de Texto</div>
-                    <h2 class="text-3xl font-bold text-slate-900 serif-font mb-1">Fundamentos de la Física</h2>
-                    <h3 class="text-xl text-slate-500 serif-font italic mb-6">Mecánica, Fluidos y Elasticidad.</h3>
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 serif-font mb-1">Fundamentos de la Física</h2>
+                    <h3 class="text-lg md:text-xl text-slate-500 serif-font italic mb-6">Mecánica, Fluidos y Elasticidad.</h3>
                     
-                    <div class="mb-6">
+                    <div class="mb-6 flex flex-col sm:flex-row sm:items-baseline">
                         <span class="text-sm font-semibold text-slate-700">Autores:</span>
-                        <span class="text-sm text-slate-600 ml-2">Adolfo Helmut Rudolf Navarro, Vicente Chavarría Gámez.</span>
+                        <span class="text-sm text-slate-600 sm:ml-2">Adolfo Helmut Rudolf Navarro, Vicente Chavarría Gámez.</span>
                     </div>
 
-                    <p class="text-slate-600 mb-8 leading-relaxed">
-                        Maquetación completa de libro de texto enfocado en física y sistemas dinámicos. El proyecto abarca desde el diseño de la portada hasta la integración de diagramas complejos en <span class="logo-tikz">Ti<span class="k">k</span>Z</span>, estructuración de capítulos y un formato de lectura óptimo para estudiantes universitarios.
+                    <p class="text-sm md:text-base text-slate-600 mb-8 leading-relaxed">
+                        Maquetación completa de libro de texto enfocado en física y sistemas dinámicos. El proyecto abarca desde el diseño de la portada hasta la integración de diagramas complejos en <span class="logo-tikz">Ti<span class="k">k</span>Z</span>, estructuración de capítulos y un formato de lectura óptimo.
                     </p>
 
                     <div>
-                        <a href="PDF/muestra-fisica-mecanica-fluidos.pdf" download="FundamentosFisica_Muestra.pdf" class="inline-flex items-center px-6 py-3 text-sm font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">
+                        <a href="PDF/muestra-fisica-mecanica-fluidos.pdf" download="FundamentosFisica_Muestra.pdf" class="inline-flex items-center justify-center w-full sm:w-max px-6 py-3 text-sm font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                             Descargar PDF
                         </a>
@@ -105,31 +101,29 @@
 
             <!-- LIBRO 2: Métodos Variacionales -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col md:flex-row-reverse">
-                <!-- Columna Derecha: Portada -->
-                <div class="md:w-2/5 bg-slate-50 border-l border-slate-100 p-8 flex items-center justify-center">
-                    <img src="Images/portada-variacionales.png" alt="Portada Métodos Variacionales" class="w-full max-w-[275px] h-auto object-cover shadow-lg border border-slate-200">
+                <div class="md:w-2/5 bg-slate-50 border-b md:border-b-0 md:border-l border-slate-100 p-6 md:p-8 flex items-center justify-center">
+                    <img src="Images/portada-variacionales.png" alt="Portada Métodos Variacionales" class="w-full max-w-[200px] md:max-w-[275px] h-auto object-cover shadow-lg border border-slate-200">
                 </div>
-                <!-- Columna Izquierda: Información -->
-                <div class="md:w-3/5 p-10 flex flex-col justify-center">
+                <div class="md:w-3/5 p-6 md:p-10 flex flex-col justify-center">
                     <div class="text-xs font-bold tracking-widest text-emerald-600 uppercase mb-2">Apuntes de Curso</div>
-                    <h2 class="text-3xl font-bold text-slate-900 serif-font mb-1">Métodos Espectrales y Variacionales</h2>
-                    <h3 class="text-xl text-slate-500 serif-font italic mb-6">Implementación Computacional.</h3>
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 serif-font mb-1">Métodos Espectrales y Variacionales</h2>
+                    <h3 class="text-lg md:text-xl text-slate-500 serif-font italic mb-6">Implementación Computacional.</h3>
 
-                    <div class="mb-2">
+                    <div class="mb-2 flex flex-col sm:flex-row sm:items-baseline">
                         <span class="text-sm font-semibold text-slate-700">Autor:</span>
-                        <span class="text-sm text-slate-600 ml-2">Dr. Alejandro Soto González.</span>
+                        <span class="text-sm text-slate-600 sm:ml-2">Dr. Alejandro Soto González.</span>
                     </div>
-                    <div class="mb-6">
+                    <div class="mb-6 flex flex-col sm:flex-row sm:items-baseline">
                         <span class="text-sm font-semibold text-slate-700">Editor:</span>
-                        <span class="text-sm text-slate-600 ml-2">Vicente Chavarría Gámez.</span>
+                        <span class="text-sm text-slate-600 sm:ml-2">Vicente Chavarría Gámez.</span>
                     </div>
 
-                    <p class="text-slate-600 mb-8 leading-relaxed">
-                        Redacción y tipografía matemática rigurosa para apuntes de métodos variacionales. El documento incluye demostraciones estructuradas, ecuaciones diferenciales, teoremas y optimización de funcionales, aprovechando la potencia de los paquetes personalizados de <span class="logo-latex">L<span class="a">a</span>T<span class="e">e</span>X</span> para un acabado impecable.
+                    <p class="text-sm md:text-base text-slate-600 mb-8 leading-relaxed">
+                        Redacción y tipografía matemática rigurosa para apuntes de métodos variacionales. El documento incluye demostraciones estructuradas, ecuaciones diferenciales y optimización de funcionales, aprovechando la potencia de <span class="logo-latex">L<span class="a">a</span>T<span class="e">e</span>X</span> para un acabado impecable.
                     </p>
 
                     <div>
-                        <a href="PDF/muestra-metodos-variacionales.pdf" download="MetodosVariacionales_Muestra.pdf" class="inline-flex items-center px-6 py-3 text-sm font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">
+                        <a href="PDF/muestra-metodos-variacionales.pdf" download="MetodosVariacionales_Muestra.pdf" class="inline-flex items-center justify-center w-full sm:w-max px-6 py-3 text-sm font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                             Descargar PDF
                         </a>
@@ -139,33 +133,30 @@
 
             <!-- LIBRO 3: Formulación de Proyectos -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col md:flex-row">
-                <!-- Columna Izquierda: Portada -->
-                <div class="md:w-2/5 bg-slate-50 border-r border-slate-100 p-8 flex items-center justify-center">
-                    <img src="Images/portada-fyep.png" alt="Portada Formulación de Proyectos" class="w-full max-w-[275px] h-auto object-cover shadow-lg border border-slate-200">
+                <div class="md:w-2/5 bg-slate-50 border-b md:border-b-0 md:border-r border-slate-100 p-6 md:p-8 flex items-center justify-center">
+                    <img src="Images/portada-fyep.png" alt="Portada Formulación de Proyectos" class="w-full max-w-[200px] md:max-w-[275px] h-auto object-cover shadow-lg border border-slate-200">
                 </div>
-                <!-- Columna Derecha: Información -->
-                <div class="md:w-3/5 p-10 flex flex-col justify-center">
+                <div class="md:w-3/5 p-6 md:p-10 flex flex-col justify-center">
                     <div class="text-xs font-bold tracking-widest text-indigo-600 uppercase mb-2">Evaluación y Finanzas</div>
-                    <h2 class="text-3xl font-bold text-slate-900 serif-font mb-6">Formulación y Evaluación de Proyectos</h2>
+                    <h2 class="text-2xl md:text-3xl font-bold text-slate-900 serif-font mb-6">Formulación y Evaluación de Proyectos</h2>
                     
-                    <div class="mb-6">
+                    <div class="mb-6 flex flex-col sm:flex-row sm:items-baseline">
                         <span class="text-sm font-semibold text-slate-700">Equipo de Trabajo:</span>
-                        <span class="text-sm text-slate-600 ml-2">Vicente Chavarría Gámez, Lucía Estela Camacho, Joshua Mijangos López.</span>
+                        <span class="text-sm text-slate-600 sm:ml-2">Vicente Chavarría, Lucía Camacho, Joshua Mijangos.</span>
                     </div>
 
-                    <p class="text-slate-600 mb-8 leading-relaxed">
-                        Estudio integral de viabilidad financiera y formulación para un proyecto de servicios alimenticios. Demuestra la flexibilidad de <span class="logo-latex">L<span class="a">a</span>T<span class="e">e</span>X</span> fuera de las matemáticas puras, integrando modelos financieros complejos, proyecciones de demanda y tablas presupuestales altamente profesionales.
+                    <p class="text-sm md:text-base text-slate-600 mb-8 leading-relaxed">
+                        Estudio integral de viabilidad financiera. Demuestra la flexibilidad de <span class="logo-latex">L<span class="a">a</span>T<span class="e">e</span>X</span> fuera de las matemáticas puras, integrando modelos financieros complejos, proyecciones de demanda y tablas presupuestales altamente profesionales.
                     </p>
 
                     <div>
-                        <a href="PDF/muestra-fyep.pdf" download="EvaluacionProyectos_Muestra.pdf" class="inline-flex items-center px-6 py-3 text-sm font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">
+                        <a href="PDF/muestra-fyep.pdf" download="EvaluacionProyectos_Muestra.pdf" class="inline-flex items-center justify-center w-full sm:w-max px-6 py-3 text-sm font-semibold text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-sm">
                             <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                             Descargar PDF
                         </a>
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
 
@@ -180,7 +171,7 @@
                 </p>
                 
                 <p class="latin-modern text-lg font-semibold text-slate-300 tracking-widest mb-3">¿Listo para compilar tu proyecto?</p>
-                <a href="mailto:editorialtexpress@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors font-medium text-lg inline-block mb-6">editorialtexpress@gmail.com</a>
+                <a href="mailto:editorialtexpress@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors font-medium text-lg inline-block mb-6 break-all">editorialtexpress@gmail.com</a>
                 
                 <!-- Íconos de Redes Sociales -->
                 <div class="flex justify-center gap-6">

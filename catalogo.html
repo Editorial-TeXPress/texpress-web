@@ -37,7 +37,7 @@
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="flex items-center text-slate-600 hover:text-blue-600 transition-colors font-medium">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                Volver al inicio
+                Volver al Inicio
             </a>
             <div class="text-xl font-semibold serif-font text-slate-900 tracking-tight hidden sm:block">
                 Catálogo de <span class="text-blue-600">Proyectos</span>
@@ -54,26 +54,22 @@
         </div>
 
         <!-- Grid de Proyectos -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
             <!-- Proyecto 1: Libros y Apuntes -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                <!-- Contenedor de portadas (Ahora muestra 2 libros juntos) -->
-                <div class="h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
-                    <!-- Portada 1 -->
+                <div class="h-48 md:h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
                     <img src="Images/portada-fisica.png" alt="Fundamentos de la Física" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
-                    <!-- Portada 2 -->
                     <img src="Images/portada-variacionales.png" alt="Métodos Variacionales" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
                 </div>
                 
-                <div class="p-8 flex flex-col flex-grow">
+                <div class="p-6 md:p-8 flex flex-col flex-grow">
                     <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Edición de Libros</div>
                     <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Libros y Apuntes</h3>
                     
-                    <!-- Descripción actualizada y globalizada -->
-                    <p class="text-slate-600 mb-6 flex-grow">Maquetación profesional para obras de gran extensión: desde libros de texto y apuntes de curso rigurosos, hasta estudios de viabilidad financiera. Abarca diseño de portadas, estructuración jerárquica de capítulos y composición tipográfica avanzada.</p>
+                    <p class="text-slate-600 mb-6 flex-grow text-sm md:text-base">Maquetación profesional para obras de gran extensión: desde libros de texto y apuntes de curso rigurosos, hasta estudios de viabilidad financiera. Abarca diseño de portadas, estructuración jerárquica de capítulos y composición tipográfica avanzada.</p>
                     
-                    <!-- BOTÓN -->
-                    <a href="books.html" class="inline-flex items-center font-semibold text-blue-600 hover:text-blue-800 transition-colors w-max">
+                    <!-- BOTÓN RESPONSIVO -->
+                    <a href="books.html" class="inline-flex items-center justify-center sm:justify-start font-semibold text-blue-600 hover:text-blue-800 transition-colors w-full sm:w-max bg-slate-50 sm:bg-transparent border border-slate-200 sm:border-none rounded-lg sm:rounded-none py-3 sm:py-0 mt-auto">
                         Ver proyectos editoriales
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
@@ -82,19 +78,19 @@
 
             <!-- Proyecto 2: Plantillas y Clases -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                <div class="h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
-                    <!-- Portada 1 -->
-                    <img src="Images/muestra-disquisitio.png" alt="Fundamentos de la Física" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
-                    <!-- Portada 2 -->
-                    <img src="Images/muestra-deexam.png" alt="Métodos Variacionales" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
+                <div class="h-48 md:h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
+                    <img src="Images/muestra-disquisitio.png" alt="Disquisitio Elementalis" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
+                    <img src="Images/muestra-deexam.png" alt="deexam class" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
                 </div>
-                <div class="p-8 flex flex-col flex-grow">
+                
+                <div class="p-6 md:p-8 flex flex-col flex-grow">
                     <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Desarrollo de Clases</div>
                     <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Clases y Estructuras <code class="bg-slate-900 text-blue-400 px-2 py-0.5 rounded text-lg font-mono">.cls</code></h3>
-                    <p class="text-slate-600 mb-6 flex-grow">Desarrollo de clases maestras y plantillas institucionales. Incluye formatos especializados como <code class="bg-slate-900 text-blue-400 px-1.5 py-0.5 rounded text-sm font-mono">deexam</code> para evaluación, <span class="italic">Disquisitio Elementalis</span> para artículos científicos, formatos para tesis y presentaciones en Beamer.</p>
                     
-                    <!-- BOTÓN AÑADIDO -->
-                    <a href="templates.html" class="inline-flex items-center font-semibold text-blue-600 hover:text-blue-800 transition-colors w-max">
+                    <p class="text-slate-600 mb-6 flex-grow text-sm md:text-base">Desarrollo de clases maestras y plantillas institucionales. Incluye formatos especializados como <code class="bg-slate-900 text-blue-400 px-1.5 py-0.5 rounded text-sm font-mono">deexam</code> para evaluación, <span class="italic">Disquisitio Elementalis</span> para artículos científicos, formatos para tesis y presentaciones en Beamer.</p>
+                    
+                    <!-- BOTÓN RESPONSIVO -->
+                    <a href="templates.html" class="inline-flex items-center justify-center sm:justify-start font-semibold text-blue-600 hover:text-blue-800 transition-colors w-full sm:w-max bg-slate-50 sm:bg-transparent border border-slate-200 sm:border-none rounded-lg sm:rounded-none py-3 sm:py-0 mt-auto">
                         Explorar plantillas
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
@@ -103,7 +99,7 @@
 
             <!-- Proyecto 3: Paquetes Personalizados -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                <div class="h-64 bg-slate-100 flex items-center justify-center border-b border-slate-200 p-4">
+                <div class="h-48 md:h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
                     <img src="Images/portada-disqmath.png" alt="Paquete disqmath" class="h-full w-auto object-contain drop-shadow-md">
                 </div>
                 <div class="p-8 flex flex-col flex-grow">
@@ -112,7 +108,7 @@
                     <p class="text-slate-600 mb-6 flex-grow">Ingeniería de software para documentos mediante la creación de paquetes personalizados. Diseño de soluciones orientadas a simplificar la tipografía matemática, optimizar entornos de demostración y automatizar comandos repetitivos a medida del proyecto.</p>
                     
                     <!-- BOTÓN AÑADIDO -->
-                    <a href="packages.html" class="inline-flex items-center font-semibold text-blue-600 hover:text-blue-800 transition-colors w-max">
+                    <a href="packages.html" class="inline-flex items-center justify-center sm:justify-start font-semibold text-blue-600 hover:text-blue-800 transition-colors w-full sm:w-max bg-slate-50 sm:bg-transparent border border-slate-200 sm:border-none rounded-lg sm:rounded-none py-3 sm:py-0 mt-auto">
                         Ver documentación
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
@@ -121,7 +117,7 @@
 
             <!-- Proyecto 4: Galería TikZ -->
             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                <div class="h-64 bg-slate-100 flex items-center justify-center border-b border-slate-200 p-4">
+                <div class="h-48 md:h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
                     <img src="Images/muestra-tikz.png" alt="Gráfica TikZ" class="h-full w-auto object-contain drop-shadow-md">
                 </div>
                 <div class="p-8 flex flex-col flex-grow">
@@ -130,7 +126,7 @@
                     <p class="text-slate-600 mb-6 flex-grow">Creación de gráficos paramétricos de alta precisión matemática. Desde sistemas dinámicos y cálculo en varias variables hasta diagramas físicos avanzados, garantizando una resolución vectorial amplia y una integración tipográfica perfecta para impresión.</p>
                     
                     <!-- BOTÓN AÑADIDO -->
-                    <a href="tikz.html" class="inline-flex items-center font-semibold text-blue-600 hover:text-blue-800 transition-colors w-max">
+                    <a href="tikz.html" class="inline-flex items-center justify-center sm:justify-start font-semibold text-blue-600 hover:text-blue-800 transition-colors w-full sm:w-max bg-slate-50 sm:bg-transparent border border-slate-200 sm:border-none rounded-lg sm:rounded-none py-3 sm:py-0 mt-auto">
                         Ver galería de gráficos
                         <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
@@ -150,7 +146,7 @@
                 </p>
                 
                 <p class="latin-modern text-lg font-semibold text-slate-300 tracking-widest mb-3">¿Listo para compilar tu proyecto?</p>
-                <a href="mailto:editorialtexpress@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors font-medium text-lg inline-block mb-6">editorialtexpress@gmail.com</a>
+                <a href="mailto:editorialtexpress@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors font-medium text-lg inline-block mb-6 break-all">editorialtexpress@gmail.com</a>
                 
                 <!-- Íconos de Redes Sociales -->
                 <div class="flex justify-center gap-6">
