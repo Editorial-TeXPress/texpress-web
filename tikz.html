@@ -18,48 +18,92 @@
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
         h1, h2, h3, .serif-font { font-family: 'Lora', serif; }
-        /* Ajuste para que el fondo del código coincida con el tema de Tailwind */
-        pre[class*="language-"] { background: #0f172a; margin: 0; border-radius: 0 0 1rem 1rem; }
         
-        /* Estilos para logos tipográficos */
+        /* 1. Contenedor principal con FONDO DIVIDIDO (Gris a la izq, Blanco a la der) */
         pre[class*="language-"] { 
-            background: #ffffff !important; 
+            background: linear-gradient(to right, #f1f5f9 0%, #f1f5f9 3.5rem, #ffffff 3.5rem, #ffffff 100%) !important; 
             margin: 0; 
-            border-radius: 0 0 1rem 1rem; 
+            border-radius: 0 0 1rem 1rem;
+            padding: 1rem 0 !important; /* Restauramos el espacio limpio arriba y abajo */
+            overflow-x: hidden !important; 
         }
-        code[class*="language-"], pre[class*="language-"] {
-            color: #000000 !important; /* fg */
-            text-shadow: none !important; /* Quitamos las sombras del tema por defecto */
-            font-size: 13px !important; /* Ajusta este número (11px, 12px, 13px) a tu gusto */
+        
+        code[class*="language-"] {
+            color: #000000 !important;
+            text-shadow: none !important;
+            font-size: 13px !important;
+            display: block;
         }
 
-        /* 2. Comandos y Macros LaTeX (\draw, \def, \begin) -> moradoOver */
+        /* 2. Filas de código strictas (Sin paddings extras) */
+        .minted-row {
+            display: flex;
+            width: 100%;
+            line-height: 1.5em; /* Altura matemática estricta */
+        }
+        
+        /* 3. Columna de números (Fondo transparente para que se vea el gris del pre) */
+        .minted-number {
+            width: 3.5rem; 
+            flex-shrink: 0;
+            text-align: right;
+            padding-right: 0.75rem;
+            color: #64748b; 
+            border-right: 1px solid #e2e8f0; 
+            background-color: transparent; 
+            user-select: none;
+        }
+
+        /* 4. Bloque de código y flecha mágica */
+        .minted-code {
+            flex-grow: 1;
+            padding-right: 1rem;
+            background-color: transparent;
+            
+            /* Hanging Indent Dinámico */
+            padding-left: calc(1rem + var(--wrap-indent, 0ch)) !important;
+            text-indent: calc(-1 * var(--wrap-indent, 0ch)) !important;
+            
+            white-space: pre-wrap !important;
+            word-break: break-word !important;
+            overflow-wrap: anywhere;
+            
+            /* La flecha gris anclada al texto */
+            background-image: 
+                linear-gradient(#ffffff, #ffffff), 
+                url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 24'%3E%3Cpath d='M2,9 v3 c0,2.5 1,3.5 3.5,3.5 h4.5 M7.5,13 l2.5,2.5 l-2.5,2.5' fill='none' stroke='%2394a3b8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat, repeat-y;
+            background-size: 100% 1.5em, 1.2ch 1.5em;
+            background-position: 0 0, calc(1rem + var(--wrap-indent, 0ch) - 2ch) 0;
+        }
+
+        /* Comandos y Macros LaTeX (\draw, \def, \begin) -> moradoOver */
         .token.function, .token.keyword, .token.selector {
             color: blue !important;
         }
 
-        /* 3. Entornos y variables (tikzpicture, document) -> entornos */
+        /* Entornos y variables (tikzpicture, document) -> entornos */
         .token.class-name, .token.builtin, .token.variable {
             color: rgb(49, 132, 149) !important;
         }
 
-        /* 4. Comentarios (%) -> commentcolor */
+        /* Comentarios (%) -> commentcolor */
         .token.comment, .token.prolog {
             color: rgb(76, 136, 107) !important;
             font-style: italic;
         }
 
-        /* 5. Matemáticas y números ($...$) -> mathcolor */
+        /* Matemáticas y números ($...$) -> mathcolor */
         .token.equation, .token.math, .token.number {
             color: rgb(3, 106, 7) !important;
         }
 
-        /* 6. Cadenas y opciones de paquetes [...] -> stringcolor */
+        /* Cadenas y opciones de paquetes [...] -> stringcolor */
         .token.string, .token.attr-value, .token.regex {
-            color: rgb(153, 0, 0) !important; /* 0.6 * 255 = 153 */
+            color: rgb(3,106,7) !important; /* 0.6 * 255 = 153 */
         }
 
-        /* 7. Llaves y corchetes -> fg (negro) */
+        /* Llaves y corchetes -> fg (negro) */
         .token.punctuation {
             color: #000000 !important;
         }
@@ -153,7 +197,7 @@
                     </button>
                 </div>
                 <!-- Contenedor donde se inyectará el código -->
-                <pre><code id="hooke-law" class="language-latex text-sm">Cargando código fuente...</code></pre>
+                <pre class="line-numbers"><code id="hooke-law" class="language-latex text-sm">Cargando código fuente...</code></pre>
             </div>
         </div>
 
@@ -183,7 +227,7 @@
                         <span id="texto-copiar-2">Copiar código</span>
                     </button>
                 </div>
-                <pre><code id="codigo-2" class="language-latex text-sm">Cargando código fuente...</code></pre>
+                <pre class="line-numbers"><code id="codigo-2" class="language-latex text-sm">Cargando código fuente...</code></pre>
             </div>
         </div>
 
@@ -213,7 +257,7 @@
                         <span id="texto-copiar-3">Copiar código</span>
                     </button>
                 </div>
-                <pre><code id="codigo-3" class="language-latex text-sm">Cargando código fuente...</code></pre>
+                <pre class="line-numbers"><code id="codigo-3" class="language-latex text-sm">Cargando código fuente...</code></pre>
             </div>
         </div>
 
@@ -243,7 +287,7 @@
                         <span id="texto-copiar-4">Copiar código</span>
                     </button>
                 </div>
-                <pre><code id="codigo-4" class="language-latex text-sm">Cargando código fuente...</code></pre>
+                <pre class="line-numbers"><code id="codigo-4" class="language-latex text-sm">Cargando código fuente...</code></pre>
             </div>
         </div>
 
@@ -272,7 +316,7 @@
                         <span id="texto-copiar-5">Copiar código</span>
                     </button>
                 </div>
-                <pre><code id="codigo-5" class="language-latex text-sm">Cargando código fuente...</code></pre>
+                <pre class="line-numbers"><code id="codigo-5" class="language-latex text-sm">Cargando código fuente...</code></pre>
             </div>
         </div>
     </main>
@@ -352,7 +396,6 @@
     <script>
         // 1. FUNCIÓN PARA CARGAR TODOS LOS CÓDIGOS AL ABRIR LA PÁGINA
         document.addEventListener("DOMContentLoaded", () => {
-            // Lista de todos tus archivos y los contenedores donde van
             const archivosTeX = [
                 { id: 'hooke-law', ruta: 'TeX/hooke-law.tex' },
                 { id: 'codigo-2', ruta: 'TeX/curvas-nivel.tex' },
@@ -361,7 +404,6 @@
                 { id: 'codigo-5', ruta: 'TeX/toro.tex' }
             ];
 
-            // Un ciclo que recorre la lista y carga cada uno
             archivosTeX.forEach(archivo => {
                 fetch(archivo.ruta)
                     .then(response => {
@@ -371,22 +413,43 @@
                     .then(codigoLaTeX => {
                         const bloqueCodigo = document.getElementById(archivo.id);
                         if (bloqueCodigo) {
-                            bloqueCodigo.textContent = codigoLaTeX;
-                            Prism.highlightElement(bloqueCodigo);
+                            // Guardamos el código crudo oculto para el botón de copiar
+                            bloqueCodigo.setAttribute('data-codigo-puro', codigoLaTeX);
+
+                            // Dividimos línea por línea
+                            const lineas = codigoLaTeX.split('\n');
+                            let htmlMinted = '';
+
+                            lineas.forEach((linea, index) => {
+                                const lineaTexto = linea.length === 0 ? ' ' : linea;
+                                
+                                // 1. Contamos los espacios en blanco al inicio de la línea.
+                                // (Reemplazamos posibles \t por 4 espacios para medir bien)
+                                const espaciosInicio = lineaTexto.match(/^\s*/)[0];
+                                const nivelIndentacion = espaciosInicio.replace(/\t/g, '    ').length;
+                                
+                                const resaltado = Prism.highlight(lineaTexto, Prism.languages.latex, 'latex');
+                                
+                                // 2. Inyectamos la variable CSS --wrap-indent 
+                                // (Nivel original + 2 espacios extra para que el salto se vea dentado)
+                                htmlMinted += `<div class="minted-row"><div class="minted-number">${index + 1}</div><div class="minted-code" style="--wrap-indent: ${nivelIndentacion + 4}ch;">${resaltado}</div></div>`;
+                            });
+
+                            bloqueCodigo.innerHTML = htmlMinted;
                         }
                     })
                     .catch(error => {
                         const bloqueCodigo = document.getElementById(archivo.id);
-                        if (bloqueCodigo) {
-                            bloqueCodigo.textContent = "% Error: Revisa que subiste la carpeta TeX a GitHub.";
-                        }
+                        if (bloqueCodigo) bloqueCodigo.textContent = "% Error: Revisa que subiste la carpeta TeX a GitHub.";
                     });
             });
         });
 
         // 2. FUNCIÓN TODOTERRENO PARA COPIAR EL CÓDIGO
         function copiarCodigo(idCodigo, idBoton, idTexto) {
-            const codigo = document.getElementById(idCodigo).textContent;
+            const bloque = document.getElementById(idCodigo);
+            // Tomamos el código puro que guardamos antes (sin los divs ni los números)
+            const codigo = bloque.getAttribute('data-codigo-puro') || bloque.textContent;
             
             const mostrarExito = () => {
                 const btnTexto = document.getElementById(idTexto);
@@ -420,10 +483,7 @@
             document.body.appendChild(textArea);
             textArea.focus();
             textArea.select();
-            try {
-                document.execCommand('copy');
-                callbackExito();
-            } catch (err) {}
+            try { document.execCommand('copy'); callbackExito(); } catch (err) {}
             document.body.removeChild(textArea);
         }
     </script>
