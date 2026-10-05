@@ -1,0 +1,27 @@
+\begin{tikzpicture}
+    % === Parámetros ===
+    \def\R{6}% Radio mayor (del centro de la dona al centro del tubo)
+    \def\r{2}% Radio menor (grosor del tubo)
+    
+    % === Configuración del entorno 3D ===
+    \begin{axis}[
+        view={60}{30},
+        axis equal image,
+        axis lines=none,
+        colormap name=violet,
+    ]
+        % === Superficie del toroide ===
+        \addplot3[
+            surf,
+            samples=100,
+            samples y=90,
+            domain=0:360,
+            y domain=0:360,
+            z buffer=sort
+        ] (
+            {(\R + \r*cos(y)) * cos(x)}, % Ecuación x
+            {(\R + \r*cos(y)) * sin(x)}, % Ecuación y
+            {\r*sin(y)}                  % Ecuación z
+        );
+    \end{axis}
+\end{tikzpicture}

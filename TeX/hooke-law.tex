@@ -1,4 +1,4 @@
-\begin{tikzpicture}% [scale=1.2]
+\begin{tikzpicture}
     % === Parámetros ===
     \def\yTop{1.5}          % Altura del resorte en equilibrio
     \def\yBot{-1.5}         % Altura del resorte estirado
@@ -14,7 +14,7 @@
     \draw[dash pattern=on 1.5mm off 2mm,gray,line width=0.2mm] (6.2,-0.3) -- ++(0,-1.2);
     
     % === Pared y resorte en equilibrio (arriba) ===
-    \fill[pattern=north west lines, pattern color=gray!80] (-0.3,0.5) rectangle (0,2.5);
+    \fill[gray!80] (-0.3,0.5) rectangle (0,2.5);
     \begin{scope}[line width=0.35mm]
         \draw (0,0.5) -- (0,2.5);
         \draw (0,\yTop) -- ++(0.6,0);
@@ -24,7 +24,7 @@
     \end{scope}
 
     % === Pared y resorte estirado (abajo) ===
-    \fill[pattern=north west lines, pattern color=gray!80] (-0.3,-2.5) rectangle (0,-0.5);
+    \fill[gray!80] (-0.3,-2.5) rectangle (0,-0.5);
     \begin{scope}[line width=0.35mm]
         \draw (0,-2.5) -- (0,-0.5);
         \draw (0,\yBot) -- ++(0.6,0);

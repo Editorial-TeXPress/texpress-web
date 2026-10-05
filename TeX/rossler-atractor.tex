@@ -1,0 +1,19 @@
+\begin{tikzpicture}
+    % === Configuración del entorno 3D ===
+    \begin{axis}[
+        % Opciones de visualización general
+        view={-45}{30},% Ángulo de vista {azimut}{elevación}
+        width=5cm,% Ancho de la figura
+        height=6cm,% Alto de la figura
+        colormap name=bauhaus_div,% Mapa de color personalizado
+        % Estilo de los ejes
+        hide axis,% Oculta por completo la caja, ejes y números para un estilo de portada limpio
+    ]
+        % === Curva paramétrica desde archivo de datos (Atractor de Rössler) ===
+        \addplot3 [
+            mesh,% Aplica el colormap a lo largo de la línea dibujada
+            line width=0.08mm,% Grosor muy fino para apreciar el detalle de las trayectorias
+            mark=none,% Oculta los puntos de datos (solo dibuja la línea continua)
+        ] table [x=x, y=y, z=z] {rossler_atractor1.txt};% Lee las coordenadas de las columnas del archivo txt
+    \end{axis}
+\end{tikzpicture}

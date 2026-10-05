@@ -1,0 +1,37 @@
+\begin{tikzpicture}
+    % === Configuración del entorno 3D ===
+    \begin{axis}[
+        % Opciones de visualización general
+        view={-55}{28},% Ángulo de vista {azimut}{elevación}
+        colormap name=bauhaus_div,
+        % Configuración de ejes
+        axis lines=center,% Ejes cruzando por el origen (0,0,0)
+        xlabel={$x$},%
+        ylabel={$y$},%
+        zlabel={$z$},%
+        ticks=none,% Oculta los números para mantener la figura limpia
+    ]
+        % === Curvas de nivel proyectadas (Base) ===
+        \addplot3 [
+            contour lua={
+                number=8,% Cantidad de curvas de nivel a dibujar
+                labels=false% Oculta los números de altitud en las líneas
+            },
+            line width=0.1mm,
+            domain=-4:4,
+            domain y=-4:4,
+            samples=40,% Resolución (valores altos suavizan las circunferencias)
+            z filter/.code={\def\pgfmathresult{0}}% Fuerza a que todas las curvas se dibujen en el "piso" (z=0)
+        ] {x^2/2 + y^2/2};
+        
+        % === Superficie 3D (Paraboloide) ===
+        \addplot3 [
+            mesh,% Dibuja solo la retícula (sin rellenar los cuadrados)
+            line width=0.1mm,
+            mark=none,% Evita que se dibujen puntos en las intersecciones
+            domain=-4:4,
+            domain y=-4:4,
+            samples=40,% Resolución de la malla
+        ] {x^2/2 + y^2/2};
+    \end{axis}
+\end{tikzpicture}

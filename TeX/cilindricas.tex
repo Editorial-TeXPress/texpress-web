@@ -1,0 +1,58 @@
+\tdplotsetmaincoords{70}{120}
+\begin{tikzpicture}[tdplot_main_coords, scale=2, >=stealth, line cap=round, line join=round]
+    % === Parámetros ===
+    \def\rhoVec{3.5}  % Radio de la esfera (rho)
+    \def\angTheta{55} % Ángulo azimutal (en el plano xy)
+    \def\angPhi{40}   % Ángulo polar (desde el eje z)
+    \def\L{4.2}       % Límite visual de los ejes
+
+    % === Coordenadas automáticas ===
+    \coordinate (O) at (0,0,0);
+    \tdplotsetcoord{P}{\rhoVec}{\angPhi}{\angTheta}
+
+    % === Relleno del sector esférico ===
+    % Cara lateral 1 (plano xz, theta = 0)
+    \filldraw[fill=cyan!30, draw=cyan!70!blue, thin, opacity=0.5] 
+        (O) -- (0,0,\rhoVec) 
+        -- plot[domain=0:90, variable=\t, samples=30, smooth] ({\rhoVec*sin(\t)}, 0, {\rhoVec*cos(\t)}) 
+        -- cycle;
+
+    % Cara lateral 2 (plano yz, theta = 90)
+    \filldraw[fill=cyan!20, draw=cyan!70!blue, thin, opacity=0.5] 
+        (O) -- (0,0,\rhoVec) 
+        -- plot[domain=0:90, variable=\t, samples=30, smooth] (0, {\rhoVec*sin(\t)}, {\rhoVec*cos(\t)}) 
+        -- cycle;
+
+    % Superficie esférica curva exterior
+    \filldraw[fill=cyan!10, draw=cyan!80!blue, thick, opacity=0.6] 
+        (0,0,\rhoVec)
+        -- plot[domain=0:90, variable=\t, samples=30, smooth] ({\rhoVec*sin(\t)}, 0, {\rhoVec*cos(\t)})
+        -- plot[domain=0:90, variable=\t, samples=30, smooth] ({\rhoVec*cos(\t)}, {\rhoVec*sin(\t)}, 0)
+        -- plot[domain=90:0, variable=\t, samples=30, smooth] (0, {\rhoVec*sin(\t)}, {\rhoVec*cos(\t)})
+        -- cycle;
+
+    % === Líneas de referencia (Curvatura) ===
+    \draw[cyan!80!blue, thin, dashed] 
+        plot[domain=0:90, variable=\t, samples=30, smooth] 
+        ({\rhoVec*sin(\angPhi)*cos(\t)}, {\rhoVec*sin(\angPhi)*sin(\t)}, {\rhoVec*cos(\angPhi)});
+
+    % === Ejes coordenados ===
+    \draw[thick,->] (0,0,0) -- (\L,0,0) node[anchor=north east]{$x$};
+    \draw[thick,->] (0,0,0) -- (0,\L,0) node[anchor=north west]{$y$};
+    \draw[thick,->] (0,0,0) -- (0,0,\L) node[anchor=south]{$z$};
+
+    % === Proyecciones ===
+    \draw[thick, gray!70, dashed] (O) -- (Pxy) -- (P);
+    \draw[thin, gray!50, dashed] (Px) -- (Pxy) -- (Py);
+
+    % === Etiquetas y puntos ===
+    \filldraw[black] (P) circle (0.8pt) node[black, above right, fill=white, inner sep=1pt, rounded corners=2pt, fill opacity=0.8, text opacity=1] {$P(\rho, \theta, \varphi)$};
+
+    % === Vectores ===
+    \draw[thick, blue, ->] (O) -- (P) node[midway, below right] {$\rho$};
+
+    % === Ángulos ===
+    \tdplotdrawarc[thick, red, ->]{(O)}{1}{0}{\angTheta}{anchor=north}{$\theta$}
+    \tdplotsetthetaplanecoords{\angTheta}
+    \tdplotdrawarc[tdplot_rotated_coords, thick, orange, ->]{(O)}{1}{0}{\angPhi}{anchor=south west}{$\varphi$}
+\end{tikzpicture}
