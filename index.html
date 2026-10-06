@@ -105,7 +105,6 @@
 
     <main class="relative flex flex-col md:flex-row w-full pt-16">
         <!-- LEFT SIDE: Sticky Image Container -->
-        <!-- COLUMNA IZQUIERDA: Oculta en celulares -->
         <div class="hidden md:flex w-1/2 h-screen sticky top-0 overflow-hidden bg-white z-10 border-r border-slate-200 items-center justify-center">
             <img id="media-1" src="Images/muestra-tesis.png" alt="Maquetación Profesional" class="absolute w-full h-auto object-contain img-layer img-inactive px-12 drop-shadow-2xl">
             
@@ -140,15 +139,16 @@
                 <ul class="space-y-4 text-slate-600 text-sm md:text-base">
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Manejo impecable de bibliografías complejas (<span class="latex-code ml-1">BibTeX</span> / <span class="latex-code ml-1">Biber</span>).
+                        <!-- Envolvemos todo el texto en un <span> -->
+                        <span>Manejo impecable de bibliografías complejas (<span class="latex-code">BibTeX</span> / <span class="latex-code">Biber</span>).</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Composición matemática avanzada y tipografía precisa.
+                        <span>Composición matemática avanzada y tipografía precisa.</span>
                     </li>
                     <li class="flex items-start">
                         <svg class="w-5 h-5 text-blue-500 mr-2 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                        Cumplimiento de las normativas de formato de universidades y revistas.
+                        <span>Cumplimiento de las normativas de formato de universidades y revistas.</span>
                     </li>
                 </ul>
             </section>
