@@ -288,20 +288,35 @@
     <!-- SCRIPT DE ANIMACIÓN SCROLL REVEAL -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            const observer = new IntersectionObserver((entries) => {
+            // 1. Vigilante estándar (Para el título principal)
+            const mainObserver = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.remove("opacity-0", "translate-y-8");
                         entry.target.classList.add("opacity-100", "translate-y-0");
-                        observer.unobserve(entry.target);
+                        mainObserver.unobserve(entry.target);
                     }
                 });
-            }, { 
-                threshold: 0.1 
+            }, { threshold: 0.4 });
+
+            // 2. Vigilante exclusivo para el footer
+            const footerObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove("opacity-0", "translate-y-8");
+                        entry.target.classList.add("opacity-100", "translate-y-0");
+                        footerObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Asignar elementos a sus observadores
+            document.querySelectorAll("main .reveal").forEach((el) => {
+                mainObserver.observe(el);
             });
 
-            document.querySelectorAll(".reveal").forEach((el) => {
-                observer.observe(el);
+            document.querySelectorAll("footer .reveal").forEach((el) => {
+                footerObserver.observe(el);
             });
         });
     </script>
