@@ -285,10 +285,19 @@
         </div>
     </footer>
 
-    <!-- SCRIPT DE ANIMACIÓN SCROLL REVEAL -->
+    <!-- SCRIPT DE ANIMACIÓN SCROLL REVEAL (Con umbrales responsivos) -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // 1. Vigilante estándar (Para el título principal)
+            // 1. Detectar si es PC (pantallas de 768px o más)
+            const esPC = window.matchMedia("(min-width: 768px)").matches;
+
+            // 2. Definir los umbrales: 
+            // Si es PC usa tus valores (0.4 y 0.1). 
+            // Si es celular usa valores más bajos (0.2 y 0.05) para evitar que se atasque.
+            const umbralMain = esPC ? 0.4 : 0.2;
+            const umbralFooter = esPC ? 0.1 : 0.05;
+
+            // 3. Vigilante estándar (Para el título / contenido principal)
             const mainObserver = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
@@ -297,9 +306,9 @@
                         mainObserver.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.4 });
+            }, { threshold: umbralMain });
 
-            // 2. Vigilante exclusivo para el footer
+            // 4. Vigilante exclusivo para el footer
             const footerObserver = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
@@ -308,7 +317,7 @@
                         footerObserver.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: umbralFooter });
 
             // Asignar elementos a sus observadores
             document.querySelectorAll("main .reveal").forEach((el) => {
