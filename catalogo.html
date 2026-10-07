@@ -31,14 +31,24 @@
     </style>
 </head>
 <body class="antialiased selection:bg-blue-200 selection:text-blue-900">
-
     <!-- Navbar con botón de regreso -->
     <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center text-slate-600 hover:text-blue-600 transition-colors font-medium">
+            <!-- Columna Izquierda: Botón de Regreso -->
+            <a href="index.html" class="flex items-center text-slate-600 hover:text-blue-600 transition-colors font-medium text-sm md:text-base z-10">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                Volver al Inicio
+                <span class="hidden sm:inline">Volver al Inicio</span>
+                <span class="inline sm:hidden">Volver</span>
             </a>
+
+            <!-- Columna Central: Imagen y Texto Juntos y Centrados -->
+            <div class="absolute left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-2.5 pointer-events-none">
+                <img src="Images/logo-texpress.png" alt="Logo Editorial TexPress" class="h-7 w-auto object-contain">
+                <div class="text-sm sm:text-lg md:text-xl font-semibold serif-font text-slate-900 tracking-tight whitespace-nowrap">
+                    <span>Editorial</span> <span class="logo-tex">T<span class="e">e</span>X</span><span class="text-blue-600">Press</span>
+                </div>
+            </div>
+
             <div class="text-xl font-semibold serif-font text-slate-900 tracking-tight hidden sm:block">
                 Catálogo de <span class="text-blue-600">Proyectos</span>
             </div>
