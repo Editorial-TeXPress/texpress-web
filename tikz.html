@@ -127,34 +127,11 @@
         .logo-tex .e, .logo-latex .e { text-transform: uppercase; vertical-align: -0.25em; margin-left: -0.15em; margin-right: -0.1em; }
         .logo-tikz { font-family: 'Lora', serif; }
         .logo-tikz .k { font-style: italic; }
-
-
-        .logo-latex .a {
-            text-transform: uppercase;
-            font-size: 0.75em;
-            vertical-align: 0.28em;
-            margin-left: -0.32em;
-            margin-right: -0.15em;
-        }
-
-        .logo-tex .e, .logo-latex .e {
-            text-transform: uppercase;
-            vertical-align: -0.25em;
-            margin-left: -0.15em;
-            margin-right: -0.1em;
-        }
-
-        .logo-tikz {
-            font-family: 'Lora', serif;
-        }
-        .logo-tikz .k {
-            font-style: italic;
-        }
     </style>
 </head>
-<body class="antialiased selection:bg-blue-200 selection:text-blue-900">
+<body class="antialiased selection:bg-blue-200 selection:text-blue-900 overflow-x-hidden">
 
-    <!-- Navbar Minimalista -->
+    <!-- Navbar Minimalista (Estática) -->
     <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <!-- Columna Izquierda: Botón de Regreso -->
@@ -180,206 +157,189 @@
     </nav>
 
     <main class="pt-28 pb-20 max-w-7xl mx-auto px-6">
-        <div class="mb-10 md:mb-12 text-center">
+        <!-- Encabezado de la página (Animado) -->
+        <div class="mb-10 md:mb-12 text-center reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <h1 class="text-3xl md:text-4xl font-bold text-slate-900 serif-font mb-4">Arte Vectorial Paramétrico</h1>
             <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto">Renderizado nativo que garantiza calidad infinita para impresión académica.</p>
         </div>
 
-        <!-- CASO 1: Ley de Hooke -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
-            <!-- RESULTADO: PNG Y BOTÓN PDF -->
-            <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
-                <img src="Images/muestra-tikz.png" alt="Ley de Hooke" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md">
-                <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Oscilador Armónico</p>
-                
-                <a href="PDF/tikz-hooke-law.pdf" download="OsciladorArmónico_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
-                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Descargar PDF
-                </a>
-            </div>
-
-            <!-- CÓDIGO FUENTE -->
-            <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden">
-                <!-- Barra de ventana: Cambiamos px-4 por px-3 en celular, texto del archivo más chico -->
-                <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
-                    <div class="flex items-center">
-                        <div class="flex space-x-1.5 md:space-x-2">
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-400"></div>
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-400"></div>
-                        </div>
-                        <!-- Ocultar el nombre completo del archivo en celulares muy pequeños si no cabe, o reducir texto -->
-                        <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/hooke-law.tex</span>
-                    </div>
+        <!-- CASO 1: Ley de Hooke (Animado) -->
+        <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
+                <!-- RESULTADO: PNG Y BOTÓN PDF -->
+                <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
+                    <img src="Images/muestra-tikz.png" alt="Ley de Hooke" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
+                    <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Oscilador Armónico</p>
                     
-                    <!-- Botón de Copiar -->
-                    <button onclick="copiarCodigo('hooke-law', 'btn-copiar-1', 'texto-copiar-1')" id="btn-copiar-1" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
-                        <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                        <span id="texto-copiar-1">Copiar</span>
-                    </button>
+                    <a href="PDF/tikz-hooke-law.pdf" download="OsciladorArmónico_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Descargar PDF
+                    </a>
                 </div>
-                <!-- Contenedor del código -->
-                <pre class="line-numbers"><code id="hooke-law" class="language-latex">Cargando código fuente...</code></pre>
+
+                <!-- CÓDIGO FUENTE -->
+                <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
+                        <div class="flex items-center">
+                            <div class="flex space-x-1.5 md:space-x-2">
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-400"></div>
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-400"></div>
+                            </div>
+                            <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/hooke-law.tex</span>
+                        </div>
+                        
+                        <button onclick="copiarCodigo('hooke-law', 'btn-copiar-1', 'texto-copiar-1')" id="btn-copiar-1" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
+                            <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span id="texto-copiar-1">Copiar</span>
+                        </button>
+                    </div>
+                    <pre class="line-numbers"><code id="hooke-law" class="language-latex">Cargando código fuente...</code></pre>
+                </div>
             </div>
         </div>
 
-        <!-- CASO 2: Curvas de Nivel -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
-            <!-- RESULTADO: PNG Y BOTÓN PDF -->
-            <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
-                <img src="Images/muestra-tikz-2.png" alt="Curvas de Nivel" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md">
-                <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Paraboloide con sus Curvas de Nivel</p>
-                
-                <a href="PDF/tikz-curvas-nivel.pdf" download="ParaboloideCurvasNivel_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
-                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Descargar PDF
-                </a>
-            </div>
-
-            <!-- CÓDIGO FUENTE -->
-            <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden">
-                <!-- Barra de ventana: Cambiamos px-4 por px-3 en celular, texto del archivo más chico -->
-                <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
-                    <div class="flex items-center">
-                        <div class="flex space-x-1.5 md:space-x-2">
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-400"></div>
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-400"></div>
-                        </div>
-                        <!-- Ocultar el nombre completo del archivo en celulares muy pequeños si no cabe, o reducir texto -->
-                        <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/curvas-nivel.tex</span>
-                    </div>
+        <!-- CASO 2: Curvas de Nivel (Animado) -->
+        <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
+                <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
+                    <img src="Images/muestra-tikz-2.png" alt="Curvas de Nivel" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
+                    <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Paraboloide con sus Curvas de Nivel</p>
                     
-                    <!-- Botón de Copiar -->
-                    <button onclick="copiarCodigo('codigo-2', 'btn-copiar-2', 'texto-copiar-2')" id="btn-copiar-2" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
-                        <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                        <span id="texto-copiar-2">Copiar</span>
-                    </button>
+                    <a href="PDF/tikz-curvas-nivel.pdf" download="ParaboloideCurvasNivel_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Descargar PDF
+                    </a>
                 </div>
-                <!-- Contenedor del código -->
-                <pre class="line-numbers"><code id="codigo-2" class="language-latex">Cargando código fuente...</code></pre>
+
+                <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
+                        <div class="flex items-center">
+                            <div class="flex space-x-1.5 md:space-x-2">
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-400"></div>
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-400"></div>
+                            </div>
+                            <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/curvas-nivel.tex</span>
+                        </div>
+                        
+                        <button onclick="copiarCodigo('codigo-2', 'btn-copiar-2', 'texto-copiar-2')" id="btn-copiar-2" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
+                            <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span id="texto-copiar-2">Copiar</span>
+                        </button>
+                    </div>
+                    <pre class="line-numbers"><code id="codigo-2" class="language-latex">Cargando código fuente...</code></pre>
+                </div>
             </div>
         </div>
 
-        <!-- CASO 3: Atractor de Rössler -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
-            <!-- RESULTADO: PNG Y BOTÓN PDF -->
-            <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
-                <img src="Images/tikz-rossler-atractor.png" alt="Atractor de Rössler" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md">
-                <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Atractor de Rössler</p>
+        <!-- CASO 3: Atractor de Rössler (Animado) -->
+        <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
+                <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
+                    <img src="Images/tikz-rossler-atractor.png" alt="Atractor de Rössler" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
+                    <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Atractor de Rössler</p>
 
-                <a href="PDF/tikz-rossler-atractor.pdf" download="AtractorRössler_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
-                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Descargar PDF
-                </a>
-            </div>
-
-            <!-- CÓDIGO FUENTE -->
-            <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden">
-                <!-- Barra de ventana: Cambiamos px-4 por px-3 en celular, texto del archivo más chico -->
-                <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
-                    <div class="flex items-center">
-                        <div class="flex space-x-1.5 md:space-x-2">
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-400"></div>
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-400"></div>
-                        </div>
-                        <!-- Ocultar el nombre completo del archivo en celulares muy pequeños si no cabe, o reducir texto -->
-                        <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/rossler-atractor.tex</span>
-                    </div>
-                    
-                    <!-- Botón de Copiar -->
-                    <button onclick="copiarCodigo('codigo-3', 'btn-copiar-3', 'texto-copiar-3')" id="btn-copiar-3" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
-                        <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                        <span id="texto-copiar-3">Copiar</span>
-                    </button>
+                    <a href="PDF/tikz-rossler-atractor.pdf" download="AtractorRössler_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Descargar PDF
+                    </a>
                 </div>
-                <!-- Contenedor del código -->
-                <pre class="line-numbers"><code id="codigo-3" class="language-latex">Cargando código fuente...</code></pre>
+
+                <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
+                        <div class="flex items-center">
+                            <div class="flex space-x-1.5 md:space-x-2">
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-400"></div>
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-400"></div>
+                            </div>
+                            <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/rossler-atractor.tex</span>
+                        </div>
+                        
+                        <button onclick="copiarCodigo('codigo-3', 'btn-copiar-3', 'texto-copiar-3')" id="btn-copiar-3" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
+                            <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span id="texto-copiar-3">Copiar</span>
+                        </button>
+                    </div>
+                    <pre class="line-numbers"><code id="codigo-3" class="language-latex">Cargando código fuente...</code></pre>
+                </div>
             </div>
         </div>
 
-        <!-- CASO 4: Coordenadas Cilíndricas -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
-            <!-- RESULTADO: PNG Y BOTÓN PDF -->
-            <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
-                <img src="Images/tikz-cilindricas.png" alt="Coordenadas Cilíndricas" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md">
-                <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Coordenadas Cilíndricas</p>
+        <!-- CASO 4: Coordenadas Cilíndricas (Animado) -->
+        <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
+                <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
+                    <img src="Images/tikz-cilindricas.png" alt="Coordenadas Cilíndricas" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
+                    <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Coordenadas Cilíndricas</p>
 
-                <a href="PDF/tikz-cilindricas.pdf" download="CoordenadasCilíndricas_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
-                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Descargar PDF
-                </a>
-            </div>
-
-            <!-- CÓDIGO FUENTE -->
-            <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden">
-                <!-- Barra de ventana: Cambiamos px-4 por px-3 en celular, texto del archivo más chico -->
-                <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
-                    <div class="flex items-center">
-                        <div class="flex space-x-1.5 md:space-x-2">
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-400"></div>
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-400"></div>
-                        </div>
-                        <!-- Ocultar el nombre completo del archivo en celulares muy pequeños si no cabe, o reducir texto -->
-                        <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/coordenadas-cilindricas.tex</span>
-                    </div>
-                    
-                    <!-- Botón de Copiar -->
-                    <button onclick="copiarCodigo('codigo-4', 'btn-copiar-4', 'texto-copiar-4')" id="btn-copiar-4" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
-                        <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                        <span id="texto-copiar-4">Copiar</span>
-                    </button>
+                    <a href="PDF/tikz-cilindricas.pdf" download="CoordenadasCilíndricas_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Descargar PDF
+                    </a>
                 </div>
-                <!-- Contenedor del código -->
-                <pre class="line-numbers"><code id="codigo-4" class="language-latex">Cargando código fuente...</code></pre>
+
+                <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
+                        <div class="flex items-center">
+                            <div class="flex space-x-1.5 md:space-x-2">
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-400"></div>
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-400"></div>
+                            </div>
+                            <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/coordenadas-cilindricas.tex</span>
+                        </div>
+                        
+                        <button onclick="copiarCodigo('codigo-4', 'btn-copiar-4', 'texto-copiar-4')" id="btn-copiar-4" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
+                            <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span id="texto-copiar-4">Copiar</span>
+                        </button>
+                    </div>
+                    <pre class="line-numbers"><code id="codigo-4" class="language-latex">Cargando código fuente...</code></pre>
+                </div>
             </div>
         </div>
 
-        <!-- CASO 5: Toro -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
-            <!-- RESULTADO: PNG Y BOTÓN PDF -->
-            <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
-                <img src="Images/tikz-toro.png" alt="Toro" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md">
-                <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Toro</p>
+        <!-- CASO 5: Toro (Animado) -->
+        <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
+                <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
+                    <img src="Images/tikz-toro.png" alt="Toro" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
+                    <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Toro</p>
 
-                <a href="PDF/tikz-toro.pdf" download="Toro_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
-                    <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    Descargar PDF
-                </a>
-            </div>
-
-            <!-- CÓDIGO FUENTE -->
-            <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden">
-                <!-- Barra de ventana: Cambiamos px-4 por px-3 en celular, texto del archivo más chico -->
-                <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
-                    <div class="flex items-center">
-                        <div class="flex space-x-1.5 md:space-x-2">
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-400"></div>
-                            <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-400"></div>
-                        </div>
-                        <!-- Ocultar el nombre completo del archivo en celulares muy pequeños si no cabe, o reducir texto -->
-                        <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/toro.tex</span>
-                    </div>
-                    
-                    <!-- Botón de Copiar -->
-                    <button onclick="copiarCodigo('codigo-5', 'btn-copiar-5', 'texto-copiar-5')" id="btn-copiar-5" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
-                        <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                        <span id="texto-copiar-5">Copiar</span>
-                    </button>
+                    <a href="PDF/tikz-toro.pdf" download="Toro_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Descargar PDF
+                    </a>
                 </div>
-                <!-- Contenedor del código -->
-                <pre class="line-numbers"><code id="codigo-5" class="language-latex">Cargando código fuente...</code></pre>
+
+                <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden hover:shadow-2xl transition-shadow duration-300">
+                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
+                        <div class="flex items-center">
+                            <div class="flex space-x-1.5 md:space-x-2">
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-yellow-400"></div>
+                                <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-green-400"></div>
+                            </div>
+                            <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/toro.tex</span>
+                        </div>
+                        
+                        <button onclick="copiarCodigo('codigo-5', 'btn-copiar-5', 'texto-copiar-5')" id="btn-copiar-5" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
+                            <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <span id="texto-copiar-5">Copiar</span>
+                        </button>
+                    </div>
+                    <pre class="line-numbers"><code id="codigo-5" class="language-latex">Cargando código fuente...</code></pre>
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer Global -->
     <footer id="contacto" class="bg-slate-900 text-slate-300 py-16 px-8 md:px-16 border-t border-slate-800">
-        <div class="max-w-5xl mx-auto flex flex-col items-center text-center mb-8">
-            <!-- Bloque 1: Marca, Misión y Contacto -->
+        <!-- Bloque 1 y 2 (Animados con clase reveal) -->
+        <div class="max-w-5xl mx-auto flex flex-col items-center text-center mb-8 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="mb-10">
                 <h3 class="latin-modern text-3xl text-white mb-4">Editorial <span class="logo-tex">T<span class="e">e</span>X</span>Press</h3>
                 <p class="text-sm text-slate-400 leading-relaxed max-w-2xl mx-auto mb-6">
@@ -389,21 +349,16 @@
                 <p class="latin-modern text-lg font-semibold text-slate-300 tracking-widest mb-3">¿Listo para compilar tu proyecto?</p>
                 <a href="mailto:editorialtexpress@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors font-medium text-lg inline-block mb-6 break-all">editorialtexpress@gmail.com</a>
                 
-                <!-- Íconos de Redes Sociales -->
                 <div class="flex justify-center gap-6">
-                    <!-- GitHub -->
                     <a href="https://github.com/Editorial-TeXPress" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white hover:-translate-y-1 transition-all duration-200" aria-label="GitHub">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
                     </a>
-                    <!-- LinkedIn -->
                     <a href="https://linkedin.com/in/vicente-chavarria-gamez-303980252" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#0a66c2] hover:-translate-y-1 transition-all duration-200" aria-label="LinkedIn">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                     </a>
-                    <!-- Instagram -->
                     <a href="https://www.instagram.com/editorial_texpress/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#E1306C] hover:-translate-y-1 transition-all duration-200" aria-label="Instagram">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                     </a>
-                    <!-- Facebook -->
                     <a href="https://www.facebook.com/profile.php?id=61595157300156" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#1877F2] hover:-translate-y-1 transition-all duration-200" aria-label="Facebook">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     </a>
@@ -423,8 +378,8 @@
             </div>
         </div>
 
-        <!-- Bloque 3: Legal y Copyright -->
-        <div class="max-w-5xl mx-auto border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-6">
+        <!-- Bloque 3: Legal y Copyright (Animado con delay) -->
+        <div class="max-w-5xl mx-auto border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-6 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-100">
             <!-- Enlaces Legales -->
             <ul class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2">
                 <li><a href="terminos.html" class="hover:text-slate-300 transition-colors">Términos y Condiciones</a></li>
@@ -445,7 +400,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-latex.min.js"></script>
 
     <!-- ========================================== -->
-    <!-- SCRIPTS MÁGICOS (Carga de código y Copiado) -->
+    <!-- SCRIPTS MÁGICOS (Carga de código y Animación) -->
     <!-- ========================================== -->
     <script>
         // 1. FUNCIÓN PARA CARGAR TODOS LOS CÓDIGOS AL ABRIR LA PÁGINA
@@ -467,25 +422,16 @@
                     .then(codigoLaTeX => {
                         const bloqueCodigo = document.getElementById(archivo.id);
                         if (bloqueCodigo) {
-                            // Guardamos el código crudo oculto para el botón de copiar
                             bloqueCodigo.setAttribute('data-codigo-puro', codigoLaTeX);
-
-                            // Dividimos línea por línea
                             const lineas = codigoLaTeX.split('\n');
                             let htmlMinted = '';
 
                             lineas.forEach((linea, index) => {
                                 const lineaTexto = linea.length === 0 ? ' ' : linea;
-                                
-                                // 1. Contamos los espacios en blanco al inicio de la línea.
-                                // (Reemplazamos posibles \t por 4 espacios para medir bien)
                                 const espaciosInicio = lineaTexto.match(/^\s*/)[0];
                                 const nivelIndentacion = espaciosInicio.replace(/\t/g, '    ').length;
-                                
                                 const resaltado = Prism.highlight(lineaTexto, Prism.languages.latex, 'latex');
                                 
-                                // 2. Inyectamos la variable CSS --wrap-indent 
-                                // (Nivel original + 2 espacios extra para que el salto se vea dentado)
                                 htmlMinted += `<div class="minted-row"><div class="minted-number">${index + 1}</div><div class="minted-code" style="--wrap-indent: ${nivelIndentacion + 4}ch;">${resaltado}</div></div>`;
                             });
 
@@ -502,7 +448,6 @@
         // 2. FUNCIÓN TODOTERRENO PARA COPIAR EL CÓDIGO
         function copiarCodigo(idCodigo, idBoton, idTexto) {
             const bloque = document.getElementById(idCodigo);
-            // Tomamos el código puro que guardamos antes (sin los divs ni los números)
             const codigo = bloque.getAttribute('data-codigo-puro') || bloque.textContent;
             
             const mostrarExito = () => {
@@ -540,6 +485,40 @@
             try { document.execCommand('copy'); callbackExito(); } catch (err) {}
             document.body.removeChild(textArea);
         }
+
+        // 3. SCRIPT DE ANIMACIÓN SCROLL REVEAL (Con doble observador)
+        document.addEventListener("DOMContentLoaded", function() {
+            // Vigilante para el contenido principal (imágenes y código)
+            const mainObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove("opacity-0", "translate-y-8");
+                        entry.target.classList.add("opacity-100", "translate-y-0");
+                        mainObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            // Vigilante exclusivo para el footer
+            const footerObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove("opacity-0", "translate-y-8");
+                        entry.target.classList.add("opacity-100", "translate-y-0");
+                        footerObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Asignar elementos a sus observadores
+            document.querySelectorAll("main .reveal").forEach((el) => {
+                mainObserver.observe(el);
+            });
+
+            document.querySelectorAll("footer .reveal").forEach((el) => {
+                footerObserver.observe(el);
+            });
+        });
     </script>
 </body>
 </html>

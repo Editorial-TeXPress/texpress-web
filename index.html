@@ -87,7 +87,7 @@
         }
     </style>
 </head>
-<body class="antialiased selection:bg-blue-200 selection:text-blue-900">
+<body class="antialiased selection:bg-blue-200 selection:text-blue-900 overflow-x-hidden">
     <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
@@ -120,7 +120,7 @@
         </div>
 
         <!-- RIGHT SIDE: Scrolling Content -->
-        <div class="w-full md:w-1/2 bg-white z-0">
+        <div class="w-full md:w-1/2 bg-white z-0 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <!-- Section 1 -->
             <section data-index="1" class="step flex flex-col justify-center px-6 py-12 md:px-16 lg:px-24 md:min-h-screen">
                 <!-- IMAGEN MÓVIL -->
@@ -208,7 +208,7 @@
                 </p>
                 
                 <!-- BOTONES ADAPTABLES CON EFECTO \hfill EN ESCRITORIO -->
-                <div class="flex flex-col sm:flex-row sm:justify-between gap-4 w-full mt-4">
+                <div class="flex flex-col sm:flex-row sm:justify-between gap-4 w-full mt-4 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
                     <a href="links.html" class="inline-flex items-center justify-center px-8 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 border border-transparent rounded-lg hover:bg-blue-700 shadow-lg shadow-blue-200 w-full sm:w-auto">
                         Contáctanos
                         <svg class="w-5 h-5 ml-2 -mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -225,7 +225,8 @@
 
     <!-- Footer -->
     <footer id="contacto" class="bg-slate-900 text-slate-300 py-16 px-8 md:px-16 border-t border-slate-800">
-        <div class="max-w-5xl mx-auto flex flex-col items-center text-center mb-8">
+        <!-- Bloques 1 y 2 (Animados) -->
+        <div class="max-w-5xl mx-auto flex flex-col items-center text-center mb-8 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <!-- Bloque 1: Marca, Misión y Contacto -->
             <div class="mb-10">
                 <h3 class="latin-modern text-3xl text-white mb-4">Editorial <span class="logo-tex">T<span class="e">e</span>X</span>Press</h3>
@@ -270,8 +271,8 @@
             </div>
         </div>
 
-        <!-- Bloque 3: Legal y Copyright -->
-        <div class="max-w-5xl mx-auto border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-6">
+        <!-- Bloque 3: Legal y Copyright (Animado con delay) -->
+        <div class="max-w-5xl mx-auto border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-6 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-100">
             <!-- Enlaces Legales -->
             <ul class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2">
                 <li><a href="terminos.html" class="hover:text-slate-300 transition-colors">Términos y Condiciones</a></li>
@@ -330,6 +331,25 @@
 
             // Tell the observer to watch each section
             steps.forEach(step => observer.observe(step));
+        });
+
+        // SCRIPT DE ANIMACIÓN SCROLL REVEAL
+        document.addEventListener("DOMContentLoaded", function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove("opacity-0", "translate-y-8");
+                        entry.target.classList.add("opacity-100", "translate-y-0");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { 
+                threshold: 0.1
+            });
+
+            document.querySelectorAll(".reveal").forEach((el) => {
+                observer.observe(el);
+            });
         });
     </script>
 </body>

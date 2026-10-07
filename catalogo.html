@@ -30,18 +30,17 @@
         .logo-tikz .k { font-style: italic; }
     </style>
 </head>
-<body class="antialiased selection:bg-blue-200 selection:text-blue-900">
-    <!-- Navbar con botón de regreso -->
+<body class="antialiased selection:bg-blue-200 selection:text-blue-900 overflow-x-hidden">
+    
+    <!-- Navbar (Sin animación porque es fija) -->
     <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Columna Izquierda: Botón de Regreso -->
             <a href="index.html" class="flex items-center text-slate-600 hover:text-blue-600 transition-colors font-medium text-sm md:text-base z-10">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                 <span class="hidden sm:inline">Volver al Inicio</span>
                 <span class="inline sm:hidden">Volver</span>
             </a>
 
-            <!-- Columna Central: Imagen y Texto Juntos y Centrados -->
             <div class="absolute left-1/2 -translate-x-1/2 hidden sm:flex items-center gap-2.5 pointer-events-none">
                 <img src="Images/logo-texpress.png" alt="Logo Editorial TexPress" class="h-7 w-auto object-contain">
                 <div class="text-sm sm:text-lg md:text-xl font-semibold serif-font text-slate-900 tracking-tight whitespace-nowrap">
@@ -49,105 +48,113 @@
                 </div>
             </div>
 
-            <div class="text-xl font-semibold serif-font text-slate-900 tracking-tight hidden sm:block">
+            <div class="text-xl font-semibold serif-font text-slate-900 tracking-tight hidden sm:block z-10">
                 Catálogo de <span class="text-blue-600">Proyectos</span>
             </div>
         </div>
     </nav>
 
+    <!-- Main (Sin animación, actúa como lienzo) -->
     <main class="pt-28 pb-20 max-w-7xl mx-auto px-6">
         
-        <!-- Encabezado del Catálogo -->
-        <div class="text-center max-w-3xl mx-auto mb-16">
+        <!-- Encabezado del Catálogo (Animado) -->
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <h1 class="text-4xl md:text-5xl font-bold text-slate-900 serif-font mb-6" style="line-height: 1.2;">Nuestro Trabajo</h1>
             <p class="text-lg text-slate-600">Explora nuestra colección de maquetaciones, clases institucionales, y gráficos vectoriales creados con precisión tipográfica.</p>
         </div>
 
         <!-- Grid de Proyectos -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
-            <!-- Proyecto 1: Libros y Apuntes -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                <div class="h-48 md:h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
-                    <img src="Images/portada-fisica.png" alt="Fundamentos de la Física" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
-                    <img src="Images/portada-variacionales.png" alt="Métodos Variacionales" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
-                </div>
-                
-                <div class="p-6 md:p-8 flex flex-col flex-grow">
-                    <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Edición de Libros</div>
-                    <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Libros y Apuntes</h3>
+            
+            <!-- Proyecto 1: Libros y Apuntes (Animado, entra primero) -->
+            <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-100 h-full">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+                    <div class="h-48 md:h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
+                        <img src="Images/portada-fisica.png" alt="Fundamentos de la Física" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
+                        <img src="Images/portada-variacionales.png" alt="Métodos Variacionales" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
+                    </div>
                     
-                    <p class="text-slate-600 mb-6 flex-grow text-sm md:text-base">Maquetación profesional para obras de gran extensión: desde libros de texto y apuntes de curso rigurosos, hasta estudios de viabilidad financiera. Abarca diseño de portadas, estructuración jerárquica de capítulos y composición tipográfica avanzada.</p>
-                    
-                    <!-- BOTÓN RESPONSIVO -->
-                    <a href="books.html" class="inline-flex items-center justify-center sm:justify-start font-semibold text-blue-600 hover:text-blue-800 transition-colors w-full sm:w-max bg-slate-50 sm:bg-transparent border border-slate-200 sm:border-none rounded-lg sm:rounded-none py-3 sm:py-0 mt-auto">
-                        Ver proyectos editoriales
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
+                    <div class="p-6 md:p-8 flex flex-col flex-grow">
+                        <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Edición de Libros</div>
+                        <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Libros y Apuntes</h3>
+                        
+                        <p class="text-slate-600 mb-6 flex-grow text-sm md:text-base">Maquetación profesional para obras de gran extensión: desde libros de texto y apuntes de curso rigurosos, hasta estudios de viabilidad financiera. Abarca diseño de portadas, estructuración jerárquica de capítulos y composición tipográfica avanzada.</p>
+                        
+                        <a href="books.html" class="inline-flex items-center justify-center sm:justify-start font-semibold text-blue-600 hover:text-blue-800 transition-colors w-full sm:w-max bg-slate-50 sm:bg-transparent border border-slate-200 sm:border-none rounded-lg sm:rounded-none py-3 sm:py-0 mt-auto">
+                            Ver proyectos editoriales
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Proyecto 2: Plantillas y Clases -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                <div class="h-48 md:h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
-                    <img src="Images/muestra-disquisitio.png" alt="Disquisitio Elementalis" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
-                    <img src="Images/muestra-deexam.png" alt="deexam class" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
-                </div>
-                
-                <div class="p-6 md:p-8 flex flex-col flex-grow">
-                    <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Desarrollo de Clases</div>
-                    <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Clases y Estructuras <code class="bg-slate-900 text-blue-400 px-2 py-0.5 rounded text-lg font-mono">.cls</code></h3>
+            <!-- Proyecto 2: Plantillas y Clases (Animado, entra segundo) -->
+            <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-200 h-full">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+                    <div class="h-48 md:h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
+                        <img src="Images/muestra-disquisitio.png" alt="Disquisitio Elementalis" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
+                        <img src="Images/muestra-deexam.png" alt="deexam class" class="h-full w-auto max-w-[45%] object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
+                    </div>
                     
-                    <p class="text-slate-600 mb-6 flex-grow text-sm md:text-base">Desarrollo de clases maestras y plantillas institucionales. Incluye formatos especializados como <code class="bg-slate-900 text-blue-400 px-1.5 py-0.5 rounded text-sm font-mono">deexam</code> para evaluación, <span class="italic">Disquisitio Elementalis</span> para artículos científicos, formatos para tesis y presentaciones en Beamer.</p>
-                    
-                    <!-- BOTÓN RESPONSIVO -->
-                    <a href="templates.html" class="inline-flex items-center justify-center sm:justify-start font-semibold text-blue-600 hover:text-blue-800 transition-colors w-full sm:w-max bg-slate-50 sm:bg-transparent border border-slate-200 sm:border-none rounded-lg sm:rounded-none py-3 sm:py-0 mt-auto">
-                        Explorar plantillas
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
+                    <div class="p-6 md:p-8 flex flex-col flex-grow">
+                        <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Desarrollo de Clases</div>
+                        <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Clases y Estructuras <code class="bg-slate-900 text-blue-400 px-2 py-0.5 rounded text-lg font-mono">.cls</code></h3>
+                        
+                        <p class="text-slate-600 mb-6 flex-grow text-sm md:text-base">Desarrollo de clases maestras y plantillas institucionales. Incluye formatos especializados como <code class="bg-slate-900 text-blue-400 px-1.5 py-0.5 rounded text-sm font-mono">deexam</code> para evaluación, <span class="italic">Disquisitio Elementalis</span> para artículos científicos, formatos para tesis y presentaciones en Beamer.</p>
+                        
+                        <a href="templates.html" class="inline-flex items-center justify-center sm:justify-start font-semibold text-blue-600 hover:text-blue-800 transition-colors w-full sm:w-max bg-slate-50 sm:bg-transparent border border-slate-200 sm:border-none rounded-lg sm:rounded-none py-3 sm:py-0 mt-auto">
+                            Explorar plantillas
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Proyecto 3: Paquetes Personalizados -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                <div class="h-48 md:h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
-                    <img src="Images/portada-disqmath.png" alt="Paquete disqmath" class="h-full w-auto object-contain drop-shadow-md">
-                </div>
-                <div class="p-8 flex flex-col flex-grow">
-                    <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Desarrollo de Paquetes</div>
-                    <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Macros y Funciones <code class="bg-slate-900 text-blue-400 px-2 py-0.5 rounded text-lg font-mono">.sty</code></h3>
-                    <p class="text-slate-600 mb-6 flex-grow">Ingeniería de software para documentos mediante la creación de paquetes personalizados. Diseño de soluciones orientadas a simplificar la tipografía matemática, optimizar entornos de demostración y automatizar comandos repetitivos a medida del proyecto.</p>
-                    
-                    <!-- BOTÓN AÑADIDO -->
-                    <a href="packages.html" class="inline-flex items-center justify-center sm:justify-start font-semibold text-blue-600 hover:text-blue-800 transition-colors w-full sm:w-max bg-slate-50 sm:bg-transparent border border-slate-200 sm:border-none rounded-lg sm:rounded-none py-3 sm:py-0 mt-auto">
-                        Ver documentación
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
+            <!-- Proyecto 3: Paquetes Personalizados (Animado, entra primero en la segunda fila) -->
+            <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-100 h-full">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+                    <div class="h-48 md:h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
+                        <img src="Images/portada-disqmath.png" alt="Paquete disqmath" class="h-full w-auto object-contain drop-shadow-md">
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Desarrollo de Paquetes</div>
+                        <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Macros y Funciones <code class="bg-slate-900 text-blue-400 px-2 py-0.5 rounded text-lg font-mono">.sty</code></h3>
+                        <p class="text-slate-600 mb-6 flex-grow">Ingeniería de software para documentos mediante la creación de paquetes personalizados. Diseño de soluciones orientadas a simplificar la tipografía matemática, optimizar entornos de demostración y automatizar comandos repetitivos a medida del proyecto.</p>
+                        
+                        <a href="packages.html" class="inline-flex items-center justify-center sm:justify-start font-semibold text-blue-600 hover:text-blue-800 transition-colors w-full sm:w-max bg-slate-50 sm:bg-transparent border border-slate-200 sm:border-none rounded-lg sm:rounded-none py-3 sm:py-0 mt-auto">
+                            Ver documentación
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
                 </div>
             </div>
 
-            <!-- Proyecto 4: Galería TikZ -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col">
-                <div class="h-48 md:h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
-                    <img src="Images/muestra-tikz.png" alt="Gráfica TikZ" class="h-full w-auto object-contain drop-shadow-md">
-                </div>
-                <div class="p-8 flex flex-col flex-grow">
-                    <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Arte Vectorial</div>
-                    <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Galería en <span class="logo-tikz">Ti<span class="k">k</span>Z</span></h3>
-                    <p class="text-slate-600 mb-6 flex-grow">Creación de gráficos paramétricos de alta precisión matemática. Desde sistemas dinámicos y cálculo en varias variables hasta diagramas físicos avanzados, garantizando una resolución vectorial amplia y una integración tipográfica perfecta para impresión.</p>
-                    
-                    <!-- BOTÓN AÑADIDO -->
-                    <a href="tikz.html" class="inline-flex items-center justify-center sm:justify-start font-semibold text-blue-600 hover:text-blue-800 transition-colors w-full sm:w-max bg-slate-50 sm:bg-transparent border border-slate-200 sm:border-none rounded-lg sm:rounded-none py-3 sm:py-0 mt-auto">
-                        Ver galería de gráficos
-                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </a>
+            <!-- Proyecto 4: Galería TikZ (Animado, entra segundo en la segunda fila) -->
+            <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-200 h-full">
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
+                    <div class="h-48 md:h-64 bg-slate-50 flex items-center justify-center gap-4 sm:gap-8 border-b border-slate-200 p-6">
+                        <img src="Images/muestra-tikz.png" alt="Gráfica TikZ" class="h-full w-auto object-contain drop-shadow-md">
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <div class="text-xs font-semibold tracking-wider text-blue-600 uppercase mb-2">Arte Vectorial</div>
+                        <h3 class="text-2xl font-bold text-slate-900 serif-font mb-3">Galería en <span class="logo-tikz">Ti<span class="k">k</span>Z</span></h3>
+                        <p class="text-slate-600 mb-6 flex-grow">Creación de gráficos paramétricos de alta precisión matemática. Desde sistemas dinámicos y cálculo en varias variables hasta diagramas físicos avanzados, garantizando una resolución vectorial amplia y una integración tipográfica perfecta para impresión.</p>
+                        
+                        <a href="tikz.html" class="inline-flex items-center justify-center sm:justify-start font-semibold text-blue-600 hover:text-blue-800 transition-colors w-full sm:w-max bg-slate-50 sm:bg-transparent border border-slate-200 sm:border-none rounded-lg sm:rounded-none py-3 sm:py-0 mt-auto">
+                            Ver galería de gráficos
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
                 </div>
             </div>
+
         </div>
     </main>
 
     <!-- Footer -->
     <footer id="contacto" class="bg-slate-900 text-slate-300 py-16 px-8 md:px-16 border-t border-slate-800">
-        <div class="max-w-5xl mx-auto flex flex-col items-center text-center mb-8">
+        <!-- Bloques 1 y 2 (Animados) -->
+        <div class="max-w-5xl mx-auto flex flex-col items-center text-center mb-8 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <!-- Bloque 1: Marca, Misión y Contacto -->
             <div class="mb-10">
                 <h3 class="latin-modern text-3xl text-white mb-4">Editorial <span class="logo-tex">T<span class="e">e</span>X</span>Press</h3>
@@ -192,8 +199,8 @@
             </div>
         </div>
 
-        <!-- Bloque 3: Legal y Copyright -->
-        <div class="max-w-5xl mx-auto border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-6">
+        <!-- Bloque 3: Legal y Copyright (Animado con delay) -->
+        <div class="max-w-5xl mx-auto border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-6 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-100">
             <!-- Enlaces Legales -->
             <ul class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2">
                 <li><a href="terminos.html" class="hover:text-slate-300 transition-colors">Términos y Condiciones</a></li>
@@ -208,5 +215,40 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 1. Vigilante para el contenido principal (se activa cuando asoma un 10%)
+            const mainObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove("opacity-0", "translate-y-8");
+                        entry.target.classList.add("opacity-100", "translate-y-0");
+                        mainObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            // 2. Vigilante exclusivo para el footer (espera a que se vea un 30% para mayor elegancia)
+            const footerObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.remove("opacity-0", "translate-y-8");
+                        entry.target.classList.add("opacity-100", "translate-y-0");
+                        footerObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            // Asignar cada elemento a su observador correspondiente
+            document.querySelectorAll("main .reveal").forEach((el) => {
+                mainObserver.observe(el);
+            });
+
+            document.querySelectorAll("footer .reveal").forEach((el) => {
+                footerObserver.observe(el);
+            });
+        });
+    </script>
 </body>
 </html>
