@@ -7,9 +7,27 @@
     
     <link rel="icon" type="image/png" href="Images/favicon.png">
     
+    <!-- Script para evitar el parpadeo blanco (FOUC) al cargar la página -->
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
     <!-- Fuente original de LaTeX (Computer Modern / Latin Modern) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
+    
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuración para activar el Modo Oscuro manual en Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
@@ -55,7 +73,7 @@
             border-color: #2563eb;
             box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
             transform: scale(1.1);
-            transition: all 0.3s ease; /* Encendido más rápido */
+            transition: all 0.3s ease;
         }
         .paso-container.iluminado .paso-title {
             transform: scale(1.05);
@@ -92,55 +110,80 @@
         }
     </style>
 </head>
-<body class="antialiased selection:bg-blue-200 selection:text-blue-900 overflow-x-hidden">
+<body class="antialiased selection:bg-blue-200 selection:text-blue-900 bg-[#f8fafc] dark:bg-slate-950 text-slate-800 dark:text-slate-300 transition-colors duration-300 overflow-x-hidden">
+    
     <!-- Navbar Minimalista -->
-    <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="flex items-center text-slate-600 hover:text-blue-600 transition-colors font-medium">
+    <nav class="fixed w-full top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
+            <a href="index.html" class="flex items-center text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                 Volver
             </a>
             
             <div class="flex items-center gap-2.5 pointer-events-none sm:absolute sm:left-1/2 sm:-translate-x-1/2">
-                <img src="Images/logo-texpress.png" alt="Logo Editorial TexPress" class="h-7 w-auto object-contain">
-                <div class="text-sm sm:text-lg md:text-xl font-semibold serif-font text-slate-900 tracking-tight whitespace-nowrap">
-                    <span>Editorial</span> <span class="logo-tex">T<span class="e">e</span>X</span><span class="text-blue-600">Press</span>
+                <!-- Logo para el modo claro (Se oculta en modo oscuro) -->
+                <img src="Images/logo-texpress.png" alt="Logo Editorial TexPress" class="h-7 sm:h-8 w-auto object-contain dark:hidden">
+                <!-- Logo para el modo oscuro (Se oculta en modo claro) -->
+                <img src="Images/logo-texpress-dark.png" alt="Logo Editorial TexPress" class="h-7 sm:h-8 w-auto object-contain hidden dark:block">
+                
+                <div class="text-sm sm:text-lg md:text-xl font-semibold serif-font text-slate-900 dark:text-white tracking-tight whitespace-nowrap">
+                    <span>Editorial</span> <span class="logo-tex">T<span class="e">e</span>X</span><span class="text-blue-600 dark:text-blue-500">Press</span>
                 </div>
             </div>
             
-            <div class="text-xl font-semibold serif-font text-slate-900 hidden sm:block z-10">
-                Servicios y <span class="text-blue-600">Tarifas</span>
+            <div class="text-xl font-semibold serif-font text-slate-900 dark:text-white hidden sm:block z-10">
+                Servicios y <span class="text-blue-600 dark:text-blue-500">Tarifas</span>
             </div>
         </div>
     </nav>
 
+    <!-- Pestaña lateral Modo Oscuro -->
+    <button id="theme-toggle" type="button" class="fixed top-32 right-0 z-50 flex items-center bg-white dark:bg-slate-800 border-y border-l border-slate-200 dark:border-slate-700 shadow-md rounded-l-xl p-2.5 transition-all duration-300 translate-x-[calc(100%-2.75rem)] md:hover:translate-x-0 group cursor-pointer">
+        <div class="w-6 h-6 flex-shrink-0 flex items-center justify-center text-slate-500 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        </div>
+        <span class="ml-3 mr-2 whitespace-nowrap text-sm font-medium text-slate-600 dark:text-slate-300 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+            Cambiar Tema
+        </span>
+    </button>
+
     <main class="pt-32 pb-20 max-w-7xl mx-auto px-6">
         <!-- Encabezado -->
         <div class="text-center max-w-3xl mx-auto mb-20 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
-            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 serif-font mb-6 leading-tight">Precisión editorial a tu medida</h1>
-            <p class="text-lg text-slate-600">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white serif-font mb-6 leading-tight transition-colors duration-300">Precisión editorial a tu medida</h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400 transition-colors duration-300">
                 Cada proyecto analítico es único. Ofrecemos cotizaciones transparentes basadas en la complejidad técnica, extensión y tiempos de entrega de tus documentos.
             </p>
         </div>
 
         <!-- Tarjetas de Precios Base -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+            
             <!-- Servicio 1 -->
             <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-100 h-full">
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex flex-col hover:shadow-lg transition-shadow duration-300 relative overflow-hidden h-full">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -z-0"></div>
+                <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-8 flex flex-col hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-xl dark:hover:shadow-blue-600/20 md:hover:-translate-y-2 transition-all duration-300 relative overflow-hidden h-full">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 dark:bg-blue-900/20 rounded-bl-full -z-0 transition-colors duration-300"></div>
                     <div class="relative z-10">
-                        <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center mb-6">
+                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-xl flex items-center justify-center mb-6 transition-colors duration-300">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 serif-font mb-2">Maquetación Documental</h3>
-                        <p class="text-sm text-slate-500 mb-6 min-h-[3rem]">Tesis, artículos científicos (papers), libros de texto y apuntes de curso.</p>
-                        <div class="text-3xl font-bold text-slate-900 mb-6">Cotización<span class="text-base font-normal text-slate-500 block mt-1">por proyecto o página</span></div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white serif-font mb-2 transition-colors duration-300">Maquetación Documental</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 min-h-[3rem] transition-colors duration-300">Tesis, artículos científicos (papers), libros de texto y apuntes de curso.</p>
                         
-                        <ul class="space-y-3 mb-8 text-sm text-slate-600">
-                            <li class="flex items-start"><svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Traspaso de Word a <span class="logo-latex">L<span class="a">a</span>T<span class="e">e</span>X</span></li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Tipografía matemática avanzada</li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-blue-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Gestión de bibliografía compleja</li>
+                        <!-- Precio Base -->
+                        <div class="mb-6 transition-colors duration-300 mt-2">
+                            <span class="text-sm font-semibold text-blue-500 dark:text-blue-400 uppercase tracking-wider block mb-1">A partir de</span>
+                            <div class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white flex items-baseline gap-2">
+                                $10 <span class="text-xl font-medium text-slate-500 dark:text-slate-400">MXN</span>
+                            </div>
+                            <span class="text-sm font-normal text-slate-500 dark:text-slate-400 block mt-1">por página base</span>
+                        </div>
+                        
+                        <ul class="space-y-3 mb-8 text-sm text-slate-600 dark:text-slate-400 transition-colors duration-300">
+                            <li class="flex items-start"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Traspaso de Word a <span class="logo-latex">L<span class="a">a</span>T<span class="e">e</span>X</span></li>
+                            <li class="flex items-start"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Tipografía matemática avanzada</li>
+                            <li class="flex items-start"><svg class="w-4 h-4 text-blue-500 dark:text-blue-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Gestión de bibliografía compleja</li>
                         </ul>
                     </div>
                 </div>
@@ -148,41 +191,53 @@
 
             <!-- Servicio 2 -->
             <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-200 h-full">
-                <div class="bg-white rounded-2xl shadow-xl border border-blue-100 p-8 flex flex-col relative overflow-hidden transform md:-translate-y-4 h-full">
-                    <div class="absolute top-0 left-0 w-full h-1 bg-blue-600"></div>
-                    <div class="w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center mb-6">
+                <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-xl dark:shadow-blue-900/20 border border-blue-100 dark:border-blue-900/50 p-8 flex flex-col relative overflow-hidden transform md:-translate-y-4 md:hover:-translate-y-6 hover:shadow-2xl dark:hover:shadow-blue-500/30 hover:border-blue-500 dark:hover:border-blue-400 transition-all duration-300 h-full">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-blue-600 dark:bg-blue-500"></div>
+                    <div class="w-12 h-12 bg-blue-600 dark:bg-blue-500 text-white rounded-xl flex items-center justify-center mb-6 transition-colors duration-300">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     </div>
-                    <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-blue-700 uppercase bg-blue-50 rounded-full w-max">Más solicitado</div>
+                    <div class="inline-block px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-blue-700 dark:text-blue-300 uppercase bg-blue-50 dark:bg-blue-900/40 rounded-full w-max transition-colors duration-300">Más solicitado</div>
                     
-                    <h3 class="text-xl font-bold text-slate-900 serif-font mb-2">Arte Vectorial en <span class="logo-tikz">Ti<span class="k">k</span>Z</span></h3>
-                    <p class="text-sm text-slate-500 mb-6 min-h-[3rem]">Gráficos paramétricos 2D y 3D, diagramas de bloques y esquemas dinámicos.</p>
-                    <div class="text-3xl font-bold text-slate-900 mb-6">Cotización<span class="text-base font-normal text-slate-500 block mt-1">por complejidad del gráfico</span></div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white serif-font mb-2 transition-colors duration-300">Arte Vectorial en <span class="logo-tikz">Ti<span class="k">k</span>Z</span></h3>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 min-h-[3rem] transition-colors duration-300">Gráficos paramétricos 2D y 3D, diagramas de bloques y esquemas dinámicos.</p>
                     
-                    <ul class="space-y-3 mb-8 text-sm text-slate-600">
-                        <li class="flex items-start"><svg class="w-4 h-4 text-blue-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Resolución infinita nativa</li>
-                        <li class="flex items-start"><svg class="w-4 h-4 text-blue-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Código fuente integrado al PDF</li>
-                        <li class="flex items-start"><svg class="w-4 h-4 text-blue-600 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Gráficas con pgfplots</li>
+                    <!-- Precio Base -->
+                    <div class="mb-6 transition-colors duration-300 mt-2">
+                        <span class="text-sm font-semibold text-blue-500 dark:text-blue-400 uppercase tracking-wider block mb-1">A partir de</span>
+                        <div class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white flex items-baseline gap-2">
+                            $50 <span class="text-xl font-medium text-slate-500 dark:text-slate-400">MXN</span>
+                        </div>
+                        <span class="text-sm font-normal text-slate-500 dark:text-slate-400 block mt-1">por gráfico base</span>
+                    </div>
+                    
+                    <ul class="space-y-3 mb-8 text-sm text-slate-600 dark:text-slate-400 transition-colors duration-300">
+                        <li class="flex items-start"><svg class="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Resolución infinita nativa</li>
+                        <li class="flex items-start"><svg class="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Código fuente integrado al PDF</li>
+                        <li class="flex items-start"><svg class="w-4 h-4 text-blue-600 dark:text-blue-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Gráficas con pgfplots</li>
                     </ul>
                 </div>
             </div>
 
             <!-- Servicio 3 -->
             <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-300 h-full">
-                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 flex flex-col hover:shadow-lg transition-shadow duration-300 relative overflow-hidden h-full">
-                    <div class="absolute top-0 right-0 w-24 h-24 bg-slate-50 rounded-bl-full -z-0"></div>
+                <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 p-8 flex flex-col hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-xl dark:hover:shadow-blue-600/20 md:hover:-translate-y-2 transition-all duration-300 relative overflow-hidden h-full">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-slate-50 dark:bg-slate-800/50 rounded-bl-full -z-0 transition-colors duration-300"></div>
                     <div class="relative z-10">
-                        <div class="w-12 h-12 bg-slate-100 text-slate-600 rounded-xl flex items-center justify-center mb-6">
+                        <div class="w-12 h-12 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-xl flex items-center justify-center mb-6 transition-colors duration-300">
                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                         </div>
-                        <h3 class="text-xl font-bold text-slate-900 serif-font mb-2">Clases y Paquetes Custom</h3>
-                        <p class="text-sm text-slate-500 mb-6 min-h-[3rem]">Archivos <code class="bg-slate-900 text-blue-400 px-1.5 py-0.5 rounded text-xs font-mono">.cls</code> y <code class="bg-slate-900 text-blue-400 px-1.5 py-0.5 rounded text-xs font-mono">.sty</code> para instituciones educativas o necesidades específicas.</p>
-                        <div class="text-3xl font-bold text-slate-900 mb-6">Cotización<span class="text-base font-normal text-slate-500 block mt-1">a medida del desarrollo</span></div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white serif-font mb-2 transition-colors duration-300">Clases y Paquetes Personalizados</h3>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6 min-h-[3rem] transition-colors duration-300">Archivos <code class="bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-1.5 py-0.5 rounded text-xs font-mono transition-colors duration-300">.cls</code> y <code class="bg-slate-100 dark:bg-slate-800 text-blue-600 dark:text-blue-400 px-1.5 py-0.5 rounded text-xs font-mono transition-colors duration-300">.sty</code> para instituciones u oficinas.</p>
                         
-                        <ul class="space-y-3 mb-8 text-sm text-slate-600">
-                            <li class="flex items-start"><svg class="w-4 h-4 text-slate-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Plantillas de evaluación institucional</li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-slate-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Entornos matemáticos automáticos</li>
-                            <li class="flex items-start"><svg class="w-4 h-4 text-slate-500 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Guía de documentación en PDF</li>
+                        <!-- Precio Base Actualizado -->
+                        <div class="text-3xl font-bold text-slate-900 dark:text-white mb-6 transition-colors duration-300 mt-2">
+                            Cotización<span class="text-base font-normal text-slate-500 dark:text-slate-400 block mt-1">a medida del desarrollo</span>
+                        </div>
+                        
+                        <ul class="space-y-3 mb-8 text-sm text-slate-600 dark:text-slate-400 transition-colors duration-300 mt-3">
+                            <li class="flex items-start"><svg class="w-4 h-4 text-slate-500 dark:text-slate-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Plantillas de evaluación institucional</li>
+                            <li class="flex items-start"><svg class="w-4 h-4 text-slate-500 dark:text-slate-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Entornos matemáticos automáticos</li>
+                            <li class="flex items-start"><svg class="w-4 h-4 text-slate-500 dark:text-slate-400 mr-2 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Guía de documentación en PDF</li>
                         </ul>
                     </div>
                 </div>
@@ -220,59 +275,77 @@
         </div>
 
         <!-- Formulario de Cotización -->
-        <div id="formulario" class="bg-white border border-slate-200 shadow-xl rounded-3xl p-8 md:p-16 max-w-4xl mx-auto mb-10">
+        <div id="formulario" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl dark:shadow-none rounded-3xl p-8 md:p-16 max-w-4xl mx-auto mb-10 transition-colors duration-300">
             <div class="text-center mb-10 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 serif-font mb-4">Solicita tu cotización</h2>
-                <p class="text-slate-600 text-lg">Déjanos los detalles de tu proyecto y te enviaremos una evaluación sin compromiso.</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white serif-font mb-4 transition-colors duration-300">Solicita tu cotización</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-lg transition-colors duration-300">Déjanos los detalles de tu proyecto y te enviaremos una evaluación sin compromiso.</p>
             </div>
 
             <form action="https://formspree.io/f/mgaovwbp" method="POST" class="space-y-6 text-left">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal opacity-0 translate-y-4 transition-all duration-700 ease-out delay-100">
+                
+                <!-- Fila 1 (Capa superior z-30) -->
+                <div class="relative z-30 grid grid-cols-1 md:grid-cols-2 gap-6 reveal opacity-0 translate-y-4 transition-all duration-700 ease-out delay-100">
                     <div>
-                        <label for="nombre" class="block text-sm font-semibold text-slate-700 mb-2">Nombre completo</label>
-                        <input type="text" id="nombre" name="nombre" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50 focus:bg-white transition-colors" placeholder="Ej. Juan Pérez">
+                        <label for="nombre" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Nombre completo</label>
+                        <input type="text" id="nombre" name="nombre" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 focus:bg-white dark:focus:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-300 placeholder-slate-400 dark:placeholder-slate-500" placeholder="Ej. Juan Pérez">
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">Correo electrónico</label>
-                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50 focus:bg-white transition-colors" placeholder="tu@correo.com">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal opacity-0 translate-y-4 transition-all duration-700 ease-out delay-200">
-                    <div>
-                        <label for="tipo" class="block text-sm font-semibold text-slate-700 mb-2">Tipo de servicio</label>
-                        <select id="tipo" name="tipo" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50 focus:bg-white transition-colors text-slate-700">
-                            <option value="" disabled selected>Selecciona una opción...</option>
-                            <option value="Maquetacion">Maquetación Documental (Tesis, Libro)</option>
-                            <option value="Graficos">Arte Vectorial (TikZ / pgfplots)</option>
-                            <option value="Clases">Desarrollo de Clase (.cls) o Paquete (.sty)</option>
-                            <option value="Otro">Otro servicio / Varios</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="volumen" class="block text-sm font-semibold text-slate-700 mb-2">Volumen estimado</label>
-                        <input type="text" id="volumen" name="volumen" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50 focus:bg-white transition-colors" placeholder="Ej. 120 páginas / 5 gráficos">
+                        <label for="email" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Correo electrónico</label>
+                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 focus:bg-white dark:focus:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-300 placeholder-slate-400 dark:placeholder-slate-500" placeholder="tu@correo.com">
                     </div>
                 </div>
 
-                <div class="reveal opacity-0 translate-y-4 transition-all duration-700 ease-out delay-300">
-                    <label for="detalles" class="block text-sm font-semibold text-slate-700 mb-2">Detalles del proyecto</label>
-                    <textarea id="detalles" name="detalles" rows="4" required class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50 focus:bg-white transition-colors resize-none" placeholder="Cuéntanos brevemente sobre las fechas de entrega, si hay mucha matemática compleja o si ya tienes un borrador en Word..."></textarea>
+                <!-- Fila 2 (Capa media z-20) -->
+                <div class="relative z-20 grid grid-cols-1 md:grid-cols-2 gap-6 reveal opacity-0 translate-y-4 transition-all duration-700 ease-out delay-200">
+                    
+                    <!-- Tipo de documento (Custom Dropdown) -->
+                    <div class="relative w-full">
+                        <label class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Tipo de servicio</label>
+                        
+                        <!-- Input oculto para Formspree -->
+                        <input type="hidden" id="tipo" name="tipo" required>
+                        
+                        <!-- Botón que actúa como el Select -->
+                        <button type="button" id="dropdown-button" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 text-slate-400 dark:text-slate-500 transition-colors duration-300 flex justify-between items-center text-left">
+                            <span id="dropdown-text" class="truncate">Selecciona una opción...</span>
+                            <svg id="dropdown-icon" class="w-5 h-5 text-slate-400 transition-transform duration-300 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+
+                        <!-- Menú Desplegable Animado -->
+                        <ul id="dropdown-menu" class="absolute z-50 w-full mt-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl rounded-xl opacity-0 invisible -translate-y-2 transition-all duration-300 overflow-hidden">
+                            <li class="px-4 py-3 cursor-pointer text-sm text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-value="Maquetacion">Maquetación Documental (Tesis, Libro)</li>
+                            <li class="px-4 py-3 cursor-pointer text-sm text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-value="Graficos">Arte Vectorial (TikZ / pgfplots)</li>
+                            <li class="px-4 py-3 cursor-pointer text-sm text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-value="Clases">Desarrollo de Clase (.cls) o Paquete (.sty)</li>
+                            <li class="px-4 py-3 cursor-pointer text-sm text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-value="Otro">Otro servicio / Varios</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Volumen (Restaurado) -->
+                    <div class="relative w-full">
+                        <label for="volumen" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Volumen estimado</label>
+                        <input type="text" id="volumen" name="volumen" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 focus:bg-white dark:focus:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-300 placeholder-slate-400 dark:placeholder-slate-500" placeholder="Ej. 120 páginas / 5 gráficos">
+                    </div>
+                </div>
+
+                <!-- Detalles (Capa base z-10) -->
+                <div class="relative z-10 reveal opacity-0 translate-y-4 transition-all duration-700 ease-out delay-300">
+                    <label for="detalles" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-2 transition-colors duration-300">Detalles del proyecto</label>
+                    <textarea id="detalles" name="detalles" rows="4" required class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50 dark:bg-slate-800 focus:bg-white dark:focus:bg-slate-900 text-slate-900 dark:text-white transition-colors duration-300 resize-none placeholder-slate-400 dark:placeholder-slate-500" placeholder="Cuéntanos brevemente sobre las fechas de entrega, si hay mucha matemática compleja o si ya tienes un borrador en Word..."></textarea>
                 </div>
 
                 <div class="text-center pt-4 reveal opacity-0 translate-y-4 transition-all duration-700 ease-out delay-400">
-                    <button type="submit" class="inline-flex items-center justify-center w-full md:w-auto px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-200">
+                    <button type="submit" class="inline-flex items-center justify-center w-full md:w-auto px-10 py-4 text-base font-semibold text-white transition-all duration-200 bg-blue-600 rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-200 dark:shadow-blue-900/20">
                         Enviar solicitud de cotización
                         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </button>
-                    <p class="mt-4 text-xs text-slate-500">Te responderemos a <span class="font-semibold text-slate-600">editorialtexpress@gmail.com</span> a la brevedad posible.</p>
+                    <p class="mt-4 text-xs text-slate-500 dark:text-slate-400 transition-colors duration-300">Te responderemos a <span class="font-semibold text-slate-600 dark:text-slate-300">editorialtexpress@gmail.com</span> a la brevedad posible.</p>
                 </div>
             </form>
         </div>
     </main>
 
     <!-- Footer adaptado para la página de Tarifas -->
-    <footer id="contacto" class="bg-slate-900 text-slate-300 py-16 px-8 md:px-16 border-t border-slate-800">
+    <footer id="contacto" class="bg-slate-900 text-slate-300 py-16 px-8 md:px-16 border-t border-slate-800 transition-colors duration-300">
         <div class="max-w-5xl mx-auto flex flex-col items-center text-center mb-8 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="mb-10">
                 <h3 class="latin-modern text-3xl text-white mb-4">Editorial <span class="logo-tex">T<span class="e">e</span>X</span>Press</h3>
@@ -282,7 +355,6 @@
                 
                 <p class="latin-modern text-lg font-semibold text-slate-300 tracking-widest mb-3">¿Listo para compilar tu proyecto?</p>
                 
-                <!-- BOTÓN MODIFICADO PARA ESTA PÁGINA (Hace scroll al formulario) -->
                 <a href="#formulario" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-blue-900/50 mb-6 mt-2">
                     Llenar Formulario de Cotización
                 </a>
@@ -300,9 +372,6 @@
                     </a>
                     <a href="https://www.instagram.com/editorial_texpress/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#E1306C] hover:-translate-y-1 transition-all duration-200" aria-label="Instagram">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                    </a>
-                    <a href="https://www.facebook.com/profile.php?id=61595157300156" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#1877F2] hover:-translate-y-1 transition-all duration-200" aria-label="Facebook">
-                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     </a>
                 </div>
             </div>
@@ -333,11 +402,47 @@
         </div>
     </footer>
 
-    <!-- SCRIPT DE ANIMACIÓN SCROLL REVEAL Y PASOS -->
+    <!-- SCRIPT DE ANIMACIÓN SCROLL REVEAL Y DARK MODE -->
     <script>
+        // Lógica del botón de Tema Oscuro/Claro
+        var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        var themeToggleBtn = document.getElementById('theme-toggle');
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
+        // Lógica de Scroll Reveal Responsivo
         document.addEventListener("DOMContentLoaded", function() {
             const esPC = window.matchMedia("(min-width: 768px)").matches;
-
+            
             const umbralMain = esPC ? 0.4 : 0.2;
             const umbralFooter = esPC ? 0.1 : 0.05;
 
@@ -346,7 +451,7 @@
                     if (entry.isIntersecting) {
                         entry.target.classList.remove("opacity-0", "translate-y-8", "translate-y-4");
                         entry.target.classList.add("opacity-100", "translate-y-0");
-
+                        
                         // --- LA MAGIA DE LOS PASOS (Ajustada para apagar suave) ---
                         if(entry.target.id === "proceso-section") {
                             const pasos = entry.target.querySelectorAll('.paso-container');
@@ -380,13 +485,64 @@
                 });
             }, { threshold: umbralFooter });
 
-            document.querySelectorAll("main .reveal").forEach((el) => {
-                mainObserver.observe(el);
+            document.querySelectorAll(".reveal").forEach((el) => {
+                if (el.closest('footer')) {
+                    footerObserver.observe(el);
+                } else {
+                    mainObserver.observe(el);
+                }
+            });
+        });
+    </script>
+
+    <!-- LÓGICA DEL CUSTOM DROPDOWN -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdownBtn = document.getElementById('dropdown-button');
+            const dropdownMenu = document.getElementById('dropdown-menu');
+            const dropdownText = document.getElementById('dropdown-text');
+            const dropdownIcon = document.getElementById('dropdown-icon');
+            const hiddenInput = document.getElementById('tipo');
+            const options = dropdownMenu.querySelectorAll('li');
+
+            // Abrir / Cerrar el menú
+            dropdownBtn.addEventListener('click', (e) => {
+                e.stopPropagation(); // Evita que el click cierre el menú inmediatamente
+                dropdownMenu.classList.toggle('opacity-0');
+                dropdownMenu.classList.toggle('invisible');
+                dropdownMenu.classList.toggle('-translate-y-2');
+                dropdownIcon.classList.toggle('rotate-180');
             });
 
-            document.querySelectorAll("footer .reveal").forEach((el) => {
-                footerObserver.observe(el);
+            // Seleccionar una opción
+            options.forEach(option => {
+                option.addEventListener('click', (e) => {
+                    // Actualizar el texto visible
+                    dropdownText.textContent = e.target.textContent;
+                    
+                    // Cambiar el color del texto de "placeholder" a "seleccionado"
+                    dropdownBtn.classList.remove('text-slate-400', 'dark:text-slate-500');
+                    dropdownBtn.classList.add('text-slate-900', 'dark:text-white');
+                    
+                    // Guardar el valor en el input oculto para Formspree
+                    hiddenInput.value = e.target.getAttribute('data-value');
+                    
+                    // Cerrar el menú
+                    cerrarDropdown();
+                });
             });
+
+            // Cerrar al hacer clic fuera del menú
+            document.addEventListener('click', (e) => {
+                if (!dropdownBtn.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                    cerrarDropdown();
+                }
+            });
+
+            function cerrarDropdown() {
+                dropdownMenu.classList.add('opacity-0', 'invisible', '-translate-y-2');
+                dropdownIcon.classList.remove('rotate-180');
+            }
         });
     </script>
 </body>

@@ -53,7 +53,11 @@
             </a>
             
             <div class="flex items-center gap-2.5 pointer-events-none sm:absolute sm:left-1/2 sm:-translate-x-1/2">
-                <img src="Images/logo-texpress.png" alt="Logo Editorial TexPress" class="h-7 w-auto object-contain dark:brightness-200">
+                <!-- Logo para el modo claro (Se oculta en modo oscuro) -->
+                <img src="Images/logo-texpress.png" alt="Logo Editorial TexPress" class="h-7 sm:h-8 w-auto object-contain dark:hidden">
+                <!-- Logo para el modo oscuro (Se oculta en modo claro) -->
+                <img src="Images/logo-texpress-dark.png" alt="Logo Editorial TexPress" class="h-7 sm:h-8 w-auto object-contain hidden dark:block">
+                
                 <div class="text-sm sm:text-lg md:text-xl font-semibold serif-font text-slate-900 dark:text-white tracking-tight whitespace-nowrap">
                     <span>Editorial</span> <span class="logo-tex">T<span class="e">e</span>X</span><span class="text-blue-600 dark:text-blue-500">Press</span>
                 </div>
@@ -95,7 +99,7 @@
                 <p>El cliente deberá proporcionar los materiales necesarios para el desarrollo del proyecto en formatos editables y funcionales. El cliente asume la responsabilidad total sobre la veracidad, legalidad y titularidad de los contenidos entregados para la realización del trabajo.</p>
 
                 <h2 class="text-xl font-bold text-slate-900 dark:text-white serif-font mt-10 mb-4">3. Contenido No Permitido</h2>
-                <p>Nos reservamos el derecho de cancelar de forma inmediata cualquier servicio si, durante el desarrollo del encargo, detectamos que el contenido viola los derechos humanos, fomenta discursos de odio, contiene apología de la violencia, racismo, abuso, discriminación de cualquier tipo, material ilegal, pornografía o incitación al delito.</p>
+                <p>Nos reservamos el derecho de cancelar de forma inmediata cualquier servicio si; durante el desarrollo del encargo, detectamos que el contenido viola los derechos humanos, fomenta discursos de odio, contiene apología de la violencia, racismo, abuso, discriminación de cualquier tipo, material ilegal, pornografía o incitación al delito.</p>
                 <p>En dichos supuestos, se notificará la cancelación al cliente por correo electrónico, suspendiéndose el proyecto sin obligación de compensación adicional o reembolso por parte de <span class="latin-modern font-semibold text-slate-900 dark:text-white">Editorial <span class="logo-tex">T<span class="e">e</span>X</span><span class="text-blue-600 dark:text-blue-500">Press</span></span>.</p>
 
                 <h2 class="text-xl font-bold text-slate-900 dark:text-white serif-font mt-10 mb-4">4. Entregables</h2>
