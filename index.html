@@ -98,6 +98,19 @@
         .logo-tikz .k {
             font-style: italic;
         }
+
+        /* Animación flotante para las gráficas TikZ */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .float-anim {
+            animation: float 4s ease-in-out infinite;
+        }
+        .float-anim-delayed {
+            animation: float 4s ease-in-out 2s infinite;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-blue-200 selection:text-blue-900 bg-[#f8fafc] dark:bg-slate-950 text-slate-800 dark:text-slate-300 transition-colors duration-300 overflow-x-hidden">
@@ -138,9 +151,9 @@
         <div class="hidden md:flex w-1/2 h-screen sticky top-0 overflow-hidden bg-white dark:bg-slate-950 z-10 border-r border-slate-200 dark:border-slate-800 items-center justify-center transition-colors duration-300">
             <img id="media-1" src="Images/muestra-tesis.png" alt="Maquetación Profesional" class="absolute w-full h-auto object-contain img-layer img-inactive px-12 drop-shadow-2xl">
             
-            <div id="media-2" class="absolute inset-0 w-full h-full img-layer img-inactive flex flex-col justify-center items-center bg-white dark:bg-slate-900 p-12 gap-6 transition-colors duration-300">
-                <img src="Images/muestra-tikz.png" alt="Gráfico TikZ 1" class="max-w-full max-h-[45%] object-contain drop-shadow-xl border border-slate-100 dark:border-slate-700 rounded-lg p-2 bg-white dark:bg-slate-800 transition-colors duration-300">
-                <img src="Images/muestra-tikz-2.png" alt="Gráfico TikZ 2" class="max-w-full max-h-[45%] object-contain drop-shadow-xl border border-slate-100 dark:border-slate-700 rounded-lg p-2 bg-white dark:bg-slate-800 transition-colors duration-300">
+            <div id="media-2" class="absolute inset-0 w-full h-full img-layer img-inactive flex flex-col justify-center items-center bg-white dark:bg-slate-900 p-12 gap-6">
+                <img src="Images/muestra-tikz.png" alt="Gráfico TikZ 1" class="max-w-full max-h-[45%] object-contain drop-shadow-xl border border-slate-100 rounded-lg p-2 bg-white">
+                <img src="Images/muestra-tikz-2.png" alt="Gráfico TikZ 2" class="max-w-full max-h-[45%] object-contain drop-shadow-xl border border-slate-100 rounded-lg p-2 bg-white">
             </div>
             
             <img id="media-3" src="Images/muestra-disquisitio.png" alt="Plantilla Disquisitio Elementalis" class="absolute w-full h-auto object-contain img-layer img-inactive px-12 drop-shadow-2xl">
@@ -209,11 +222,13 @@
                 </div>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mt-4">
-                    <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 reveal opacity-0 translate-y-8 transition-all duration-700 delay-100 ease-out">
+                    <!-- Bloque 1 -->
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-lg dark:hover:shadow-blue-500/30 transform md:hover:-translate-y-1 transition-all duration-300 cursor-default reveal opacity-0 translate-y-8 ease-out delay-100">
                         <h4 class="font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-300">Diagramas Complejos</h4>
                         <p class="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-300">Flujogramas, árboles de decisión, circuitos eléctricos y diagramas de bloques.</p>
                     </div>
-                    <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 reveal opacity-0 translate-y-8 transition-all duration-700 delay-200 ease-out">
+                    <!-- Bloque 2 -->
+                    <div class="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-lg dark:hover:shadow-blue-500/30 transform md:hover:-translate-y-1 transition-all duration-300 cursor-default reveal opacity-0 translate-y-8 ease-out delay-200">
                         <h4 class="font-bold text-slate-800 dark:text-white mb-2 transition-colors duration-300">Gráficas Numéricas</h4>
                         <p class="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-300">Importación de datos directos (CSV) para generar gráficas matemáticas 2D y 3D.</p>
                     </div>
@@ -320,7 +335,6 @@
     </footer>
 
     <script>
-        // Lógica de Scroll y Cambio de Imágenes
         document.addEventListener('DOMContentLoaded', () => {
             const steps = document.querySelectorAll('.step');
             const images = document.querySelectorAll('.img-layer');
@@ -416,6 +430,7 @@
             }, { threshold: umbralFooter });
 
             document.querySelectorAll(".reveal").forEach((el) => {
+                // Verificamos si está dentro del footer para asignarle el observador adecuado
                 if (el.closest('footer')) {
                     footerObserver.observe(el);
                 } else {
