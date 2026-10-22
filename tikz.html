@@ -1,56 +1,80 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galería TikZ | Editorial TeXPress</title>
+    <title>Galería de TikZ | Editorial TeXPress</title>
+
+    <!-- Script para evitar el parpadeo blanco (FOUC) al cargar la página -->
+    <script>
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
 
     <!-- Fuente original de LaTeX (Computer Modern / Latin Modern) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
     
     <link rel="icon" type="image/png" href="Images/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuración para activar el Modo Oscuro manual en Tailwind -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <!-- Tema oscuro para el código (Prism.js) -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
 
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        body { font-family: 'Inter', sans-serif; }
         h1, h2, h3, .serif-font { font-family: 'Lora', serif; }
         
-        /* Contenedor principal con FONDO DIVIDIDO (Gris a la izq, Blanco a la der) */
+        /* Contenedor principal con FONDO DIVIDIDO (Gris a la izq, Blanco a la der en modo claro / Colores oscuros en modo oscuro) */
         pre[class*="language-"] { 
+            /* Se ha adaptado con clases de Tailwind en el HTML, pero este fallback es útil si algo falla */
             background: linear-gradient(to right, #f1f5f9 0%, #f1f5f9 3.5rem, #ffffff 3.5rem, #ffffff 100%) !important; 
             margin: 0; 
             border-radius: 0 0 1rem 1rem;
-            padding: 1rem 0 !important; /* Restauramos el espacio limpio arriba y abajo */
+            padding: 1rem 0 !important;
             overflow-x: hidden !important; 
         }
         
+        /* Sobreescritura del fondo para modo oscuro desde CSS global usando la clase .dark inyectada en el HTML */
+        html.dark pre[class*="language-"] {
+            background: linear-gradient(to right, #0f172a 0%, #0f172a 3.5rem, #1e293b 3.5rem, #1e293b 100%) !important;
+        }
+
         code[class*="language-"] {
             color: #000000 !important;
             text-shadow: none !important;
-            /* Tamaño base para celular (más pequeño para evitar quiebres excesivos) */
             font-size: 11px !important; 
             display: block;
         }
 
-        /* Tamaño para tablets y computadoras */
+        /* Color del texto del código en modo oscuro */
+        html.dark code[class*="language-"] {
+             color: #f8fafc !important;
+        }
+
         @media (min-width: 768px) {
             code[class*="language-"] {
                 font-size: 13px !important;
             }
         }
 
-        /* 2. Filas de código strictas (Sin paddings extras) */
         .minted-row {
             display: flex;
             width: 100%;
-            line-height: 1.5em; /* Altura matemática estricta */
+            line-height: 1.5em; 
         }
         
-        /* 3. Columna de números (Fondo transparente para que se vea el gris del pre) */
         .minted-number {
             width: 3.5rem; 
             flex-shrink: 0;
@@ -62,16 +86,18 @@
             user-select: none;
         }
 
-        /* 4. Bloque de código y flecha mágica */
+        /* Color del separador de números en modo oscuro */
+        html.dark .minted-number {
+             border-right: 1px solid #334155; 
+             color: #94a3b8;
+        }
+
         .minted-code {
             flex-grow: 1;
             padding-right: 1rem;
             background-color: transparent;
-            
-            /* Hanging Indent Dinámico */
             padding-left: calc(1rem + var(--wrap-indent, 0ch)) !important;
             text-indent: calc(-1 * var(--wrap-indent, 0ch)) !important;
-            
             white-space: pre-wrap !important;
             word-break: break-word !important;
             overflow-wrap: anywhere;
@@ -85,43 +111,39 @@
             background-position: 0 0, calc(1rem + var(--wrap-indent, 0ch) - 2ch) 0;
         }
 
-        /* Comandos y Macros LaTeX (\draw, \def, \begin) -> moradoOver */
-        .token.function, .token.keyword, .token.selector {
-            color: blue !important;
+         /* Ajuste de flecha en modo oscuro (se oscurece el fondo base) */
+        html.dark .minted-code {
+            background-image: 
+                linear-gradient(#1e293b, #1e293b), 
+                url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 24'%3E%3Cpath d='M2,9 v3 c0,2.5 1,3.5 3.5,3.5 h4.5 M7.5,13 l2.5,2.5 l-2.5,2.5' fill='none' stroke='%2364748b' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
         }
 
-        /* Entornos y variables (tikzpicture, document) -> entornos */
-        .token.class-name, .token.builtin, .token.variable {
-            color: rgb(49, 132, 149) !important;
-        }
+        /* Comandos y Macros LaTeX */
+        .token.function, .token.keyword, .token.selector { color: blue !important; }
+        html.dark .token.function, html.dark .token.keyword, html.dark .token.selector { color: #60a5fa !important; }
 
-        /* Comentarios (%) -> commentcolor */
-        .token.comment, .token.prolog {
-            color: rgb(76, 136, 107) !important;
-            font-style: italic;
-        }
+        /* Entornos y variables */
+        .token.class-name, .token.builtin, .token.variable { color: rgb(49, 132, 149) !important; }
+        html.dark .token.class-name, html.dark .token.builtin, html.dark .token.variable { color: #38bdf8 !important; }
 
-        /* Matemáticas y números ($...$) -> mathcolor */
-        .token.equation, .token.math, .token.number {
-            color: rgb(3, 106, 7) !important;
-        }
+        /* Comentarios */
+        .token.comment, .token.prolog { color: rgb(76, 136, 107) !important; font-style: italic; }
+        html.dark .token.comment, html.dark .token.prolog { color: #4ade80 !important; }
 
-        /* Cadenas y opciones de paquetes [...] -> stringcolor */
-        .token.string, .token.attr-value, .token.regex {
-            color: rgb(3,106,7) !important; /* 0.6 * 255 = 153 */
-        }
+        /* Matemáticas y números */
+        .token.equation, .token.math, .token.number { color: rgb(3, 106, 7) !important; }
+        html.dark .token.equation, html.dark .token.math, html.dark .token.number { color: #a3e635 !important; }
 
-        /* Llaves y corchetes -> fg (negro) */
-        .token.punctuation {
-            color: #000000 !important;
-        }
+        /* Cadenas y opciones de paquetes */
+        .token.string, .token.attr-value, .token.regex { color: rgb(3,106,7) !important; }
+        html.dark .token.string, html.dark .token.attr-value, html.dark .token.regex { color: #a3e635 !important; }
 
-        /* Clase para usar Latin Modern en cualquier texto */
-        .latin-modern {
-            font-family: "Computer Modern Serif", serif;
-        }
+        /* Llaves y corchetes */
+        .token.punctuation { color: #000000 !important; }
+        html.dark .token.punctuation { color: #f8fafc !important; }
+
+        .latin-modern { font-family: "Computer Modern Serif", serif; }
         
-        /* Estilos para logos tipográficos */
         .logo-tex, .logo-latex { font-family: 'Lora', serif; display: inline-block; }
         .logo-latex .a { text-transform: uppercase; font-size: 0.75em; vertical-align: 0.28em; margin-left: -0.32em; margin-right: -0.15em; }
         .logo-tex .e, .logo-latex .e { text-transform: uppercase; vertical-align: -0.25em; margin-left: -0.15em; margin-right: -0.1em; }
@@ -129,57 +151,65 @@
         .logo-tikz .k { font-style: italic; }
     </style>
 </head>
-<body class="antialiased selection:bg-blue-200 selection:text-blue-900 overflow-x-hidden">
+<body class="antialiased selection:bg-blue-200 selection:text-blue-900 bg-[#f8fafc] dark:bg-slate-950 text-slate-800 dark:text-slate-300 transition-colors duration-300 overflow-x-hidden">
 
     <!-- Navbar Minimalista (Estática) -->
-    <nav class="fixed w-full top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Columna Izquierda: Botón de Regreso -->
-            <a href="catalogo.html" class="flex items-center text-slate-600 hover:text-blue-600 transition-colors font-medium text-sm md:text-base z-10">
+    <nav class="fixed w-full top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
+            <a href="catalogo.html" class="flex items-center text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium text-sm md:text-base z-10">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                 <span class="hidden sm:inline">Volver al Catálogo</span>
                 <span class="inline sm:hidden">Volver</span>
             </a>
 
-            <!-- Columna Central: Imagen y Texto Juntos y Centrados -->
             <div class="flex items-center gap-2.5 pointer-events-none sm:absolute sm:left-1/2 sm:-translate-x-1/2">
-                <img src="Images/logo-texpress.png" alt="Logo Editorial TexPress" class="h-7 w-auto object-contain">
-                <div class="text-sm sm:text-lg md:text-xl font-semibold serif-font text-slate-900 tracking-tight whitespace-nowrap">
-                    <span>Editorial</span> <span class="logo-tex">T<span class="e">e</span>X</span><span class="text-blue-600">Press</span>
+                <img src="Images/logo-texpress.png" alt="Logo Editorial TexPress" class="h-7 w-auto object-contain dark:brightness-200">
+                <div class="text-sm sm:text-lg md:text-xl font-semibold serif-font text-slate-900 dark:text-white tracking-tight whitespace-nowrap">
+                    <span>Editorial</span> <span class="logo-tex">T<span class="e">e</span>X</span><span class="text-blue-600 dark:text-blue-500">Press</span>
                 </div>
             </div>
             
-            <!-- Columna Derecha: Sección del Catálogo -->
-            <div class="text-xl font-semibold serif-font text-slate-900 tracking-tight hidden sm:block">
-                Galería de <span class="text-blue-600"><span class="logo-tikz">Ti<span class="k">k</span>Z</span></span>
+            <div class="text-xl font-semibold serif-font text-slate-900 dark:text-white tracking-tight hidden sm:block z-10">
+                Galería de <span class="text-blue-600 dark:text-blue-500"><span class="logo-tikz">Ti<span class="k">k</span>Z</span></span>
             </div>
         </div>
     </nav>
 
+    <!-- Pestaña lateral Modo Oscuro -->
+    <button id="theme-toggle" type="button" class="fixed top-32 right-0 z-50 flex items-center bg-white dark:bg-slate-800 border-y border-l border-slate-200 dark:border-slate-700 shadow-md rounded-l-xl p-2.5 transition-all duration-300 translate-x-[calc(100%-2.75rem)] md:hover:translate-x-0 group cursor-pointer">
+        <div class="w-6 h-6 flex-shrink-0 flex items-center justify-center text-slate-500 dark:text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        </div>
+        <span class="ml-3 mr-2 whitespace-nowrap text-sm font-medium text-slate-600 dark:text-slate-300 opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+            Cambiar Tema
+        </span>
+    </button>
+
     <main class="pt-28 pb-20 max-w-7xl mx-auto px-6">
-        <!-- Encabezado de la página (Animado) -->
+        <!-- Encabezado de la página -->
         <div class="mb-10 md:mb-12 text-center reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
-            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 serif-font mb-4">Arte Vectorial Paramétrico</h1>
-            <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto">Renderizado nativo que garantiza calidad infinita para impresión académica.</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white serif-font mb-4 transition-colors duration-300">Arte Vectorial Paramétrico</h1>
+            <p class="text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto transition-colors duration-300">Renderizado nativo que garantiza calidad infinita para impresión académica.</p>
         </div>
 
-        <!-- CASO 1: Ley de Hooke (Animado) -->
+        <!-- CASO 1: Ley de Hooke -->
         <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
                 <!-- RESULTADO: PNG Y BOTÓN PDF -->
-                <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
+                <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
                     <img src="Images/muestra-tikz.png" alt="Ley de Hooke" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
-                    <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Oscilador Armónico</p>
+                    <p class="mt-4 text-xs md:text-sm text-slate-900 dark:text-white font-medium tracking-widest text-center transition-colors duration-300">Oscilador Armónico</p>
                     
-                    <a href="PDF/tikz-hooke-law.pdf" download="OsciladorArmónico_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
+                    <a href="PDF/tikz-hooke-law.pdf" download="OsciladorArmónico_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors shadow-sm w-full sm:w-auto">
                         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                         Descargar PDF
                     </a>
                 </div>
 
                 <!-- CÓDIGO FUENTE -->
-                <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
+                <div class="rounded-2xl shadow-xl border border-slate-700 dark:border-slate-600 bg-slate-900 dark:bg-slate-800 w-full overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 dark:bg-slate-900 border-b border-slate-900 dark:border-slate-900 rounded-t-2xl">
                         <div class="flex items-center">
                             <div class="flex space-x-1.5 md:space-x-2">
                                 <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
@@ -189,7 +219,7 @@
                             <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/hooke-law.tex</span>
                         </div>
                         
-                        <button onclick="copiarCodigo('hooke-law', 'btn-copiar-1', 'texto-copiar-1')" id="btn-copiar-1" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
+                        <button onclick="copiarCodigo('hooke-law', 'btn-copiar-1', 'texto-copiar-1')" id="btn-copiar-1" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 dark:hover:bg-slate-700 transition-colors bg-slate-700 dark:bg-slate-800 border border-slate-500 dark:border-slate-600 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
                             <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                             <span id="texto-copiar-1">Copiar</span>
                         </button>
@@ -199,21 +229,21 @@
             </div>
         </div>
 
-        <!-- CASO 2: Curvas de Nivel (Animado) -->
+        <!-- CASO 2: Curvas de Nivel -->
         <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
-                <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
+                <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
                     <img src="Images/muestra-tikz-2.png" alt="Curvas de Nivel" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
-                    <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Paraboloide con sus Curvas de Nivel</p>
+                    <p class="mt-4 text-xs md:text-sm text-slate-900 dark:text-white font-medium tracking-widest text-center transition-colors duration-300">Paraboloide con sus Curvas de Nivel</p>
                     
-                    <a href="PDF/tikz-curvas-nivel.pdf" download="ParaboloideCurvasNivel_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
+                    <a href="PDF/tikz-curvas-nivel.pdf" download="ParaboloideCurvasNivel_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors shadow-sm w-full sm:w-auto">
                         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                         Descargar PDF
                     </a>
                 </div>
 
-                <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
+                <div class="rounded-2xl shadow-xl border border-slate-700 dark:border-slate-600 bg-slate-900 dark:bg-slate-800 w-full overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 dark:bg-slate-900 border-b border-slate-900 dark:border-slate-900 rounded-t-2xl">
                         <div class="flex items-center">
                             <div class="flex space-x-1.5 md:space-x-2">
                                 <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
@@ -223,7 +253,7 @@
                             <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/curvas-nivel.tex</span>
                         </div>
                         
-                        <button onclick="copiarCodigo('codigo-2', 'btn-copiar-2', 'texto-copiar-2')" id="btn-copiar-2" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
+                        <button onclick="copiarCodigo('codigo-2', 'btn-copiar-2', 'texto-copiar-2')" id="btn-copiar-2" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 dark:hover:bg-slate-700 transition-colors bg-slate-700 dark:bg-slate-800 border border-slate-500 dark:border-slate-600 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
                             <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                             <span id="texto-copiar-2">Copiar</span>
                         </button>
@@ -233,21 +263,21 @@
             </div>
         </div>
 
-        <!-- CASO 3: Atractor de Rössler (Animado) -->
+        <!-- CASO 3: Atractor de Rössler -->
         <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
-                <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
+                <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
                     <img src="Images/tikz-rossler-atractor.png" alt="Atractor de Rössler" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
-                    <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Atractor de Rössler</p>
+                    <p class="mt-4 text-xs md:text-sm text-slate-900 dark:text-white font-medium tracking-widest text-center transition-colors duration-300">Atractor de Rössler</p>
 
-                    <a href="PDF/tikz-rossler-atractor.pdf" download="AtractorRössler_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
+                    <a href="PDF/tikz-rossler-atractor.pdf" download="AtractorRössler_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors shadow-sm w-full sm:w-auto">
                         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                         Descargar PDF
                     </a>
                 </div>
 
-                <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
+                <div class="rounded-2xl shadow-xl border border-slate-700 dark:border-slate-600 bg-slate-900 dark:bg-slate-800 w-full overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 dark:bg-slate-900 border-b border-slate-900 dark:border-slate-900 rounded-t-2xl">
                         <div class="flex items-center">
                             <div class="flex space-x-1.5 md:space-x-2">
                                 <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
@@ -257,7 +287,7 @@
                             <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/rossler-atractor.tex</span>
                         </div>
                         
-                        <button onclick="copiarCodigo('codigo-3', 'btn-copiar-3', 'texto-copiar-3')" id="btn-copiar-3" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
+                        <button onclick="copiarCodigo('codigo-3', 'btn-copiar-3', 'texto-copiar-3')" id="btn-copiar-3" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 dark:hover:bg-slate-700 transition-colors bg-slate-700 dark:bg-slate-800 border border-slate-500 dark:border-slate-600 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
                             <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                             <span id="texto-copiar-3">Copiar</span>
                         </button>
@@ -267,21 +297,21 @@
             </div>
         </div>
 
-        <!-- CASO 4: Coordenadas Cilíndricas (Animado) -->
+        <!-- CASO 4: Coordenadas Cilíndricas -->
         <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
-                <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
+                <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
                     <img src="Images/tikz-cilindricas.png" alt="Coordenadas Cilíndricas" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
-                    <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Coordenadas Cilíndricas</p>
+                    <p class="mt-4 text-xs md:text-sm text-slate-900 dark:text-white font-medium tracking-widest text-center transition-colors duration-300">Coordenadas Cilíndricas</p>
 
-                    <a href="PDF/tikz-cilindricas.pdf" download="CoordenadasCilíndricas_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
+                    <a href="PDF/tikz-cilindricas.pdf" download="CoordenadasCilíndricas_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors shadow-sm w-full sm:w-auto">
                         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                         Descargar PDF
                     </a>
                 </div>
 
-                <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
+                <div class="rounded-2xl shadow-xl border border-slate-700 dark:border-slate-600 bg-slate-900 dark:bg-slate-800 w-full overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 dark:bg-slate-900 border-b border-slate-900 dark:border-slate-900 rounded-t-2xl">
                         <div class="flex items-center">
                             <div class="flex space-x-1.5 md:space-x-2">
                                 <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
@@ -291,7 +321,7 @@
                             <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/coordenadas-cilindricas.tex</span>
                         </div>
                         
-                        <button onclick="copiarCodigo('codigo-4', 'btn-copiar-4', 'texto-copiar-4')" id="btn-copiar-4" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
+                        <button onclick="copiarCodigo('codigo-4', 'btn-copiar-4', 'texto-copiar-4')" id="btn-copiar-4" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 dark:hover:bg-slate-700 transition-colors bg-slate-700 dark:bg-slate-800 border border-slate-500 dark:border-slate-600 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
                             <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                             <span id="texto-copiar-4">Copiar</span>
                         </button>
@@ -301,21 +331,21 @@
             </div>
         </div>
 
-        <!-- CASO 5: Toro (Animado) -->
+        <!-- CASO 5: Toro -->
         <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16 md:mb-20">
-                <div class="bg-white p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24">
+                <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
                     <img src="Images/tikz-toro.png" alt="Toro" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain drop-shadow-md transition-transform duration-300 hover:-translate-y-2">
-                    <p class="mt-4 text-xs md:text-sm text-slate-900 font-medium tracking-widest text-center">Toro</p>
+                    <p class="mt-4 text-xs md:text-sm text-slate-900 dark:text-white font-medium tracking-widest text-center transition-colors duration-300">Toro</p>
 
-                    <a href="PDF/tikz-toro.pdf" download="Toro_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:text-blue-600 transition-colors shadow-sm w-full sm:w-auto">
+                    <a href="PDF/tikz-toro.pdf" download="Toro_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors shadow-sm w-full sm:w-auto">
                         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                         Descargar PDF
                     </a>
                 </div>
 
-                <div class="rounded-2xl shadow-xl border border-slate-700 bg-slate-900 w-full overflow-hidden hover:shadow-2xl transition-shadow duration-300">
-                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 border-b border-slate-900 rounded-t-2xl">
+                <div class="rounded-2xl shadow-xl border border-slate-700 dark:border-slate-600 bg-slate-900 dark:bg-slate-800 w-full overflow-hidden hover:shadow-2xl transition-all duration-300">
+                    <div class="flex items-center justify-between px-3 md:px-4 py-3 md:py-3 bg-slate-900 dark:bg-slate-900 border-b border-slate-900 dark:border-slate-900 rounded-t-2xl">
                         <div class="flex items-center">
                             <div class="flex space-x-1.5 md:space-x-2">
                                 <div class="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-red-400"></div>
@@ -325,7 +355,7 @@
                             <span class="ml-2 md:ml-4 text-[10px] md:text-xs font-mono text-slate-400 truncate max-w-[120px] md:max-w-none">TeX/toro.tex</span>
                         </div>
                         
-                        <button onclick="copiarCodigo('codigo-5', 'btn-copiar-5', 'texto-copiar-5')" id="btn-copiar-5" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 transition-colors bg-slate-700 border border-slate-500 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
+                        <button onclick="copiarCodigo('codigo-5', 'btn-copiar-5', 'texto-copiar-5')" id="btn-copiar-5" class="flex items-center text-[10px] md:text-xs font-medium text-slate-300 hover:bg-slate-600 dark:hover:bg-slate-700 transition-colors bg-slate-700 dark:bg-slate-800 border border-slate-500 dark:border-slate-600 px-2 md:px-3 py-1 md:py-1.5 rounded-md shadow-sm shrink-0">
                             <svg class="w-3.5 h-3.5 md:w-4 md:h-4 mr-1 md:mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                             <span id="texto-copiar-5">Copiar</span>
                         </button>
@@ -337,7 +367,7 @@
     </main>
 
     <!-- Footer -->
-    <footer id="contacto" class="bg-slate-900 text-slate-300 py-16 px-8 md:px-16 border-t border-slate-800">
+    <footer id="contacto" class="bg-slate-900 text-slate-300 py-16 px-8 md:px-16 border-t border-slate-800 transition-colors duration-300">
         <div class="max-w-5xl mx-auto flex flex-col items-center text-center mb-8 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-100">
             <div class="mb-10">
                 <h3 class="latin-modern text-3xl text-white mb-4">Editorial <span class="logo-tex">T<span class="e">e</span>X</span>Press</h3>
@@ -347,7 +377,6 @@
                 
                 <p class="latin-modern text-lg font-semibold text-slate-300 tracking-widest mb-3">¿Listo para compilar tu proyecto?</p>
                 
-                <!-- BOTÓN PARA IR A TARIFAS -->
                 <a href="presupuesto.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-3 rounded-xl transition-all duration-200 shadow-lg shadow-blue-900/50 mb-6 mt-2">
                     Consultar Tarifas y Presupuestos
                 </a>
@@ -357,19 +386,15 @@
                 </div>
                 
                 <div class="flex justify-center gap-6 mt-4">
-                    <!-- GitHub -->
                     <a href="https://github.com/Editorial-TeXPress" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white hover:-translate-y-1 transition-all duration-200" aria-label="GitHub">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd"></path></svg>
                     </a>
-                    <!-- LinkedIn -->
                     <a href="https://linkedin.com/in/vicente-chavarria-gamez-303980252" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#0a66c2] hover:-translate-y-1 transition-all duration-200" aria-label="LinkedIn">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                     </a>
-                    <!-- Instagram -->
                     <a href="https://www.instagram.com/editorial_texpress/" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#E1306C] hover:-translate-y-1 transition-all duration-200" aria-label="Instagram">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                     </a>
-                    <!-- Facebook -->
                     <a href="https://www.facebook.com/profile.php?id=61595157300156" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-[#1877F2] hover:-translate-y-1 transition-all duration-200" aria-label="Facebook">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     </a>
@@ -388,8 +413,7 @@
             </div>
         </div>
 
-        <!-- Bloque 3 legal y copyright animado -->
-        <div class="max-w-5xl mx-auto border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-6 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-200">
+        <div class="max-w-5xl mx-auto border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-slate-500 gap-6 reveal opacity-0 translate-y-8 transition-all duration-700 ease-out delay-100">
             <ul class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2">
                 <li><a href="terminos.html" class="hover:text-slate-300 transition-colors">Términos y Condiciones</a></li>
                 <li><a href="privacidad.html" class="hover:text-slate-300 transition-colors">Aviso de Privacidad</a></li>
@@ -411,6 +435,41 @@
     <!-- SCRIPTS MÁGICOS (Carga de código y Animación) -->
     <!-- ========================================== -->
     <script>
+        // Lógica del botón de Tema Oscuro/Claro
+        var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        var themeToggleBtn = document.getElementById('theme-toggle');
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    document.documentElement.classList.remove('dark');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    document.documentElement.classList.add('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
         // 1. FUNCIÓN PARA CARGAR TODOS LOS CÓDIGOS AL ABRIR LA PÁGINA
         document.addEventListener("DOMContentLoaded", () => {
             const archivosTeX = [
@@ -496,16 +555,11 @@
 
         // SCRIPT DE ANIMACIÓN SCROLL REVEAL (Con umbrales responsivos)
         document.addEventListener("DOMContentLoaded", function() {
-            // 1. Detectar si es PC (pantallas de 768px o más)
             const esPC = window.matchMedia("(min-width: 768px)").matches;
 
-            // 2. Definir los umbrales: 
-            // Si es PC usa tus valores (0.4 y 0.1). 
-            // Si es celular usa valores más bajos (0.15 y 0.05) para evitar que se atasque.
             const umbralMain = esPC ? 0.3 : 0.15;
             const umbralFooter = esPC ? 0.1 : 0.05;
 
-            // 3. Vigilante estándar (Para el título / contenido principal)
             const mainObserver = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
@@ -516,7 +570,6 @@
                 });
             }, { threshold: umbralMain });
 
-            // 4. Vigilante exclusivo para el footer
             const footerObserver = new IntersectionObserver((entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
@@ -527,7 +580,6 @@
                 });
             }, { threshold: umbralFooter });
 
-            // Asignar elementos a sus observadores
             document.querySelectorAll("main .reveal").forEach((el) => {
                 mainObserver.observe(el);
             });
