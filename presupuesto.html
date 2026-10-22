@@ -115,9 +115,10 @@
     <!-- Navbar Minimalista -->
     <nav class="fixed w-full top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-gray-200 dark:border-slate-800 transition-colors duration-300">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative">
-            <a href="index.html" class="flex items-center text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium">
+            <a href="index.html" class="flex items-center text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors font-medium text-sm md:text-base z-10">
                 <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                Volver
+                <span class="hidden sm:inline">Volver al Inicio</span>
+                <span class="inline sm:hidden">Volver</span>
             </a>
             
             <div class="flex items-center gap-2.5 pointer-events-none sm:absolute sm:left-1/2 sm:-translate-x-1/2">
@@ -313,7 +314,12 @@
 
                         <!-- Menú Desplegable Animado -->
                         <ul id="dropdown-menu" class="absolute z-50 w-full mt-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-xl rounded-xl opacity-0 invisible -translate-y-2 transition-all duration-300 overflow-hidden">
-                            <li class="px-4 py-3 cursor-pointer text-sm text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-value="Maquetacion">Maquetación Documental (Tesis, Libro)</li>
+                            
+                            <!-- Opción por defecto / Reinicio -->
+                            <li class="px-4 py-3 cursor-pointer text-sm text-slate-400 dark:text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors" data-value="">Selecciona una opción...</li>
+                            
+                            <!-- Opciones de servicio -->
+                            <li class="px-4 py-3 cursor-pointer text-sm text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors border-t border-slate-100 dark:border-slate-700/50" data-value="Maquetacion">Maquetación Documental (Tesis, Libro)</li>
                             <li class="px-4 py-3 cursor-pointer text-sm text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-value="Graficos">Arte Vectorial (TikZ / pgfplots)</li>
                             <li class="px-4 py-3 cursor-pointer text-sm text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-value="Clases">Desarrollo de Clase (.cls) o Paquete (.sty)</li>
                             <li class="px-4 py-3 cursor-pointer text-sm text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors" data-value="Otro">Otro servicio / Varios</li>
@@ -517,15 +523,22 @@
             // Seleccionar una opción
             options.forEach(option => {
                 option.addEventListener('click', (e) => {
+                    const selectedValue = e.target.getAttribute('data-value');
+                    
                     // Actualizar el texto visible
                     dropdownText.textContent = e.target.textContent;
                     
-                    // Cambiar el color del texto de "placeholder" a "seleccionado"
-                    dropdownBtn.classList.remove('text-slate-400', 'dark:text-slate-500');
-                    dropdownBtn.classList.add('text-slate-900', 'dark:text-white');
+                    // Cambiar el color dependiendo de si es una opción válida o el placeholder
+                    if (selectedValue === "") {
+                        dropdownBtn.classList.add('text-slate-400', 'dark:text-slate-500');
+                        dropdownBtn.classList.remove('text-slate-900', 'dark:text-white');
+                    } else {
+                        dropdownBtn.classList.remove('text-slate-400', 'dark:text-slate-500');
+                        dropdownBtn.classList.add('text-slate-900', 'dark:text-white');
+                    }
                     
                     // Guardar el valor en el input oculto para Formspree
-                    hiddenInput.value = e.target.getAttribute('data-value');
+                    hiddenInput.value = selectedValue;
                     
                     // Cerrar el menú
                     cerrarDropdown();
