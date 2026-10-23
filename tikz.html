@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería de TikZ | Editorial TeXPress</title>
+    <meta name="description" content="Explora nuestra galería de arte vectorial paramétrico en TikZ. Gráficos de alta precisión para matemáticas, física e ingeniería.">
+    <meta property="og:title" content="Galería de TikZ | Editorial TeXPress">
+    <meta property="og:description" content="Arte vectorial paramétrico nativo en LaTeX para impresión académica de calidad infinita.">
+    <meta property="og:image" content="https://editorial-texpress.github.io/texpress-web/Images/logo-texpress.png">
 
     <!-- Script para evitar el parpadeo blanco (FOUC) al cargar la página -->
     <script>
@@ -14,7 +18,9 @@
         }
     </script>
 
-    <!-- Fuente original de LaTeX (Computer Modern / Latin Modern) -->
+    <!-- Precarga de la fuente original de LaTeX para evitar el salto visual -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css" as="style">
+    <!-- Aplicación de la fuente -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
     
     <link rel="icon" type="image/png" href="Images/favicon.png">
@@ -233,7 +239,7 @@
         <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16">
                 <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
-                    <img src="Images/tikz-serie-geometrica.png" alt="Serie Geométrica" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
+                    <img src="Images/tikz-serie-geometrica.png" alt="Serie Geométrica" target="_blank" rel="noopener noreferrer" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
                     <p class="mt-4 text-sm text-slate-900 dark:text-white font-bold tracking-widest text-center transition-colors duration-300">Serie Geométrica Paramétrica</p>
                     <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center max-w-xs">Programación iterativa en <span class="logo-tikz">Ti<span class="k">k</span>Z</span> ilustrando la convergencia de una espiral.</p>
 
@@ -271,7 +277,7 @@
         <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16">
                 <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
-                    <img src="Images/muestra-tikz.png" alt="Oscilador Armónico" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
+                    <img src="Images/muestra-tikz.png" alt="Oscilador Armónico" target="_blank" rel="noopener noreferrer" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
                     <p class="mt-4 text-sm text-slate-900 dark:text-white font-bold tracking-widest text-center transition-colors duration-300">Oscilador Armónico (Ley de Hooke)</p>
                     <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center max-w-xs">Análisis vectorial en 1D mostrando fuerzas restauradoras respecto al punto de equilibrio.</p>
 
@@ -302,7 +308,7 @@
         <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16">
                 <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
-                    <img src="Images/tikz-esferas-equilibrio.png" alt="Esferas en Equilibrio Estático" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
+                    <img src="Images/tikz-esferas-equilibrio.png" alt="Esferas en Equilibrio Estático" target="_blank" rel="noopener noreferrer" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
                     <p class="mt-4 text-sm text-slate-900 dark:text-white font-bold tracking-widest text-center transition-colors duration-300">Esferas en Equilibrio Estático</p>
                     <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center max-w-xs">Diagrama de cuerpo rígido sobre superficies inclinadas combinando fuerzas elásticas.</p>
 
@@ -333,7 +339,7 @@
         <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16">
                 <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
-                    <img src="Images/tikz-tension.png" alt="Tensión y Equilibrio de un Cuerpo" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
+                    <img src="Images/tikz-tension.png" alt="Tensión y Equilibrio de un Cuerpo" target="_blank" rel="noopener noreferrer" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
                     <p class="mt-4 text-sm text-slate-900 dark:text-white font-bold tracking-widest text-center transition-colors duration-300">Tensión y Equilibrio de un Cuerpo</p>
                     <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center max-w-xs">Análisis vectorial de cables y tensiones soportando cargas suspendidas en muros.</p>
 
@@ -364,7 +370,7 @@
         <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16">
                 <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
-                    <img src="Images/tikz-estatica-aplicada.png" alt="Estática Aplicada" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
+                    <img src="Images/tikz-estatica-aplicada.png" alt="Estática Aplicada" target="_blank" rel="noopener noreferrer" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
                     <p class="mt-4 text-sm text-slate-900 dark:text-white font-bold tracking-widest text-center transition-colors duration-300">Estática Aplicada</p>
                     <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center max-w-xs">Análisis de cargas y tensiones ilustrativo para libros de texto de física clásica.</p>
 
@@ -402,7 +408,7 @@
         <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16">
                 <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
-                    <img src="Images/tikz-deformacion-esfuerzo-cortante.png" alt="Deformación por Esfuerzo Cortante" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
+                    <img src="Images/tikz-deformacion-esfuerzo-cortante.png" alt="Deformación por Esfuerzo Cortante" target="_blank" rel="noopener noreferrer" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
                     <p class="mt-4 text-sm text-slate-900 dark:text-white font-bold tracking-widest text-center transition-colors duration-300">Deformación por Esfuerzo Cortante</p>
                     <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center max-w-xs">Esquema tridimensional ilustrando el desplazamiento y los ángulos de cizalla pura.</p>
 
@@ -433,7 +439,7 @@
         <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16">
                 <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
-                    <img src="Images/tikz-presion-hidrostatica.png" alt="Presión Hidrostática" class="w-auto max-w-[280px] lg:max-w-full h-auto max-h-[500px] object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
+                    <img src="Images/tikz-presion-hidrostatica.png" alt="Presión Hidrostática" target="_blank" rel="noopener noreferrer" class="w-auto max-w-[280px] lg:max-w-full h-auto max-h-[500px] object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
                     <p class="mt-4 text-sm text-slate-900 dark:text-white font-bold tracking-widest text-center transition-colors duration-300">Presión Hidrostática en Cilindro</p>
                     <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center max-w-xs">Proyección isométrica con transparencias y vectores de fuerza sobre un sólido confinado.</p>
 
@@ -464,7 +470,7 @@
         <div id="caso-9" class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16">
                 <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
-                    <img src="Images/tikz-curva-esfuerzo-deformacion.png" alt="Curva Esfuerzo-Deformación" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
+                    <img src="Images/tikz-curva-esfuerzo-deformacion.png" alt="Curva Esfuerzo-Deformación" target="_blank" rel="noopener noreferrer" class="w-full max-w-[280px] lg:max-w-full h-auto object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
                     <p class="mt-4 text-sm text-slate-900 dark:text-white font-bold tracking-widest text-center transition-colors duration-300">Curva de Esfuerzo-Deformación</p>
                     <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center max-w-xs">Análisis de límite elástico con trazado asintótico y sombreado de áreas bajo la curva.</p>
 
@@ -502,7 +508,7 @@
         <div class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16">
                 <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
-                    <img src="Images/tikz-rossler-atractor.png" alt="Atractor de Rössler" class="w-auto max-w-[280px] lg:max-w-full h-auto max-h-[480px] object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
+                    <img src="Images/tikz-rossler-atractor.png" alt="Atractor de Rössler" target="_blank" rel="noopener noreferrer" class="w-auto max-w-[280px] lg:max-w-full h-auto max-h-[480px] object-contain rounded-xl shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
                     <p class="mt-4 text-sm text-slate-900 dark:text-white font-bold tracking-widest text-center transition-colors duration-300">Atractor de Rössler en 3D</p>
                     <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center max-w-xs">Gráfica vectorial generada a partir del parseo directo de un archivo .txt con la solución numérica del sistema de ecuaciones.</p>
 
@@ -540,11 +546,11 @@
         <div id="caso-11" class="reveal opacity-0 translate-y-8 transition-all duration-700 ease-out">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-start mb-16">
                 <div class="bg-white dark:bg-slate-900 p-6 lg:p-8 rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 flex flex-col items-center justify-center relative lg:sticky top-auto lg:top-24 transition-colors duration-300">
-                    <img src="Images/tikz-tabla-periodica.png" alt="Tabla Periódica" class="w-full max-w-[280px] lg:max-w-full h-auto max-h-[480px] object-contain rounded-md shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
+                    <img src="Images/tikz-tabla-periodica.png" alt="Tabla Periódica" target="_blank" rel="noopener noreferrer" class="w-full max-w-[280px] lg:max-w-full h-auto max-h-[480px] object-contain rounded-md shadow-md dark:shadow-lg dark:shadow-white/30 transition-transform duration-300 hover:-translate-y-2">
                     <p class="mt-4 text-sm text-slate-900 dark:text-white font-bold tracking-widest text-center transition-colors duration-300">Tabla Periódica de los Elementos</p>
                     <p class="mt-2 text-xs text-slate-500 dark:text-slate-400 text-center max-w-xs">Organización de decenas de nodos con coordenadas relativas y macros personalizadas.</p>
 
-                    <a href="PDF/tikz-tabla-periodica.pdf" download="TablaPeriódica_EditorialTeXPress.pdf" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors shadow-sm w-full sm:w-auto">
+                    <a href="PDF/tikz-tabla-periodica.pdf" download="TablaPeriódica_EditorialTeXPress.pdf" target="_blank" rel="noopener noreferrer" class="mt-5 inline-flex items-center justify-center px-4 py-2.5 md:py-2 text-xs md:text-sm font-semibold text-slate-500 dark:text-slate-400 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700 hover:text-blue-600 dark:hover:text-blue-400 transition-colors shadow-sm w-full sm:w-auto">
                         <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg> Descargar PDF
                     </a>
                 </div>

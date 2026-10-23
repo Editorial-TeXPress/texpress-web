@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paquetes | Editorial TeXPress</title>
+    <meta name="description" content="Paquetes (.sty) y macros personalizadas para LaTeX. Soluciones de código para optimizar la composición matemática y documental.">
+    <meta property="og:title" content="Paquetes LaTeX | Editorial TeXPress">
+    <meta property="og:description" content="Herramientas y paquetes desarrollados por Editorial TeXPress para automatizar y escalar tu flujo de trabajo en LaTeX.">
+    <meta property="og:image" content="https://editorial-texpress.github.io/texpress-web/Images/logo-texpress.png">
     
     <link rel="icon" type="image/png" href="Images/favicon.png">
 
@@ -16,9 +20,10 @@
         }
     </script>
     
-    <!-- Fuente original de LaTeX (Computer Modern / Latin Modern) -->
+    <!-- Precarga de la fuente original de LaTeX para evitar el salto visual -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css" as="style">
+    <!-- Aplicación de la fuente -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
-    <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Configuración para activar el Modo Oscuro manual en Tailwind -->
     <script>

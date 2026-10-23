@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo | Editorial TeXPress</title>
+    <meta name="description" content="Catálogo de proyectos de Editorial TeXPress. Libros, tesis, apuntes y plantillas desarrolladas con rigor matemático.">
+    <meta property="og:title" content="Catálogo de Proyectos | Editorial TeXPress">
+    <meta property="og:description" content="Explora nuestro portafolio de ingeniería documental y soluciones avanzadas en LaTeX.">
+    <meta property="og:image" content="https://editorial-texpress.github.io/texpress-web/Images/logo-texpress.png">
 
     <link rel="icon" type="image/png" href="Images/favicon.png">
 
@@ -16,7 +20,9 @@
         }
     </script>
     
-    <!-- Fuente original de LaTeX (Computer Modern / Latin Modern) -->
+    <!-- Precarga de la fuente original de LaTeX para evitar el salto visual -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css" as="style">
+    <!-- Aplicación de la fuente -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/dreampulse/computer-modern-web-font@master/fonts.css">
     
     <script src="https://cdn.tailwindcss.com"></script>
