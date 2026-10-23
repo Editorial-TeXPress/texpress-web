@@ -1,0 +1,31 @@
+\begin{tikzpicture}
+    % === LÍMITE EXTERIOR ===
+    % Bola abierta mayor centrada en el origen
+    \draw[region border] (0,0) circle (3);
+
+    % === VECTOR RADIO PRINCIPAL ===
+    \draw[vector,Red1] (0,0) -- (340:3cm) node[midway,below,rotate=-20] {\color{black}$r$};
+    
+    % Línea de referencia interior
+    \draw[region border] (0,0) -- (45:3cm);
+
+    % === VECINDAD INTERIOR (BOLA MENOR) ===
+    % Entorno epsilon alrededor de 'x'
+    \draw[Snow4,box visible,dash pattern = on 2mm] (45:2cm) coordinate (x) circle (1);
+    
+    % Etiqueta del radio epsilon
+    \draw[Snow4,box visible,dash pattern = on 2mm]
+        (45:2cm) -- ++(110:1cm) coordinate (y) node[midway,right] {\color{black}$\varepsilon$};
+
+    % === MÉTRICAS / VECTORES DE DISTANCIA ===
+    \draw[SkyBlue1,box visible] (0,0) -- (x) node[midway,right] {$\dist{x}{a}$};
+    \draw[SkyBlue1,box visible] (0,0) -- (y) node[midway,above left] {$\dist{y}{a}$};
+
+    % === NODOS PUNTUALES ===
+    \fill[mainc] (x) node[below right] {\color{black}$x$} circle (0.5mm);
+    \fill[mainc] (y) node[above left] {\color{black}$y$} circle (0.5mm);
+    \fill[mainc] (0,0) node[below left] {\color{black}$a$} circle (0.5mm);
+    
+    % Etiqueta de la distancia entre la frontera y 'x'
+    \node[anchor=west] at ($(x)+(25:1cm)$) {\color{Snow4}$\dist{x}{y}$};
+\end{tikzpicture}

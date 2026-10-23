@@ -1,0 +1,72 @@
+\begin{tikzpicture}
+    % === GEOMETRÍA BASE DEL ENTORNO ===
+    % Estructura "L" invertida (Pared de la izquierda y Techo)
+    \fill[techo] (0,0) -- (8,0) -- (8,0.8) -- (-0.8,0.8) -- (-0.8,-8) -- (0,-8) -- cycle;
+
+    % === ANCLAJES (Soportes) ===
+    % Soporte superior (Techo)
+    \filldraw[draw=black,fill=colorFondo!40] (6.6,0) -- ++(0,-0.6) arc(180:360:4mm) -- ++(0,0.6) -- cycle;
+    % Soporte lateral (Pared)
+    \filldraw[draw=black,fill=colorFondo!40] (0,-6.6) -- ++(0.6,0) arc(90:-90:4mm) -- ++(-0.6,0) -- cycle;
+
+    % Nodos de origen de los pivotes
+    \path (0.6,-7) coordinate (A) circle (1.5mm);
+    \path (7,-0.6) coordinate (B) circle (1.5mm);
+
+    % === CÁLCULO DE LA INTERSECCIÓN C (Nodo de equilibrio) ===
+    % Usando intersección de paths para no calcular trigonometría manual
+    \path[name path=A--A'] (A) -- ++(15:6cm);
+    \path[name path=B--B'] (B) -- ++(-105:7cm);
+    \path[name intersections={of=A--A' and B--B',by=C}];
+    
+    % === MIEMBROS RÍGIDOS (Vigas) ===
+    % Dibujados antes de los pivotes para que queden en capa inferior
+    \path let
+        \p1 = ($(C) - (A)$), \n1 = {veclen(\x1,\y1)},
+        \p2 = ($(C) - (B)$), \n2 = {veclen(\x2,\y2)}
+    in
+        node[draw=colorViga, fill=colorViga!30, rotate=15, anchor=west, minimum width=\n1, minimum height=0.2cm, rounded corners=0.5mm] (VigaAC) at (A) {}
+        node[draw=colorViga, fill=colorViga!30, rotate=255, anchor=west, minimum width=\n2, minimum height=0.2cm, rounded corners=0.5mm] (VigaBC) at (B) {};
+    
+    % === SISTEMA DE CARGA COLGANTE ===
+    % 1. Pasador central en C
+    \draw[draw=black, fill=white] (C) node[right=1mm, color=black] {$C$} circle (1.2mm);
+    
+    % 2. Bucle/Enganche
+    \draw[draw=black, rounded corners=1mm, fill=white] ($(C) - (0.2,0.1)$) -- ($(C) - (0.2, 0.6)$) -- ($(C) + (0.2, -0.6)$) -- ($(C) + (0.2, -0.1)$) -- cycle;
+    
+    % 3. Bloque de Masa (Trapezoidal)
+    \filldraw[draw=black, fill=colorFondo!40, rounded corners=1mm] ($(C)-(0.5, 0.6)$) -- ($(C)-(0.8, 2.0)$) -- ($(C)+(0.8, -2.0)$) -- ($(C) + (0.5, -0.6)$) -- cycle;
+    
+    % 4. Etiqueta de la masa
+    \node at ($(C)+(0, -1.35)$) {\qty{200}{\kg}};
+
+    % === PREPARACIÓN PARA COTAS DE ÁNGULO ===
+    % Intersecciones locales para calcular los ángulos de los miembros generados dinámicamente
+    \path[name path=A'] (A) -- ++(0, 2) coordinate (refA_vert);
+    \path[name path=AC'] (VigaAC.north) coordinate (AC') -- (VigaAC.north west);
+    \path[name intersections={of=A' and AC', by=OA'}];
+
+    \path[name path=B'] (B) -- ++(-2, 0) coordinate (refB_horiz);
+    \path[name path=BC'] (VigaBC.south) coordinate (BC') -- (VigaBC.south west);
+    \path[name intersections={of=B' and BC', by=OB'}];
+    
+    % === DIBUJO DE COTAS Y REFERENCIAS ===
+    % --- Líneas guías punteadas ---
+    \draw[dashed, thin, gray] (A) node[below=4mm, color=black] {$A$} -- ++(0, 2);
+    \draw[dashed, thin, gray] (B) node[right=4mm, color=black] {$B$} -- ++(-2, 0);
+    
+    % --- Ángulo en A (Respecto a la pared vertical) ---
+    \pic [draw=colorCotas, latex-, "\ang{75}", angle radius=1cm, angle eccentricity=1.3, font=\small\color{colorCotas}] {angle = AC'--OA'--refA_vert};
+    
+    % --- Ángulo en B (Respecto al techo horizontal) ---
+    \pic [draw=colorCotas, -latex, "\ang{75}", angle radius=1cm, angle eccentricity=1.3, font=\small\color{colorCotas}] {angle = refB_horiz--OB'--BC'};
+
+    % Detalles estéticos: Ejes de los pasadores
+    \foreach \c in {A,B} {
+        \filldraw[fill=white] (\c) circle (1.5mm);
+    }
+    
+    % Línea de acabado inferior
+    \draw[line width=0.3mm] (0,-8) |- (8,0);
+\end{tikzpicture}

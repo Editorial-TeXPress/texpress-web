@@ -1,0 +1,43 @@
+\begin{tikzpicture}
+    % === COORDENADAS BASE ===
+    % Geometría principal del bloque
+    \coordinate (O) at (3.5,1);
+    \coordinate (A) at (2.5,3);
+    \coordinate (B) at (3.5,3);
+
+    % === VECTORES DE FUERZA (EXTERIORES) ===
+    % Vector de fuerza izquierdo (Compresión/Tensión)
+    \draw[vector,mainc,line width=0.6mm] (-1.5,2.6) -- ++(-1,0) node[left] {$-F$};
+
+    % === GEOMETRÍA DEL BLOQUE DEFORMADO ===
+    % 1. Cara inferior (Base fija)
+    \filldraw[fill=yellow] (0.5,0) -- ++(0,-0.2) -- ++ (3.5,0) -- ++(1,1) -- ++(0,0.2) -- ++(-3.5,0) -- cycle
+        (0.5,0) -- ++(3.5,0) -- ++(1,1)
+        (4,0) -- ++(0,-0.2);
+
+    % 2. Cara superior (Plano desplazado)
+    \filldraw[fill=yellow] (-2,2.2) -- ++(0,-0.2) -- ++(3.5,0) -- ++(1,1) -- ++(0,0.2) -- ++(-3.5,0) -- cycle
+        (-2,2.2) -- ++(3.5,0) -- ++(1,1)
+        (1.5,2.2) -- ++(0,-0.2);
+
+    % 3. Cuerpo interior sometido a cizalla (Centro)
+    \filldraw[fill=yellow!30] (0.5,0) -- ++(2,0) -- ++(1,1) -- ++(-1,2) -- ++(-1,-1) -- ++(-2,0) -- cycle
+        (1.5,2) -- ++(1,-2);
+
+    % === VECTORES DE FUERZA (EXTERIORES) ===
+    % Vector de fuerza derecho
+    \draw[vector,mainc,line width=0.6mm] (4.5,0.4) -- ++(1,0) node[right] {$F$};
+
+    % === INDICADORES DE DEFORMACIÓN ===
+    % --- Plano de referencia (Sección A) ---
+    \draw[dash pattern=on 1.5mm, gray] (0,1) node[left] {$A$} -- ++(2,0) -- ++(1,1);
+
+    % --- Altura h ---
+    \draw[mainc] (O) -- (B) node[midway,right] {$h$};
+
+    % --- Ángulo de deformación por corte (Phi) ---
+    \pic [draw=red,angle radius=1cm,angle eccentricity=1.3,"\textcolor{red}{$\phi$}"] {angle=B--O--A};
+
+    % --- Desplazamiento lineal (Delta x) ---
+    \draw[latex-latex] (A) -- (B) node[midway,above] {$\Delta x$};
+\end{tikzpicture}

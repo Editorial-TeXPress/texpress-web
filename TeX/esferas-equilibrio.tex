@@ -1,0 +1,63 @@
+\begin{tikzpicture}
+    % === DEFINICIÓN DE COLORES Y ESTILOS ===
+    \definecolor{boxgray}{RGB}{205,205,205}
+    \definecolor{ballpink}{RGB}{245,155,185}
+
+    % === PARÁMETROS GEOMÉTRICOS DEL SISTEMA ===
+    \def\Rone{2.2} % Radio de la esfera mayor
+    \def\Rtwo{1.3} % Radio de la esfera menor
+    \def\H{6.5}    % Altura máxima de las paredes
+    
+    % --- Inicialización de Coordenadas Maestras ---
+    % 1. Origen (Vértice inclinado inferior izquierdo)
+    \coordinate (O) at (0,0);
+    
+    % 2. Centro de la esfera mayor (C1), ajustado para contacto
+    \coordinate (C1) at ({\Rone/sqrt(3)}, \Rone);
+    
+    % 3. Centro de la esfera menor (C2), alineado a 30 grados
+    \coordinate (C2) at ($(C1) + (30:{\Rone+\Rtwo})$);
+    
+    % --- Cálculo dinámico de Fronteras ---
+    % Uso de la librería 'calc' para evitar desbordes en las coordenadas X
+    \path let \p1 = (C2) in coordinate (WallR) at (\x1 + \Rtwo cm, 0);
+    \path let \p1 = (WallR) in coordinate (WallTR) at (\x1, \H);
+    
+    % --- Definición de la Pared Inclinada Izquierda ---
+    % Sube a 60° hasta un punto de inflexión, luego sube verticalmente
+    \def\xL{-1.5cm} % Distancia horizontal máxima hacia la izquierda
+    \coordinate (WallL_mid) at (\xL, {-\xL * sqrt(3)}); % Punto de transición (Pico)
+    \coordinate (WallL_top) at (\xL, \H);
+    
+    % === DIBUJO DE LOS ELEMENTOS FÍSICOS ===
+
+    % 1. Contenedor y plano inclinado (Fondo)
+    \draw[thick, fill=boxgray] (WallL_top) -- (WallL_mid) -- (O) -- (WallR) -- (WallTR) -- cycle;
+
+    % 2. Sistema de amortiguación (Resorte superior)
+    \path let \p1 = (C1) in coordinate (SpringTop) at (\x1, \H);
+    \coordinate (SpringBot) at ($(C1) + (0, \Rone)$); % Punto de anclaje en la esfera
+    
+    \draw[thick] (SpringTop) -- ++(0, -0.4) coordinate (S1);
+    \draw[thick] (SpringBot) -- ++(0, 0.4) coordinate (S2);
+    % Aplicación de decoration paramétrica para dibujar el muelle
+    \draw[thick,decorate, decoration={coil,amplitude=4mm,segment length=1.5mm}] (S1) -- (S2);
+
+    % 3. Cuerpos rígidos (Esferas en contacto)
+    \draw[thick, fill=ballpink] (C1) circle (\Rone);
+    \draw[thick, fill=ballpink] (C2) circle (\Rtwo);
+
+    % === REFERENCIAS Y COTAS MATEMÁTICAS ===
+    % --- Línea de centros (Eje de transmisión de fuerzas) ---
+    \coordinate (P1) at ($(C1) + (210:\Rone)$);
+    \coordinate (P2) at ($(C2) + (30:\Rtwo)$);
+    \draw[loosely dotted, thick] (P1) -- (P2);
+    
+    % --- Nodos centrales ---
+    \filldraw (C1) circle (2.5pt);
+    \filldraw (C2) circle (2.5pt);
+
+    % --- Cota del ángulo del plano inclinado ---
+    \draw[dashed, thin,gray] (O) -- +(-1.8,0) coordinate (refLine);
+    \pic [draw=black, "-", "\ang{60}", angle radius=1cm, angle eccentricity=1.3] {angle = WallL_mid--O--refLine};
+\end{tikzpicture}

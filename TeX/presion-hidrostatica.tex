@@ -1,0 +1,65 @@
+\begin{tikzpicture}[line width=0.45mm]
+    % === RECIPIENTE EXTERIOR ===
+    % Cuerpo del contenedor (elipse inferior + paredes + elipse superior) en gris claro
+    \fill[Snow3] (-3,0) arc (180:360:3cm and 1cm) -- ++(0,7) arc (0:180:3cm and 1cm) -- cycle;
+
+    % === MASA DE LÍQUIDO ===
+    % Fluido interno (elipse inferior + paredes + nivel superior)
+    \fill[SteelBlue1!80] (-3,0) arc (180:0:3cm and 1cm)-- ++(0,5.3) arc (360:180:3cm and 1cm) -- cycle;
+
+    % Superficie del líquido (elipse superior de agua)
+    \fill[SteelBlue1!80] (0,0) ellipse (3cm and 1cm);
+
+    % === ÉMBOLO / TAPA SUPERIOR ===
+    % 1. Base sólida de la tapa superior
+    \filldraw[fill=brown] (0,6.3) ellipse (3cm and 1cm);
+    
+    % 2. Pared lateral de la tapa cilíndrica
+    \draw[fill=brown] (-3,6.3) -- ++(0,-1) arc (180:360:3cm and 1cm) -- ++(0,1) arc (360:180:3cm and 1cm);
+
+    % 3. Tapón superior (Masa adicional)
+    \draw[fill=brown] (0,7) ellipse (1cm and 0.33cm);
+    % 4. Pared lateral del tapón
+    \draw (-1,7) -- ++(0,-0.5) arc (180:360:1cm and 0.33cm) -- ++(0,0.5);
+
+    % === CONTORNOS Y BORDES ===
+    % Uso de scope para definir reglas de llenado (even odd) y simular cristal
+    \begin{scope}
+        % Elipse inferior doble (borde de la base)
+        \path[fill=Snow3, draw=black, even odd rule] 
+            (-3.1,0) arc(180:0:3.1cm and 1.1cm) -- ++(-0.1,0) arc(0:180:3cm and 1cm);
+        
+        % Pared lateral doble (grosor del contenedor)
+        \path[fill=Snow3, draw=black, even odd rule] 
+            (-3.1,7) -- ++(0,-7) arc(180:360:3.1cm and 1.1cm) -- ++(0,7) 
+            -- ++(-0.1,0) -- ++(0,-7) arc(360:180:3cm and 1cm) -- ++(0,7) -- cycle;
+        
+        % Elipse superior doble (borde de la apertura)
+        \path[fill=Snow3, even odd rule, draw=black]
+            (0,7) ellipse [x radius=3.1cm, y radius=1.1cm]
+            (0,7) ellipse [x radius=3cm, y radius=1cm];
+    \end{scope}
+
+    % === VECTORES INTERNOS OCULTOS (TRAS EL OBJETO) ===
+    \begin{scope}[vector,line width=1mm,rojo]
+        \draw (-2,1) -- ++(1,0);   % Compresión lateral izquierda
+        \draw (0,-1) -- ++(0,1);   % Compresión inferior hacia arriba
+    \end{scope}
+
+    % === SÓLIDO INTERNO (CUBO) ===
+    \draw[fill=azul!80] 
+        (-1.25,-0.25) -- ++(2,0) -- ++(0.5,0.5) -- ++(0,2) 
+        -- ++(-2,0) -- ++(-0.5,-0.5) -- cycle
+        % Parte superior del cubo
+        (-1.25,1.75) -- ++(2,0) -- ++(0.5,0.5)
+        % Arista lateral derecha
+        (0.75,-0.25) -- +(0,2);
+
+    % === VECTORES EXTERNOS DE PRESIÓN ===
+    \begin{scope}[vector,line width=1mm,rojo]
+        \draw (0,9) node[anchor=north west] {$F$} -- ++(0,-2);  % Fuerza macroscópica F
+        \draw (0,3) node[above] {$p$} -- ++(0,-1);              % Presión vertical p
+        \draw (2,1) -- ++(-1,0);                                % Compresión lateral derecha
+        \draw (-0.95,0.25) -- ++(0.7,0.5);                      % Compresión inclinada (profundidad)
+    \end{scope}
+\end{tikzpicture}

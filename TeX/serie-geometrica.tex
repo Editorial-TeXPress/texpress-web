@@ -1,0 +1,39 @@
+\begin{tikzpicture}
+    % === Vértices principales del primer triángulo ===
+    \coordinate (P)  at (0,4);  
+    \coordinate (B0) at (0,0);  
+    \coordinate (B1) at (3,0);  
+
+    % === Primer triángulo ===
+    \fill[LightSkyBlue3] % Color base
+        (B0) -- (B1) node[midway,below] {\color{black}$K$} -- (P) -- cycle node[midway,left] {\color{black}$X$};
+
+    % === Inicialización del patrón ===
+    \coordinate (CurrOrigin) at (B1); % Origen del primer ciclo
+    \coordinate (CurrTarget) at (P);  % Objetivo del primer ciclo
+
+    % === Bucle de iteración geométrica ===
+    % Generación de la secuencia con altura decreciente
+    \foreach \i [evaluate=\i as \h using 1.5/(2^(\i-2))] in {2,3,4,...,8} {
+        % Cálculo de la base actual
+        \coordinate (CurrBase) at ($(CurrOrigin)!4cm!(CurrTarget)$);
+        
+        % Cálculo del punto perpendicular hacia afuera
+        \coordinate (CurrP) at ($(CurrOrigin)!\h cm!-90:(CurrBase)$);
+
+        % Asignación de color alternante
+        \ifodd\i
+            \def\tcolor{LightSkyBlue3} % Color para iteraciones impares
+        \else
+            \def\tcolor{DodgerBlue4}   % Color para iteraciones pares
+        \fi
+
+        % Trazado del triángulo
+        \fill[fill=\tcolor]
+            (CurrOrigin) -- (CurrBase) -- (CurrP) -- cycle;
+
+        % Actualización de puntos para el siguiente ciclo
+        \coordinate (CurrTarget) at (CurrBase);
+        \coordinate (CurrOrigin) at (CurrP);
+    }
+\end{tikzpicture}

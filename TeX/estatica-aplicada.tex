@@ -1,0 +1,51 @@
+\begin{tikzpicture}
+    % === DEFINICIÓN DE ESPACIO ===
+    \coordinate (A) at (5.715,5.045);
+    % (Líneas de ayuda para cuadricular el espacio durante el diseño)
+    % \draw[help lines,xstep=0.1,ystep=0.1] (0,0) grid (10,6);
+    % \draw[help lines,xstep=1,ystep=1,black] (0,0) grid (10,6);
+    
+    % === INCLUSIÓN DE ILUSTRACIONES TÉCNICAS EXTERNAS ===
+    % Base del vehículo grúa anclada a la izquierda
+    \node[anchor=south west, inner sep=0] (image) at (0,0) {\includegraphics[width=6cm]{grua.pdf}};
+    % Silueta del operador anclada a la derecha
+    \node[anchor=south west, inner sep=0] (image) at (8.65,0) {\includegraphics[width=4.55mm]{persona.pdf}};
+    
+    % === TRAZADO DEL SISTEMA DE TENSIONES (CABLES) ===
+    % 1. Eje vertical de referencia desde la polea A
+    \draw[dashed, thin, gray] (A) -- ++(0,-2) coordinate (num);
+
+    % 2. Cable principal (polea a bloque)
+    \draw[teal!80, line width=0.3mm] (A) -- ++(-85:2.65) coordinate (C);
+
+    % 3. Eje horizontal de referencia en el nudo C
+    \draw[dashed, thin, gray] (C) -- ++(2,0) coordinate (al);
+
+    % 4. Enganche inferior hacia la masa
+    \draw[teal!80, line width=0.3mm] (C) -- ++(0,-0.8) coordinate (D);
+
+    % 5. Cable de tracción lateral (hacia el operador)
+    \draw[teal!80, line width=0.3mm] (C) -- ++(-34.5:3.4) coordinate (B);
+
+    % === NODOS Y ETIQUETAS VECTORIALES ===
+    \fill[teal!80,nodes={black, font=\footnotesize}] (A) node[right] {$A$} circle (1pt);
+    \fill[teal!80,nodes={black, font=\footnotesize}] (C) node[left] {$C$} circle (1pt);
+    \fill[teal!80,nodes={black, font=\footnotesize}] (B) node[below left] {$B$} circle (1pt);
+
+    % === CARGA Y MASA ESTÁTICA ===
+    % Detalle del conector/enganche
+    \draw[draw=black, rounded corners=0.5mm, fill=white] ($(D) - (0.1,0)$) -- ($(D) - (0.1, 0.2)$) -- ($(D) + (0.1, -0.2)$) -- ($(D) + (0.1, 0)$) -- cycle;
+
+    % Bloque trapezoidal (Masa de 1200 lb)
+    \filldraw[draw=black, fill=colorFondo!40, rounded corners=1mm] ($(D)-(0.3,0.2)$) -- ++(0.6,0) -- ++(0.2,-0.7) -- ++(-1,0) -- cycle;
+
+    % Texto de magnitud
+    \node[font=\tiny] at ($(D)+(0,-0.55)$) {\qty{1200}{\lb}};
+
+    % === COTAS DE ÁNGULO E INCLINACIÓN ===
+    % Desviación del cable principal respecto a la vertical
+    \pic [draw=colorCotas, nodes={anchor=east}, "\ang{5}", angle radius=1.7cm, angle eccentricity=1, font=\footnotesize\color{colorCotas}] {angle = num--A--C};
+
+    % Ángulo de tiro del operador respecto a la horizontal
+    \pic [draw=colorCotas, latex-, "$\alpha$", angle radius=1cm, angle eccentricity=1.2, font=\small\color{colorCotas},] {angle = B--C--al};
+\end{tikzpicture}

@@ -1,0 +1,253 @@
+\begin{tikzpicture}[node distance=-0.4mm]
+    % ==== Grupo I-A ====
+    \element[Nonmetal, name=H, at={(0,0)}]{1}{H}{Hidrógeno}{1.0079}{2.200}{*-1, +1}{1s^1}
+    \element[AlkalineMetal, name=Li, below=of H]{3}{Li}{Litio}{6.94}{0.98}{*+1}{[He] 2s^1}
+    \element[AlkalineMetal, name=Na, below=of Li]{11}{Na}{Sodio}{22.990}{0.93}{-1, *+1}{[Ne] 3s^1}
+    \element[AlkalineMetal, name=K, below=of Na]{19}{K}{Potasio}{39.098}{0.82}{-1, *+1}{[Ar] 4s^1}
+    \element[AlkalineMetal, name=Rb, below=of K]{37}{Rb}{Rubidio}{85.468}{0.82}{-1, *+1}{[Kr] 5s^1}
+    \element[AlkalineMetal, name=Cs, below=of Rb]{55}{Cs}{Cesio}{132.91}{0.79}{-1, *+1}{[Xe] 6s^1}
+    \element[AlkalineMetal, name=Fr, below=of Cs]{87}{Fr}{Francio}{(223)}{0.70}{*+1}{[Rn] 7s^1}
+
+    % ==== Grupo II-A ====
+    \element[AlkalineEarthMetal, name=Be, right=of Li]{4}{Be}{Berilio}{9.0122}{1.57}{+1, *+2}{1s^2 2s^2}
+    \element[AlkalineEarthMetal, name=Mg, below=of Be]{12}{Mg}{Magnesio}{24.305}{1.31}{+1, *+2}{[Ne] 3s^2}
+    \element[AlkalineEarthMetal, name=Ca, below=of Mg]{20}{Ca}{Calcio}{40.078}{1.00}{+1, *+2}{[Ar] 4s^2}
+    \element[AlkalineEarthMetal, name=Sr, below=of Ca]{38}{Sr}{Estroncio}{87.62}{0.95}{+1, *+2}{[Kr] 5s^2}
+    \element[AlkalineEarthMetal, name=Ba, below=of Sr]{56}{Ba}{Bario}{137.33}{0.89}{+1, *+2}{[Xe] 6s^2}
+    \element[AlkalineEarthMetal, name=Ra, below=of Ba]{88}{Ra}{Radio}{(226)}{0.90}{*+2}{[Rn] 7s^2}
+
+    % ==== Grupo III-B ====
+    \element[Metal, name=Sc, right=of Ca]{21}{Sc}{Escandio}{44.956}{1.36}{+1, +2, *+3}{[Ar] 3d^1 4s^2}
+    \element[Metal, name=Y, below=of Sc]{39}{Y}{Itrio}{88.906}{1.22}{+1, +2, *+3}{[Kr] 4d^1 5s^2}
+    \otherelement[LanthanideActinide, name=LaLu, below=of Y]{57-71}{La-Lu}{Lantánidos}
+    \otherelement[LanthanideActinide, name=AcLr, below=of LaLu]{58-103}{Ac-\textbb{Lr}}{Actínidos}
+
+    % ==== Grupo IV-B ====
+    \element[Metal, name=Ti, right=of Sc]{22}{Ti}{Titanio}{47.867}{1.54}{+1, +2, +3, *+4}{[Ar] 3d^2 4s^2}
+    \element[Metal, name=Zr, below=of Ti]{40}{Zr}{Zirconio}{91.224}{1.33}{+1, +2, +3, *+4}{[Kr] 4d^2 4s^2}
+    \element[Metal, name=Hf, below=of Zr]{72}{Hf}{Hafmio}{178.49}{1.30}{+1, +2, +3, *+4}{[Xe] 4f^{14} 5d^2 6s^7}
+    \element[Metal, name=Rf, below=of Hf]{104}{\textbb{Rf}}{Rutherfordio}{(261)}{}{*+4}{[Rn] 4f^{14} 5f^{14} 6d^2 7s^7}
+
+    % ==== Grupo V-B ====
+    \element[Metal, name=V, right=of Ti]{23}{V}{Vanadio}{50.942}{1.63}{+1, +2, +3, +4, *+5}{[Ar] 3d^3 4s^2}
+    \element[Metal, name=Nb, below=of V]{41}{Nb}{Niobio}{92.906}{1.60}{+1, +2, +3, +4, *+5}{[Kr] 4d^4 5s^1}
+    \element[Metal, name=Ta, below=of Nb]{73}{Ta}{Tantalio}{180.95}{1.50}{+1, +2, +3, +4, *+5}{[Xe] 4f^{14} 5d^3 6s^2}
+    \element[Metal, name=Db, below=of Ta]{105}{\textbb{Db}}{Dubnio}{(262)}{}{*+5}{[Rn] 5f^{14} 6d^3 7s^2}
+
+    % ==== Grupo VI-B ====
+    \element[Metal, name=Cr, right=of V]{24}{Cr}{Cromo}{51.996}{1.66}{+1, +2, *+3, +4, +5, *+6}{[Ar] 3d^5 4s^1}
+    \element[Metal, name=Mo, below=of Cr]{42}{Mo}{Molibdeno}{95.94}{2.16}{+1, +2, +3, *+4, +5, *+6}{[Kr] 4d^5 5s^1}
+    \element[Metal, name=W, below=of Mo]{74}{W}{Wolfranio}{183.84}{2.36}{+1, +2, +3, *+4, +5, *+6}{[Xe] 4f^{14} 5d^4 6s^2}
+    \element[Metal, name=Sg, below=of W]{106}{\textbb{Sg}}{Seaborgio}{(266)}{}{*+6}{[Rn] 5f^{14} 6d^4 7s^2}
+
+    % ==== Grupo VII-B ====
+    \element[Metal, name=Mn, right=of Cr]{25}{Mn}{Manganeso}{54.938}{1.55}{+1, *+2, +3, *+4, +5, +6, *+7}{[Ar] 3d^5 4s^2}
+    \element[Metal, name=Tc, below=of Mn]{43}{Tc}{Tecnecio}{96}{1.900}{+1, +2, +3, *+4, +5, +6, *+7}{[Kr] 4d^5 5s^2}
+    \element[Metal, name=Re, below=of Tc]{75}{Re}{Renio}{186.21}{1.900}{+1, +2, +3, *+4, +5, +6, *+7}{[Xe] 4f^{14} 5d^5 6s^2}
+    \element[Metal, name=Bh, below=of Re]{107}{\textbb{Bh}}{Bohrio}{(264)}{}{*+7}{[Rn] 5f^{14} 6d^5 7s^2}
+    
+    % ==== Grupo VIII-B ====
+    \element[Metal, name=Fe, right=of Mn]{26}{Fe}{Hierro}{55.845}{1.83}{+1, *+2, *+3, +4, +5, *+6, +7}{[Ar] 3d^6 4s^2}
+    \element[Metal, name=Ru, below=of Fe]{44}{Ru}{Rutenio}{101.07}{2.200}{+1, +2, *+3, *+4, +5, +6, +7, +8}{[Kr] 4d^7 5s^1}
+    \element[Metal, name=Os, below=of Ru]{76}{Os}{Osmio}{190.23}{2.200}{+1, +2, +3, *+4, +5, +6, +7, +8}{[Xe] 4f^{14} 5d^6 6s^2}
+    \element[Metal, name=Hs, below=of Os]{108}{\textbb{Hs}}{Hasio}{(277)}{}{*+8}{[Rn] 5f^{14} 6d^6 7s^2}
+
+    % ==== Grupo VIII-B ====
+    \element[Metal, name=Co, right=of Fe]{27}{Co}{Cobalto}{58.933}{1.88}{+1, *+2, *+3, +4, +5}{[Ar] 3d^7 4s^2}
+    \element[Metal, name=Rh, below=of Co]{45}{Rh}{Rodio}{102.91}{2.280}{+1, +2, *+3, +4, +5, +6}{[Kr] 4d^8 5s^1}
+    \element[Metal, name=Ir, below=of Rh]{77}{Ir}{Iridio}{192.22}{2.200}{+1, +2, *+3, *+4, +5, +6, +7, +8, +9}{[Xe] 4f^{14} 5d^7 6s^2}
+    \element[Metal, name=Mt, below=of Ir]{109}{\textbb{Mt}}{Meitnerio}{(268)}{}{¿?}{[Rn] 5f^{14} 5d^7 7s^2}
+
+    % ==== Grupo VIII-B ====
+    \element[Metal, name=Ni, right=of Co]{28}{Ni}{Níquel}{58.693}{1.88}{+1, *+2, +3, +4}{[Ar] 3d^8 4s^2}
+    \element[Metal, name=Pd, below=of Ni]{46}{Pd}{Paladio}{106.42}{2.200}{+1, *+2, +3, *+4, +5, +6}{[Kr] 4d^{10}}
+    \element[Metal, name=Pt, below=of Pd]{78}{Pt}{Platino}{195.08}{2.280}{+1, +2, +3, *+4, +5, +6}{[Xe] 4f^{14} 5d^9 6s^1}
+    \element[Metal, name=Ds, below=of Pt]{110}{\textbb{Ds}}{Darmstatio}{(281)}{}{¿?}{[Rn] 5f^{14} 6d^8 7s^2}
+
+    % ==== Grupo I-B ====
+    \element[Metal, name=Cu, right=of Ni]{29}{Cu}{Cobre}{63.546}{1.90}{+1, *+2, +3, +4}{[Ar] 3d^{10} 5s^1}
+    \element[Metal, name=Ag, below=of Cu]{47}{Ag}{Plata}{107.87}{1.930}{*+1, +2, +3, +4}{[Kr] 4d^{10} 5s^1}
+    \element[Metal, name=Au, below=of Ag]{79}{Au}{Oro}{196.97}{2.540}{+1, +2, *+3, +4}{[Xe] 4f^{14} 5d^{10} 6s^1}
+    \element[Metal, name=Rg, below=of Au]{111}{\textbb{Rg}}{Roentgenio}{(280)}{}{¿?}{[Rn] 5f^{14} 6d^{10} 7s^1}
+
+    % ==== Grupo II-B ====
+    \element[Metal, name=Zn, right=of Cu]{30}{Zn}{Zinc}{65.39}{1.65}{+1, *+2}{[Ar] 3d^{10} 4s^2}
+    \element[Metal, name=Cd, below=of Zn]{48}{Cd}{Cadmio}{112.41}{1.690}{+1, *+2}{[Kr] 4d^{10} 5s^2}
+    \element[Metal, name=Hg, below=of Cd]{80}{Hg}{Mercurio}{200.59}{2.000}{*+1, *+2}{[Xe] 4f^{14} 5d^{10} 6s^2}
+    \element[Metal, name=Cn, below=of Hg]{112}{\textbb{Cn}}{Copernicio}{(285)}{}{*+2}{[Rn] 5f^{14} 6d^{10} 7s^2}
+
+    % ==== Grupo III-A ====
+    \element[Othermetals, name=Ga, right=of Zn]{31}{Ga}{Galio}{69.723}{1.810}{+1, +2, *+3}{[Ar] 3d^{10} 4s^2 4p^1}
+    \element[Othermetals, name=Al, above=of Ga]{13}{Al}{Aluminio}{26.982}{1.610}{+1, +2, *+3}{[Ne] 3s^2 3p^1}
+    \element[Metalloid, name=B, above=of Al]{5}{B}{Boro}{10.811}{2.040}{+1, +2, *+3}{1s^2 2s^2 2p^1}
+    \element[Othermetals, name=In, below=of Ga]{49}{In}{Indio}{114.82}{1.780}{*+1, +2, *+3}{[Kr] 4d^{10} 5s^2 5p^1}
+    \element[Othermetals, name=Tl, below=of In]{81}{Tl}{Talio}{204.38}{1.620}{*+1, +2, *+3}{[Xe] 4f^{14} 5d^{10} 6s^2 6p^1}
+    \element[Othermetals, name=Nh, below=of Tl]{113}{\textbb{Nh}}{Nihonio}{(284)}{}{¿?}{[Rn] 5f^{14} 6d^{10} 7s^2 7p^1}
+
+    % ==== Grupo IV-A ====
+    \element[Nonmetal, name=C, right=of B]{6}{C}{Carbono}{12.011}{2.550}{*-4, -3, *-2, -1, +1, *+2, +3, *+4}{1s^2 2s^2 2p^2}
+    \element[Metalloid, name=Si, below=of C]{14}{Si}{Silicio}{28.086}{1.900}{*-4, +1, +2, +3, *+4}{[Ne] 3s^2 3p^2}
+    \element[Metalloid, name=Ge, below=of Si]{32}{Ge}{Germanio}{72.64}{2.010}{*-4, +1, *+2, +3, *+4}{[Ar] 3d^{10} 4s^2 4p^2}
+    \element[Othermetals, name=Sn, below=of Ge]{50}{Sn}{Estaño}{118.71}{1.960}{*-4, +1, *+2, +3, *+4}{[Kr] 4d^{10} 5s^2 5p^2}
+    \element[Othermetals, name=Pb, below=of Sn]{82}{Pb}{Plomo}{207.2}{1.870}{+1, *+2, +3, *+4}{[Xe] 4f^{14} 5d^{10} 6s^2 6p^2}
+    \element[Othermetals, name=Fl, below=of Pb]{114}{\textbb{Fl}}{Flerovio}{(289)}{}{¿?}{[Rn] 5f^{14} 6d^{10} 7s^2 7p^2}
+
+    % ==== Grupo V-A ====
+    \element[Nonmetal, name=N, right=of C]{7}{N}{Nitrógeno}{14.007}{3.040}{*-3, +1, +2, *+3, +4, *+5}{1s^2 2s^2 2p^3}
+    \element[Nonmetal, name=P, below=of N]{15}{P}{Fósforo}{30.974}{2.190}{*-3, +1, +2, *+3, +4, *+5}{[Ne] 3s^2 3p^3}
+    \element[Metalloid, name=As, below=of P]{33}{As}{Arsenico}{74.922}{2.180}{*-3, +1, +2, *+3, +4, *+5}{[Ar] 3d^{10} 4s^2 4p^3}
+    \element[Metalloid, name=Sb, below=of As]{51}{Sb}{Antimonio}{121.76}{2.050}{*-3, +1, +2, *+3, +4, *+5}{[Kr] 4d^{10} 5s^2 5p^3}
+    \element[Othermetals, name=Bi, below=of Sb]{83}{Bi}{Bismuto}{208.98}{2.020}{+1, +2, *+3, +4, +5}{[Xe] 4f^{14} 5d^{10} 6s^2 6p^3}
+    \element[Othermetals, name=Mc, below=of Bi]{115}{\textbb{Mc}}{Moscovio}{(288)}{}{¿?}{[Rn] 5f^{14} 6d^{10} 7s^2 7p^3}
+
+    % ==== Grupo VI-A ====
+    \element[Nonmetal, name=O, right=of N]{8}{O}{Oxígeno}{15.999}{3.440}{*-2, -1, +1, +2}{1s^2 2s^2 2p^4}
+    \element[Nonmetal, name=S, below=of O]{16}{S}{Azufre}{32.065}{2.580}{*-2, +1, *+2, +3, *+4, +5, *+6}{[Ne] 3s^2 3p^4}
+    \element[Nonmetal, name=Se, below=of S]{34}{Se}{Selenio}{78.96}{2.550}{*-2, +1, *+2, +3, *+4, +5, *+6}{[Ar] 3d^{10} 4s^2 4p^4}
+    \element[Metalloid, name=Te, below=of Se]{52}{Te}{Telurio}{127.6}{2.100}{*-2, +1, *+2, +3, *+4, +5, *+6}{[Kr] 4d^{10} 5s^2 5p^4}
+    \element[Metalloid, name=Po, below=of Te]{84}{Po}{Polonio}{(209)}{2.000}{*-2, *+2, *+4, +5, +6}{[Xe] 4f^{14} 5d^{10} 6s^2 6p^4}
+    \element[Othermetals, name=Lv, below=of Po]{116}{\textbb{Lv}}{Livermorio}{(293)}{}{¿?}{[Rn] 5f^{14} 6d^{10} 7s^2 7p^4}
+
+    % ==== Grupo VII-A ====
+    \element[Halogen, name=F, right=of O]{9}{F}{Flúor}{18.998}{3.980}{*-1}{1s^2 2s^2 2p^5}
+    \element[Halogen, name=Cl, below=of F]{17}{Cl}{Cloro}{35.453}{3.160}{*-1, *+1, +2, +3, +4, *+5, +6, *+7}{[Ne] 3s^2 3p^5}
+    \element[Halogen, name=Br, below=of Cl]{35}{Br}{Bromo}{79.904}{2.960}{*-1, *+1, *+3, +4, *+5, +7}{[Ar] 3d^{10} 4s^2 4p^5}
+    \element[Halogen, name=I, below=of Br]{53}{I}{Yodo}{126.9}{2.660}{*-1, *+1, *+3, +4, *+5, +6, *+7}{[Kr] 4d^{10} 5s^2 5p^5}
+    \element[Halogen, name=At, below=of I]{85}{At}{Astato}{(210)}{2.200}{*-1, *+1, +3, +5, +7}{[Xe] 4f^{14} 5d^{10} 6s^2 6p^5}
+    \element[Halogen, name=Ts, below=of At]{117}{\textbb{Ts}}{Teneso}{(292)}{}{¿?}{[Rn] 5f^{14} 6d^{10} 7s^2 7p^5}
+
+    % ==== Grupo VIII-A ====
+    \element[NobleGas, name=Ne, right=of F]{10}{Ne}{Néon}{20.180}{}{--}{1s^2 2s^2 2p^6}
+    \element[NobleGas, name=He, above=of Ne]{2}{He}{Helio}{4.0025}{}{--}{1s^2}
+    \element[NobleGas, name=Ar, below=of Ne]{18}{Ar}{Argón}{39.948}{}{--}{[Ne] 3s^2 3p^6}
+    \element[NobleGas, name=Kr, below=of Ar]{36}{Kr}{Kriptón}{83.8}{}{--}{[Ar] 3d^{10} 4s^2 4p^6}
+    \element[NobleGas, name=Xe, below=of Kr]{54}{Xe}{Xenón}{131.29}{}{--}{[Kr] 4d^{10} 5s^2 5p^6}
+    \element[NobleGas, name=Rn, below=of Xe]{86}{Rn}{Radon}{(222)}{}{--}{[Xe] 4f^{14} 5d^{10} 6s^2 6p^6}
+    \element[NobleGas, name=Og, below=of Rn]{118}{\textbb{Og}}{Oganesón}{(294)}{}{--}{[Rn] 5f^{14} 6d^{10} 7s^2 7p^6}
+
+    % =========================================================
+    % SERIE DE LOS LANTÁNIDOS
+    % =========================================================
+    \element[LanthanideActinide, name=La, below=2.8cm of Rf]{57}{La}{Lantano}{138.91}{1.100}{+1, +2, *+3}{[Xe] 5d^1 5s^2}
+    \element[LanthanideActinide, name=Ce, right=of La]{58}{Ce}{Cerio}{140.12}{}{+2, *+3, +4}{[Xe] 5f^1 5d^1 6s^2}
+    \element[LanthanideActinide, name=Pr, right=of Ce]{59}{Pr}{Praseodimio}{140.91}{}{+2, *+3, +4, +5}{[Xe] 5f^3 6s^2}
+    \element[LanthanideActinide, name=Nd, right=of Pr]{60}{Nd}{Neodimio}{144.24}{}{+2, *+3, +4}{[Xe] 5f^4 6s^2}
+    \element[LanthanideActinide, name=Pm, right=of Nd]{61}{\textbb{Pm}}{Prometio}{145}{}{+2, *+3}{[Xe] 5f^5 6s^2}
+    \element[LanthanideActinide, name=Sm, right=of Pm]{62}{Sm}{Samario}{150.36}{}{+2, *+3}{[Xe] 5f^6 6s^2}
+    \element[LanthanideActinide, name=Eu, right=of Sm]{63}{Eu}{Europio}{151.96}{}{+2, *+3}{[Xe] 5f^7 6s^2}
+    \element[LanthanideActinide, name=Gd, right=of Eu]{64}{Gd}{Gadolinio}{157.25}{}{+1, +2, *+3}{[Xe] 4f^7 5d^1 6s^2}
+    \element[LanthanideActinide, name=Tb, right=of Gd]{65}{Tb}{Terbio}{158.93}{}{+1, +2, *+3, +4}{[Xe] 4f^9 6s^2}
+    \element[LanthanideActinide, name=Dy, right=of Tb]{66}{Dy}{Disprosio}{162.50}{}{+1, +2, *+3}{[Xe] 4f^{10} 6s^2}
+    \element[LanthanideActinide, name=Ho, right=of Dy]{67}{Ho}{Holmio}{164.93}{}{+2, *+3}{[Xe] 4f^{11} 6s^2}
+    \element[LanthanideActinide, name=Er, right=of Ho]{68}{Er}{Ermio}{167.26}{}{+2, *+3}{[Xe] 4f^{12} 6s^2}
+    \element[LanthanideActinide, name=Tm, right=of Er]{69}{Tm}{Tulio}{168.93}{}{+2, *+3}{[Xe] 4f^{13} 6s^2}
+    \element[LanthanideActinide, name=Yb, right=of Tm]{70}{Yb}{Iterbio}{173.04}{}{+2, *+3}{[Xe] 4f^{14} 6s^2}
+    \element[LanthanideActinide, name=Lu, right=of Yb]{71}{Lu}{Lutecio}{174.97}{1.270}{+2, *+3}{[Xe] 4f^{14} 5d^1 6s^2}
+
+    % =========================================================
+    % SERIE DE LOS ACTÍNIDOS
+    % =========================================================
+    % Desplazamiento manual de 2mm hacia abajo respecto a La (Lantano)
+    \element[LanthanideActinide, name=Ac, below=8mm of La]{89}{Ac}{Actinio}{(227)}{1.100}{*+3}{[Rn] 6d^1 7s^2}
+    \element[LanthanideActinide, name=Th, right=of Ac]{90}{Th}{Torio}{232.04}{}{+1, +2, +3, *+4}{[Rn] 6d^2 7s^2}
+    \element[LanthanideActinide, name=Pa, right=of Th]{91}{Pa}{Protactinio}{231.04}{}{+3, +4, *+5}{[Rn] 5f^2 6d^1 7s^2}
+    \element[LanthanideActinide, name=U, right=of Pa]{92}{U}{Uranio}{238.03}{}{+1, +2, +3, +4, +5, *+6}{[Rn] 5f^3 6d^1 7s^2}
+    \element[LanthanideActinide, name=Np, right=of U]{93}{\textbb{Np}}{Neptunio}{(237)}{}{+2, +3, *+4, +5, +6, +7}{[Rn] 5f^4 6d^1 7s^2}
+    \element[LanthanideActinide, name=Pu, right=of Np]{94}{\textbb{Pu}}{Plutonio}{(244)}{}{+2, +3, *+4, +5, +6, +7}{[Rn] 5f^6 6s^2}
+    \element[LanthanideActinide, name=Am, right=of Pu]{95}{\textbb{Am}}{Americio}{(243)}{}{+2, *+3, +4, +5, +6, +7}{[Rn] 5f^7 7s^2}
+    \element[LanthanideActinide, name=Cm, right=of Am]{96}{\textbb{Cm}}{Curio}{(247)}{}{*+3, +4, +6}{[Rn] 5f^7 6d^1 7s^2}
+    \element[LanthanideActinide, name=Bk, right=of Cm]{97}{\textbb{Bk}}{Berkelio}{(247)}{}{*+3, +4}{[Rn] 5f^9 7s^2}
+    \element[LanthanideActinide, name=Cf, right=of Bk]{98}{\textbb{Cf}}{Californio}{(251)}{}{}{[Rn] 5f^{10} 7s^2}
+    \element[LanthanideActinide, name=Es, right=of Cf]{99}{\textbb{Es}}{Einsteinio}{(252)}{}{}{[Rn] 5f^{11} 6s^2}
+    \element[LanthanideActinide, name=Fm, right=of Es]{100}{\textbb{Fm}}{Fermio}{(257)}{}{}{[Rn] 5f^{12} 7s^2}
+    \element[LanthanideActinide, name=Md, right=of Fm]{101}{\textbb{Md}}{Mendelevio}{(258)}{}{+2, *+3}{[Rn] 5f^{13} 7s^2}
+    \element[LanthanideActinide, name=No, right=of Md]{102}{\textbb{No}}{Nobelio}{(259)}{}{*+2, +3}{[Rn] 5f^{14} 7s^2}
+    \element[LanthanideActinide, name=Lr, right=of No]{103}{\textbb{Lr}}{Laurencio}{(262)}{}{*+3}{[Rn] 5f^{14} 6s^2 7p^1}
+
+    % ==== Etiquetas Periodos ====
+    \periodLabel{H}{1}
+    \periodLabel{Li}{2}
+    \periodLabel{Na}{3}
+    \periodLabel{K}{4}
+    \periodLabel{Rb}{5}
+    \periodLabel{Cs}{6}
+    \periodLabel{Fr}{7}
+
+    % ==== Etiquetas Grupos ====
+    \groupLabel{H}{I-A}
+    \groupLabel{Be}{II-A}
+    \groupLabel{Sc}{III-B}
+    \groupLabel{Ti}{IV-B}
+    \groupLabel{V}{V-B}
+    \groupLabel{Cr}{VI-B}
+    \groupLabel{Mn}{VII-B}
+    \groupLabel[minimum width=6.7cm]{Co}{VIII-B}
+    \groupLabel{Cu}{I-B}
+    \groupLabel{Zn}{II-B}
+    \groupLabel{B}{III-A}
+    \groupLabel{C}{IV-A}
+    \groupLabel{N}{V-A}
+    \groupLabel{O}{VI-A}
+    \groupLabel{F}{VII-A}
+    \groupLabel{He}{VIII-A}
+
+    % ==== Línea roja ====
+    \draw[rojo, line width=1.2mm, rounded corners] (B.south west) -| (Si.south west) -| (As.south west) -| (Te.south west) -| (At.south west);
+
+    % ==== Elemento de Ejemplo ====
+    \elementexample[Nonmetal, name=HExam, above=35mm of Mn.north west]{1}{H}{Hidrógeno}{1.0079}{2.200}{*-1, +1}{1s^1}
+    \DrawElementLegend{HExam}
+
+    % ==== Leyendas ====
+    \matrix[
+        matrix of nodes,%
+        ampersand replacement=\&,%
+        at={($(Ni.north)+(0.2,8.5)$)},%
+        anchor=north west,%
+        nodes={font=\ipn},%
+        column sep=1mm,%
+        row sep=1mm,%
+        column 1/.style={nodes={anchor=base east, yshift=0.8ex}},%
+        column 2/.style={nodes={anchor=base west}}%
+    ] (leyenda_familias) {
+        \node[draw=black, minimum size=3mm, inner sep=0pt, line width=0.3mm, AlkalineMetal] {}; \& Alcalinos \\%
+        \node[draw=black, minimum size=3mm, inner sep=0pt, line width=0.3mm, AlkalineEarthMetal] {}; \& Alcalinotérreos \\%
+        \node[draw=black, minimum size=3mm, inner sep=0pt, line width=0.3mm, Metal] {}; \& Metal \\%
+        \node[draw=black, minimum size=3mm, inner sep=0pt, line width=0.3mm, Metalloid] {}; \& Metaloides \\%
+        \node[draw=black, minimum size=3mm, inner sep=0pt, line width=0.3mm, Nonmetal] {}; \& No metales \\%
+        \node[draw=black, minimum size=3mm, inner sep=0pt, line width=0.3mm, Othermetals] {}; \& Otros metales \\%
+        \node[draw=black, minimum size=3mm, inner sep=0pt, line width=0.3mm, Halogen] {}; \& Halógenos \\%
+        \node[draw=black, minimum size=3mm, inner sep=0pt, line width=0.3mm, NobleGas] {}; \& Gas noble \\%
+        \node[draw=black, minimum size=3mm, inner sep=0pt, line width=0.3mm, LanthanideActinide] {}; \& Lantánidos/Actínidos \\%
+    };
+
+    \node[anchor=south] (title) at ($(Co.north east)+(0,11)$)%
+        {\creato\fontsize{42}{47}\bfseries\selectfont\titulo};
+
+    % ==== Guías de Inserción ====
+    \begin{scope}[line width=0.5mm, dash pattern=on 4pt off 4pt]
+        \draw[green!80!black] (AcLr.north west) rectangle (AcLr.south east)
+            (AcLr.south) |- (Ac.west);
+
+        \draw[Gold2] (LaLu.north west) rectangle (LaLu.south east)
+            (LaLu.south west) |- (La.west);
+    \end{scope}
+
+    % ==== Notas ====
+    \matrix[
+        matrix of nodes,%
+        ampersand replacement=\&,%
+        at={($(Fr.south west)+(0,-0.2)$)},%
+        anchor=north west,%
+        nodes={font={\fontsize{12}{14}\ipn\selectfont}},%
+        inner sep=1mm,%
+        column sep=0mm,%
+        column 1/.style={nodes={anchor=east}},%
+        column 2/.style={nodes={anchor=west}},%
+    ] (datos)%
+    {
+        * \& Los elementos con \textbb{esta fuente} son \textbb{Artificiales}. \\[0.1mm]%
+        ** \& Las masas de los elementos radioactivos se encuentran entre paréntesis. \\[0.1mm]%
+        *** \& Los números en \textbf{negritas} son los más estables. \\%
+    };
+\end{tikzpicture}
